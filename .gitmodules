@@ -1,0 +1,3 @@
+[submodule "simpsons-php-sql"]
+	path = simpsons-php-sql
+	url = https://github.com/dennishohmann/simpsons-php-sql
