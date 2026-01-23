@@ -278,7 +278,7 @@ echo "&lt;th&gt;Spezialität&lt;/th&gt;";
 echo "&lt;th&gt;Täglicher Unfug&lt;/th&gt;";
 echo "&lt;th&gt;Kaffeekonsum&lt;/th&gt;";
 echo "&lt;/tr&gt;";</code>
-        <p>Der Tabellenkopf wird einmalig vor der Schleife ausgegeben. Er enthält die Spaltenüberschriften, die den Feldern in der Datenbank entsprechen. Das öffnende &lt;tbody&gt;-Tag bereitet den Bereich für die Datenzeilen vor.</p>
+        <p>Der Tabellenkopf wird einmalig vor der Schleife ausgegeben. Er enthält die Spaltenüberschriften, die den Feldern in der Datenbank entsprechen.</p>
     </div>
 
     <div class="schritt">
@@ -328,7 +328,7 @@ echo "&lt;/tr&gt;";</code>
         <span class="schritt-titel">Tabelle nach der Schleife schließen</span>
         <code>
 echo "&lt;/table&gt;";</code>
-        <p>Nach der Schleife werden die geöffneten Tags geschlossen. Erst &lt;/tbody&gt; für den Datenbereich, dann &lt;/table&gt; für die gesamte Tabelle. Dies geschieht einmalig nach allen Datensätzen.</p>
+        <p>Nach der Schleife werden die geöffneten Tags geschlossen. &lt;/table&gt; beendet die gesamte Tabelle. Dies geschieht einmalig nach allen Datensätzen.</p>
     </div>
 
     <h3>BONUS: Styling der Tabelle</h3>
