@@ -8,15 +8,17 @@ This is a German-language PHP tutorial teaching database operations with MariaDB
 
 ## Architecture
 
-The project is a progressive tutorial series in `rek_tabelle/`:
+The project is a progressive tutorial series in `rek_tabelle/`. Files are labeled as either AUFGABE (task) or MUSTERLÖSUNG (solution):
 
 - **sql_1.php** - Template with step-by-step instructions (comments only)
-- **sql_2.php** - Basic mysqli connection and simple output
-- **sql_3.php** - Instructions for HTML table output
-- **sql_4.php** - Complete HTML table implementation
-- **sql_5.php** - Instructions for sortable columns
-- **sql_6.php** - Sortable columns without visual indicators
-- **sql_7.php** - Complete sortable table with arrow indicators
+- **sql_2.php** - MUSTERLÖSUNG: Basic mysqli connection and simple output
+- **sql_3.php** - AUFGABE: Build HTML table output
+- **sql_4.php** - MUSTERLÖSUNG: Complete HTML table implementation
+- **sql_5.php** - AUFGABE: Make columns sortable
+- **sql_5a.php** - MUSTERLÖSUNG: Simple sorting (column selection, always DESC)
+- **sql_5b.php** - MUSTERLÖSUNG: Toggle sorting (ASC/DESC switch)
+- **sql_6.php** - MUSTERLÖSUNG: DRY optimization with foreach loops
+- **sql_7.php** - MUSTERLÖSUNG: Sortable table with arrow indicators
 
 Each PHP file contains both executable code and embedded HTML instructions for browser viewing.
 
