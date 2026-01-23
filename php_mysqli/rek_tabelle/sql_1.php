@@ -1,4 +1,8 @@
 <?php
+// ============================================
+// AUFGABE: Grundlegende Datenbankabfrage
+// ============================================
+
 // Schritt 0: Datenbank erstellen / importieren der SQL Anweisungen
 
 // Schritt 1: Verbindung herstellen

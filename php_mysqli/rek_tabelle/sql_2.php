@@ -1,5 +1,8 @@
 <?php
-// MUSTERLÖSUNG
+// ============================================
+// MUSTERLÖSUNG: Grundlegende Datenbankabfrage
+// ============================================
+
 // Schritt 1: Verbindung herstellen
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 
@@ -12,7 +15,7 @@ if (!$conn) {
 }
 
 // Schritt 4: Abfrage ausführen
-$result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
+$result = mysqli_query($conn, "SELECT * FROM katzen");
 
 // Schritt 5 & 6: Ergebnisse durchlaufen und ausgeben
 echo "<h2>🐱 Mitarbeiter des Monats 🐱</h2>";

@@ -1,5 +1,9 @@
 <?php
-// MUSTERLÖSUNG mit Zusatz wechselnde Pfeile zur Darstellung der Sortierrichtung
+// ============================================
+// MUSTERLÖSUNG: Sortierrichtung mit Pfeilen anzeigen
+// ============================================
+
+// Datenbankverbindung
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -7,24 +11,22 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
-// Parameter auslesen
+// Schritt 1: Parameter auslesen
+$sortierung = 'id';
 if (isset($_REQUEST['sortierung'])) {
     $sortierung = $_REQUEST['sortierung'];
-} else {
-    $sortierung = 'id';
 }
 
+$reihenfolge = 'desc';
 if (isset($_REQUEST['reihenfolge'])) {
     $reihenfolge = $_REQUEST['reihenfolge'];
-} else {
-    $reihenfolge = 'desc';
 }
 
-// Abfrage ausführen
+// Schritt 2: SQL-Abfrage
 $sql = "SELECT * FROM katzen ORDER BY $sortierung $reihenfolge";
 $result = mysqli_query($conn, $sql);
 
-// Toggle-Logik vorbereiten
+// Schritt 3: Toggle-Logik
 $standard_reihenfolge = 'desc';
 
 if ($reihenfolge == 'asc') {
@@ -33,7 +35,7 @@ if ($reihenfolge == 'asc') {
     $umgekehrte_reihenfolge = 'asc';
 }
 
-// Spalten-Array: Datenbankname => Anzeigetitel
+// Schritt 4: Spalten-Array definieren
 $spalten = [
     'name' => 'Name',
     'spezialitaet' => 'Spezialität',
@@ -41,10 +43,10 @@ $spalten = [
     'kaffee_konsum' => 'Kaffeekonsum'
 ];
 
-// Pfeil für aktive Spalte
+// Schritt 5: Pfeil für aktive Spalte
 $pfeil = ($reihenfolge == 'asc') ? '&nbsp;↑' : '&nbsp;↓';
 
-// Links und Titel für jede Spalte erstellen
+// Schritt 6: Links und Titel mit foreach erstellen
 $links = [];
 $titel = [];
 foreach ($spalten as $spalte => $anzeigename) {
@@ -72,6 +74,7 @@ foreach ($spalten as $spalte => $anzeigename) {
 <h2>🐱 Mitarbeiter des Monats 🐱</h2>
 
 <?php
+// Schritt 7: Tabelle mit Überschriften ausgeben
 echo "<table class='katzen-tabelle'>";
 echo "<thead><tr>";
 foreach ($spalten as $spalte => $anzeigename) {

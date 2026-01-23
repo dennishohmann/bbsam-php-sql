@@ -1,5 +1,7 @@
 <?php
-// MUSTERLÖSUNG
+// ============================================
+// MUSTERLÖSUNG: Daten als HTML-Tabelle ausgeben
+// ============================================
 
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
@@ -8,7 +10,7 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
-$result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
+$result = mysqli_query($conn, "SELECT * FROM katzen");
 ?>
 
 <style>
@@ -22,6 +24,7 @@ $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC"
 <h2>🐱 Mitarbeiter des Monats 🐱</h2>
 
 <?php
+// Schritt 1: Tabelle öffnen und Kopfzeile erstellen
 echo "<table class='katzen-tabelle'>";
 echo "<tr>";
 echo "<th>Name</th>";
@@ -30,6 +33,7 @@ echo "<th>Täglicher Unfug</th>";
 echo "<th>Kaffeekonsum</th>";
 echo "</tr>";
 
+// Schritt 2: Tabellenzeilen in Schleife ausgeben
 while ($katze = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $katze['name'] . "</td>";
@@ -39,8 +43,10 @@ while ($katze = mysqli_fetch_array($result)) {
     echo "</tr>";
 }
 
+// Schritt 3: Tabelle schließen
 echo "</table>";
 
+// Ressourcen freigeben
 mysqli_free_result($result);
 mysqli_close($conn);
 ?>

@@ -1,5 +1,9 @@
 <?php
-// MUSTERLÖSUNG Aufgabe 3: Sortieren in beide Richtungen mit DRY Verbesserungen
+// ============================================
+// MUSTERLÖSUNG: DRY-Optimierung mit foreach
+// ============================================
+
+// Datenbankverbindung
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -7,24 +11,22 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
-// Parameter auslesen
+// Schritt 1: Parameter auslesen
+$sortierung = 'id';
 if (isset($_REQUEST['sortierung'])) {
     $sortierung = $_REQUEST['sortierung'];
-} else {
-    $sortierung = 'id';
 }
 
+$reihenfolge = 'desc';
 if (isset($_REQUEST['reihenfolge'])) {
     $reihenfolge = $_REQUEST['reihenfolge'];
-} else {
-    $reihenfolge = 'desc';
 }
 
-// Abfrage ausführen
+// Schritt 2: SQL-Abfrage
 $sql = "SELECT * FROM katzen ORDER BY $sortierung $reihenfolge";
 $result = mysqli_query($conn, $sql);
 
-// Toggle-Logik vorbereiten
+// Schritt 3: Toggle-Logik
 $standard_reihenfolge = 'desc';
 
 if ($reihenfolge == 'asc') {
@@ -33,7 +35,7 @@ if ($reihenfolge == 'asc') {
     $umgekehrte_reihenfolge = 'asc';
 }
 
-// Spalten-Array: Datenbankname => Anzeigetitel
+// Schritt 4: Spalten-Array definieren (DRY)
 $spalten = [
     'name' => 'Name',
     'spezialitaet' => 'Spezialität',
@@ -41,7 +43,7 @@ $spalten = [
     'kaffee_konsum' => 'Kaffeekonsum'
 ];
 
-// Links für jede Spalte erstellen
+// Schritt 5: Links mit foreach erstellen
 $links = [];
 foreach ($spalten as $spalte => $titel) {
     if ($sortierung == $spalte) {
@@ -65,6 +67,7 @@ foreach ($spalten as $spalte => $titel) {
 <h2>🐱 Mitarbeiter des Monats 🐱</h2>
 
 <?php
+// Schritt 6: Tabellenkopf mit foreach ausgeben
 echo "<table class='katzen-tabelle'>";
 echo "<thead><tr>";
 foreach ($spalten as $spalte => $titel) {

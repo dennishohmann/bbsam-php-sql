@@ -1,7 +1,9 @@
 <?php
-// MUSTERLÖSUNG Aufgabe 3 mit umschaltbarer Sortierung
-// Aufgabe: DRY Vereinfachungen
+// ============================================
+// MUSTERLÖSUNG: Sortierung mit Richtungswechsel (Toggle)
+// ============================================
 
+// Datenbankverbindung
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -9,7 +11,7 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
-// Parameter auslesen
+// Schritt 1: Beide Parameter auslesen (sortierung + reihenfolge)
 $sortierung = 'id';
 if (isset($_REQUEST['sortierung'])) {
     $sortierung = $_REQUEST['sortierung'];
@@ -20,11 +22,11 @@ if (isset($_REQUEST['reihenfolge'])) {
     $reihenfolge = $_REQUEST['reihenfolge'];
 }
 
-// SQL-Abfrage mit Sortierung und Reihenfolge
+// Schritt 2: SQL-Abfrage mit beiden Variablen
 $sql = "SELECT * FROM katzen ORDER BY $sortierung $reihenfolge";
 $result = mysqli_query($conn, $sql);
 
-// Toggle-Logik: Reihenfolge umkehren
+// Schritt 3: Toggle-Logik (umgekehrte Reihenfolge berechnen)
 $standard_reihenfolge = 'desc';
 
 if ($reihenfolge == 'asc') {
@@ -33,7 +35,7 @@ if ($reihenfolge == 'asc') {
     $umgekehrte_reihenfolge = 'asc';
 }
 
-// Links fuer jede Spalte erstellen
+// Schritt 4: Links mit Bedingung erstellen
 if ($sortierung == 'name') {
     $link_name = "?sortierung=name&reihenfolge=$umgekehrte_reihenfolge";
 } else {
@@ -69,9 +71,10 @@ if ($sortierung == 'kaffee_konsum') {
     .katzen-tabelle tr:hover { background: #e8f4fc; }
 </style>
 
-<h2>Mitarbeiter des Monats</h2>
+<h2>🐱 Mitarbeiter des Monats 🐱</h2>
 
 <?php
+// Schritt 5: Tabelle mit klickbaren Überschriften
 echo "<table class='katzen-tabelle'>";
 echo "<thead><tr>";
 echo "<th><a href='$link_name'>Name</a></th>";

@@ -1,19 +1,37 @@
 <?php
-// AUFGABE:
+// ============================================
+// AUFGABE: Daten als HTML-Tabelle ausgeben
+// ============================================
 
+// Datenbankverbindung (aus Aufgabe 1)
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
-$result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
-echo "<h2>Mitarbeiter des Monats</h2>";
+$result = mysqli_query($conn, "SELECT * FROM katzen");
+
+echo "<h2>🐱 Mitarbeiter des Monats 🐱</h2>";
+
+// --------------------------------------------
+// Schritt 1: Tabelle öffnen und Kopfzeile mit <th> erstellen
+// --------------------------------------------
+
+// --------------------------------------------
+// Schritt 2: In der Schleife Zeilen mit <td> ausgeben
+// --------------------------------------------
 while ($katze = mysqli_fetch_array($result)) {
     echo "<p><b>{$katze['name']}</b><br>";
     echo "Spezialität: {$katze['spezialitaet']}<br>";
     echo "Täglicher Unfug: {$katze['taeglicher_unfug']}<br>";
     echo "Kaffeekonsum: {$katze['kaffee_konsum']} Tassen</p><hr>";
 }
+
+// --------------------------------------------
+// Schritt 3: Tabelle schließen
+// --------------------------------------------
+
+
 mysqli_free_result($result);
 mysqli_close($conn);
 ?>
