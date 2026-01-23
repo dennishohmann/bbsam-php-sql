@@ -14,14 +14,14 @@ if (!$conn) {
 $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
 
 // Schritt 5 & 6: Ergebnisse durchlaufen und ausgeben
-echo "<h2>🐱 Mitarbeiter des Monats 🐱</h2>";
+echo "<h2>Mitarbeiter des Monats</h2>";
 
-while ($katze = mysqli_fetch_assoc($result)) {
+while ($katze = mysqli_fetch_array($result)) {
     $kaffee = $katze['kaffee_konsum'] ?? '???';
     echo "<p><b>{$katze['name']}</b><br>";
     echo "Spezialität: {$katze['spezialitaet']}<br>";
     echo "Täglicher Unfug: {$katze['taeglicher_unfug']}<br>";
-    echo "Kaffeekonsum: {$kaffee} Tassen ☕</p><hr>";
+    echo "Kaffeekonsum: {$kaffee} Tassen</p><hr>";
 }
 
 // Schritt 7: Ressourcen freigeben
@@ -31,18 +31,18 @@ mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 <div class="navigation">
-    <a href="sql_2.php" class="nav-btn zurueck">← Zurück</a>
+    <a href="sql_2.php" class="nav-btn zurueck">&larr; Zurück</a>
     <div class="nav-platzhalter"></div>
-    <a href="sql_4.php" class="nav-btn weiter">Weiter zur Lösung→</a>
-</div>   
+    <a href="sql_4.php" class="nav-btn weiter">Weiter zur Lösung &rarr;</a>
+</div>
 <!--    #######################################
         Ab hier braucht ihr nicht weiter lesen :)
-        
+
         Diese Anleitung braucht nur im Browser gelesen zu werden...
 -->
 
 <style>
-        .navigation {
+    .navigation {
         display: flex;
         justify-content: space-between;
         max-width: 800px;
@@ -97,96 +97,6 @@ mysqli_close($conn);
         color: #2c3e50;
         margin-top: 30px;
     }
-    .schritt {
-        background: white;
-        margin: 15px 0;
-        padding: 15px;
-        border-left: 4px solid #9b59b6;
-        border-radius: 0 8px 8px 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .schritt-nummer {
-        background: #9b59b6;
-        color: white;
-        padding: 3px 10px;
-        border-radius: 15px;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-    .schritt-titel {
-        font-weight: bold;
-        color: #2c3e50;
-        font-size: 1.1em;
-    }
-    .schritt code {
-        display: block;
-        background: #2c3e50;
-        color: #2ecc71;
-        padding: 12px;
-        margin: 10px 0;
-        border-radius: 5px;
-        font-family: monospace;
-        overflow-x: auto;
-        white-space: pre;
-    }
-    .schritt p {
-        color: #555;
-        line-height: 1.6;
-        margin: 10px 0 0 0;
-    }
-    .konzept {
-        background: #fff3cd;
-        border: 1px solid #ffc107;
-        padding: 15px;
-        border-radius: 8px;
-        margin: 20px 0;
-    }
-    .konzept-titel {
-        font-weight: bold;
-        color: #856404;
-        margin-bottom: 10px;
-    }
-    .vergleich {
-        display: flex;
-        gap: 20px;
-        margin: 15px 0;
-    }
-    .vergleich-box {
-        flex: 1;
-        background: white;
-        padding: 10px;
-        border-radius: 5px;
-    }
-    .vergleich-box.vorher {
-        border: 2px solid #e74c3c;
-    }
-    .vergleich-box.nachher {
-        border: 2px solid #27ae60;
-    }
-    .vergleich-label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .vergleich-box code {
-        display: block;
-        background: #2c3e50;
-        color: #2ecc71;
-        padding: 8px;
-        border-radius: 3px;
-        font-family: monospace;
-        font-size: 0.85em;
-        white-space: pre;
-    }
-    .hinweis {
-        background: #d4edda;
-        border: 1px solid #28a745;
-        padding: 12px;
-        border-radius: 8px;
-        margin-top: 10px;
-    }
-    .hinweis strong {
-        color: #155724;
-    }
     .aufgabe {
         background: #e3f2fd;
         border: 2px solid #2196f3;
@@ -218,18 +128,131 @@ mysqli_close($conn);
         margin: 5px 0;
         color: #555;
     }
+    .konzept {
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .konzept-titel {
+        font-weight: bold;
+        color: #856404;
+        margin-bottom: 10px;
+    }
+
+    /* Arbeitsschritt-Styles */
+    .arbeitsschritt {
+        background: white;
+        margin: 15px 0;
+        padding: 15px;
+        border-left: 4px solid #9b59b6;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .schritt-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .schritt-nummer {
+        background: #9b59b6;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 15px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .schritt-titel {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 1.1em;
+    }
+    .schritt-auftrag {
+        color: #333;
+        font-size: 1.05em;
+        margin: 10px 0;
+        line-height: 1.6;
+    }
+    .schritt-auftrag code {
+        background: #f3e8fc;
+        padding: 2px 6px;
+        border-radius: 3px;
+        color: #8e44ad;
+        font-family: monospace;
+    }
+
+    /* Hilfe/Details-Styles */
+    .hilfe {
+        margin-top: 10px;
+        border: 1px dashed #bdc3c7;
+        border-radius: 5px;
+    }
+    .hilfe summary {
+        padding: 8px 12px;
+        cursor: pointer;
+        color: #7f8c8d;
+        font-size: 0.9em;
+    }
+    .hilfe summary:hover {
+        color: #9b59b6;
+    }
+    .hilfe[open] summary {
+        border-bottom: 1px dashed #bdc3c7;
+    }
+    .hilfe-inhalt {
+        padding: 12px;
+        background: #fafafa;
+    }
+    .hilfe-inhalt p {
+        color: #555;
+        margin: 0 0 10px 0;
+        line-height: 1.5;
+    }
+    .hilfe-inhalt ul {
+        margin: 5px 0 10px 0;
+        padding-left: 20px;
+    }
+    .hilfe-inhalt li {
+        margin: 3px 0;
+        color: #555;
+    }
+    .hilfe-inhalt li strong {
+        color: #e74c3c;
+    }
+    .hilfe-inhalt code {
+        display: block;
+        background: #2c3e50;
+        color: #2ecc71;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+        white-space: pre;
+        overflow-x: auto;
+    }
+    .hinweis {
+        background: #d4edda;
+        border: 1px solid #28a745;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .hinweis strong {
+        color: #155724;
+    }
 </style>
 
 <div class="anleitung">
-    <h2>📊 Tabellenausgabe mit PHP &amp; MySQL</h2>
+    <h2>Tabellenausgabe mit PHP &amp; MySQL</h2>
 
     <div class="konzept">
-        <div class="konzept-titel">💡 Das Konzept</div>
+        <div class="konzept-titel">Das Konzept</div>
         <p>Statt jeden Datensatz einzeln mit Absätzen auszugeben, bauen wir eine HTML-Tabelle auf. Die Schleife durchläuft alle Datensätze und erzeugt für jeden eine neue Tabellenzeile. So entsteht die Tabelle Zeile für Zeile dynamisch.</p>
     </div>
 
     <div class="aufgabe">
-        <div class="aufgabe-titel">📝 Deine Aufgabe</div>
+        <div class="aufgabe-titel">Deine Aufgabe</div>
         <p>Baue die einfache Textausgabe zu einer HTML-Tabelle um.</p>
         <div class="schritte-liste">
             <strong>Das sollst du tun:</strong>
@@ -245,10 +268,27 @@ mysqli_close($conn);
 
     <h3>Aufbau der HTML-Tabelle</h3>
 
-    <div class="schritt">
-        <span class="schritt-nummer">1</span>
-        <span class="schritt-titel">Tabellenstruktur verstehen</span>
-        <code>&lt;table&gt;
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">1</span>
+            <span class="schritt-titel">Tabellenstruktur verstehen</span>
+        </div>
+        <p class="schritt-auftrag">
+            Mache dich mit den HTML-Tags für Tabellen vertraut: <code>&lt;table&gt;</code> für den Container,
+            <code>&lt;tr&gt;</code> für Zeilen, <code>&lt;th&gt;</code> für Kopfzellen und
+            <code>&lt;td&gt;</code> für Datenzellen.
+        </p>
+        <details class="hilfe">
+            <summary>Hilfe anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <p>Eine HTML-Tabelle ist so aufgebaut:</p>
+                <ul>
+                    <li><strong>&lt;table&gt;</strong> – Der Container für die gesamte Tabelle</li>
+                    <li><strong>&lt;tr&gt;</strong> – Eine Tabellenzeile (table row)</li>
+                    <li><strong>&lt;th&gt;</strong> – Eine Kopfzelle (table header) - wird fett angezeigt</li>
+                    <li><strong>&lt;td&gt;</strong> – Eine Datenzelle (table data)</li>
+                </ul>
+                <code>&lt;table&gt;
     &lt;tr&gt;
         &lt;th&gt;Überschrift&lt;/th&gt;
         &lt;th&gt;Überschrift&lt;/th&gt;
@@ -258,85 +298,122 @@ mysqli_close($conn);
         &lt;td&gt;Daten&lt;/td&gt;
     &lt;/tr&gt;
 &lt;/table&gt;</code>
-        <p>Eine HTML-Tabelle besteht aus mehreren Elementen:</p>
-        <div class="parameter">
-            <strong>&lt;table&gt;</strong> – Der Container für die gesamte Tabelle<br>            <strong>&lt;tr&gt;</strong> – Eine Tabellenzeile (table row)<br>
-            <strong>&lt;th&gt;</strong> – Eine Kopfzelle (table header) / wird in fetter Schriftart angezeigt<br>
-            <strong>&lt;td&gt;</strong> – Eine Datenzelle (table data)
-        </div>
+            </div>
+        </details>
     </div>
 
     <h3>Umbau der Ausgabe</h3>
 
-    <div class="schritt">
-        <span class="schritt-nummer">2</span>
-        <span class="schritt-titel">Tabellenkopf vor der Schleife ausgeben</span>
-        <code>echo "&lt;table&gt;";
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">2</span>
+            <span class="schritt-titel">Tabellenkopf vor der Schleife ausgeben</span>
+        </div>
+        <p class="schritt-auftrag">
+            Gib <strong>vor</strong> der while-Schleife den Tabellenkopf aus: Öffne die Tabelle mit
+            <code>&lt;table&gt;</code>, erstelle eine Zeile mit <code>&lt;tr&gt;</code> und füge für
+            jede Spalte eine Überschrift mit <code>&lt;th&gt;</code> hinzu.
+        </p>
+        <details class="hilfe">
+            <summary>Hilfe anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <p>Die Spaltenüberschriften entsprechen den Datenbankfeldern:</p>
+                <code>echo "&lt;table&gt;";
 echo "&lt;tr&gt;";
 echo "&lt;th&gt;Name&lt;/th&gt;";
 echo "&lt;th&gt;Spezialität&lt;/th&gt;";
 echo "&lt;th&gt;Täglicher Unfug&lt;/th&gt;";
 echo "&lt;th&gt;Kaffeekonsum&lt;/th&gt;";
 echo "&lt;/tr&gt;";</code>
-        <p>Der Tabellenkopf wird einmalig vor der Schleife ausgegeben. Er enthält die Spaltenüberschriften, die den Feldern in der Datenbank entsprechen.</p>
+            </div>
+        </details>
     </div>
 
-    <div class="schritt">
-        <span class="schritt-nummer">3</span>
-        <span class="schritt-titel">Schleife für die Datenzeilen anpassen</span>
-        
-        <div class="vergleich">
-            <div class="vergleich-box vorher">
-                <div class="vergleich-label">❌ Vorher:</div>
-                <code>while ($katze = mysqli_fetch_assoc($result)) {
-    echo "&lt;p&gt;";
-    echo $katze['name'];
-    echo "&lt;/p&gt;";
-}</code>
-            </div>
-            <div class="vergleich-box nachher">
-                <div class="vergleich-label">✅ Nachher:</div>
-                <code>while ($katze = mysqli_fetch_assoc($result)) {
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">3</span>
+            <span class="schritt-titel">Schleife für die Datenzeilen anpassen</span>
+        </div>
+        <p class="schritt-auftrag">
+            Ändere die Ausgabe in der while-Schleife: Statt <code>&lt;p&gt;</code>-Tags verwendest du
+            jetzt <code>&lt;tr&gt;</code> für eine Zeile und <code>&lt;td&gt;</code> für jede Zelle.
+        </p>
+        <details class="hilfe">
+            <summary>Hilfe anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <p>Jeder Datensatz wird zu einer Tabellenzeile:</p>
+                <code>while ($katze = mysqli_fetch_array($result)) {
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }</code>
             </div>
-        </div>
-        
-        <p>Statt Absätze (&lt;p&gt;) erzeugen wir jetzt Tabellenzeilen (&lt;tr&gt;). Jeder Wert wird in eine eigene Zelle (&lt;td&gt;) geschrieben. Die Schleife wiederholt dies für jeden Datensatz.</p>
+        </details>
     </div>
 
-    <div class="schritt">
-        <span class="schritt-nummer">4</span>
-        <span class="schritt-titel">Alle Spalten in die Zeile einfügen</span>
-        <code>while ($katze = mysqli_fetch_assoc($result)) {
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">4</span>
+            <span class="schritt-titel">Alle Spalten in die Zeile einfügen</span>
+        </div>
+        <p class="schritt-auftrag">
+            Erweitere die Schleife, sodass alle Datenbankfelder (<code>name</code>, <code>spezialitaet</code>,
+            <code>taeglicher_unfug</code>, <code>kaffee_konsum</code>) als eigene <code>&lt;td&gt;</code>-Zellen
+            ausgegeben werden. Vergiss nicht den <code>??</code> Operator für NULL-Werte.
+        </p>
+        <details class="hilfe">
+            <summary>Hilfe anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <p>Jede Spalte bekommt eine eigene Zelle. Die Reihenfolge muss mit dem Tabellenkopf übereinstimmen:</p>
+                <code>while ($katze = mysqli_fetch_array($result)) {
     $kaffee = $katze['kaffee_konsum'] ?? '???';
-    
+
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['taeglicher_unfug'] . "&lt;/td&gt;";
-    echo "&lt;td&gt;" . $kaffee . " ☕&lt;/td&gt;";
+    echo "&lt;td&gt;" . $kaffee . "&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }</code>
-        <p>Jede Spalte aus der Datenbank bekommt eine eigene &lt;td&gt;-Zelle. Die Reihenfolge muss mit den Überschriften im Tabellenkopf übereinstimmen. Der Null-Coalescing-Operator behandelt NULL-Werte.</p>
+            </div>
+        </details>
     </div>
 
-    <div class="schritt">
-        <span class="schritt-nummer">5</span>
-        <span class="schritt-titel">Tabelle nach der Schleife schließen</span>
-        <code>
-echo "&lt;/table&gt;";</code>
-        <p>Nach der Schleife werden die geöffneten Tags geschlossen. &lt;/table&gt; beendet die gesamte Tabelle. Dies geschieht einmalig nach allen Datensätzen.</p>
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">5</span>
+            <span class="schritt-titel">Tabelle nach der Schleife schließen</span>
+        </div>
+        <p class="schritt-auftrag">
+            Gib <strong>nach</strong> der while-Schleife das schließende <code>&lt;/table&gt;</code>-Tag aus.
+        </p>
+        <details class="hilfe">
+            <summary>Hilfe anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <p>Einfach die Tabelle beenden:</p>
+                <code>echo "&lt;/table&gt;";</code>
+            </div>
+        </details>
     </div>
 
     <h3>BONUS: Styling der Tabelle</h3>
 
-    <div class="schritt">
-        <span class="schritt-nummer">6</span>
-        <span class="schritt-titel">CSS für die Tabelle hinzufügen</span>
-        <code>&lt;style&gt;
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">6</span>
+            <span class="schritt-titel">CSS-Klasse und Styles hinzufügen</span>
+        </div>
+        <p class="schritt-auftrag">
+            Gib der Tabelle eine CSS-Klasse (z.B. <code>class='katzen-tabelle'</code>) und erstelle
+            passende CSS-Regeln für Rahmen, Abstände und abwechselnde Zeilenfarben.
+        </p>
+        <details class="hilfe">
+            <summary>Hilfe anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <p>Ändere die Tabellen-Ausgabe und füge CSS hinzu:</p>
+                <code>echo "&lt;table class='katzen-tabelle'&gt;";</code>
+                <p style="margin-top: 15px;">Das CSS für eine ansprechende Tabelle:</p>
+                <code>&lt;style&gt;
     .katzen-tabelle {
         width: 100%;
         border-collapse: collapse;
@@ -359,27 +436,25 @@ echo "&lt;/table&gt;";</code>
         background: #e8f4fc;
     }
 &lt;/style&gt;</code>
-        <p>Das CSS macht die Tabelle ansprechender:</p>
-        <div class="parameter">
-            <strong>border-collapse:</strong> Verschmilzt doppelte Rahmenlinien zu einer<br>
-            <strong>nth-child(even):</strong> Färbt jede zweite Zeile für bessere Lesbarkeit<br>
-            <strong>tr:hover:</strong> Hebt die Zeile unter dem Mauszeiger hervor
-        </div>
-    </div>
-
-    <div class="schritt">
-        <span class="schritt-nummer">7</span>
-        <span class="schritt-titel">CSS-Klasse der Tabelle zuweisen</span>
-        <code>echo "&lt;table class='katzen-tabelle'&gt;";</code>
-        <p>Die Klasse verbindet die Tabelle mit dem CSS. Ohne diese Zuweisung greifen die Styles nicht.</p>
+            </div>
+        </details>
     </div>
 
     <h3>Vollständiger Code</h3>
 
-    <div class="schritt">
-        <span class="schritt-nummer">8</span>
-        <span class="schritt-titel">Alles zusammengesetzt</span>
-        <code>&lt;?php
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">7</span>
+            <span class="schritt-titel">Alles zusammengesetzt</span>
+        </div>
+        <p class="schritt-auftrag">
+            Vergleiche deinen Code mit der vollständigen Lösung. Alle Teile sollten zusammenpassen:
+            Verbindung, Tabellenkopf, Schleife mit Datenzeilen, Tabellenende und CSS.
+        </p>
+        <details class="hilfe">
+            <summary>Lösung anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <code>&lt;?php
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -398,7 +473,7 @@ $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC"
     .katzen-tabelle tr:hover { background: #e8f4fc; }
 &lt;/style&gt;
 
-&lt;h2&gt;🐱 Mitarbeiter des Monats 🐱&lt;/h2&gt;
+&lt;h2&gt;Mitarbeiter des Monats&lt;/h2&gt;
 
 &lt;?php
 echo "&lt;table class='katzen-tabelle'&gt;";
@@ -409,14 +484,14 @@ echo "&lt;th&gt;Täglicher Unfug&lt;/th&gt;";
 echo "&lt;th&gt;Kaffeekonsum&lt;/th&gt;";
 echo "&lt;/tr&gt;";
 
-while ($katze = mysqli_fetch_assoc($result)) {
+while ($katze = mysqli_fetch_array($result)) {
     $kaffee = $katze['kaffee_konsum'] ?? '???';
-    
+
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['taeglicher_unfug'] . "&lt;/td&gt;";
-    echo "&lt;td&gt;" . $kaffee . " ☕&lt;/td&gt;";
+    echo "&lt;td&gt;" . $kaffee . "&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }
 
@@ -425,9 +500,10 @@ echo "&lt;/table&gt;";
 mysqli_free_result($result);
 mysqli_close($conn);
 ?&gt;</code>
-        
-        <div class="hinweis">
-            <strong>Tipp:</strong> Der PHP-Code kann mit reinem HTML gemischt werden. Dafür mit ?&gt; php schließen - "normales" html verwenden und später wieder mit &lt;?php in php wechseln.
-        </div>
+                <div class="hinweis">
+                    <strong>Tipp:</strong> Der PHP-Code kann mit reinem HTML gemischt werden. Dafür mit ?&gt; PHP schließen, normales HTML verwenden und später wieder mit &lt;?php in PHP wechseln.
+                </div>
+            </div>
+        </details>
     </div>
 </div>
