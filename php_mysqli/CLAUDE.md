@@ -19,6 +19,7 @@ The project is a progressive tutorial series in `rek_tabelle/`. Files are labele
 - **sql_5b.php** - MUSTERLÖSUNG: Toggle sorting (ASC/DESC switch)
 - **sql_6.php** - MUSTERLÖSUNG: DRY optimization with foreach loops
 - **sql_7.php** - MUSTERLÖSUNG: Sortable table with arrow indicators
+- **sql_8.php** - Interactive code explanation with hover tooltips (two-column layout)
 
 Each PHP file contains both executable code and embedded HTML instructions for browser viewing.
 
