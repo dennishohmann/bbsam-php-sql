@@ -127,10 +127,57 @@
     .parameter strong {
         color: #e74c3c;
     }
+    .aufgabe {
+        background: #e3f2fd;
+        border: 2px solid #2196f3;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .aufgabe-titel {
+        font-weight: bold;
+        color: #1565c0;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .aufgabe p {
+        color: #333;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .schritte-liste {
+        background: white;
+        padding: 10px 10px 10px 25px;
+        border-radius: 5px;
+    }
+    .schritte-liste ol {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+    }
+    .schritte-liste li {
+        margin: 5px 0;
+        color: #555;
+    }
 </style>
 
 <div class="anleitung">
     <h2>📚 PHP &amp; MariaDB: Schritt-für-Schritt</h2>
+
+    <div class="aufgabe">
+        <div class="aufgabe-titel">📝 Deine Aufgabe</div>
+        <p>Verbinde PHP mit einer MariaDB-Datenbank und gib die Katzen-Daten aus.</p>
+        <div class="schritte-liste">
+            <strong>Das sollst du tun:</strong>
+            <ol>
+                <li>Verbindung zur Datenbank "katzencafe" herstellen</li>
+                <li>Zeichensatz auf UTF-8 setzen</li>
+                <li>Prüfen ob die Verbindung geklappt hat</li>
+                <li>SQL-Abfrage ausführen: alle Katzen auslesen</li>
+                <li>Ergebnisse in einer Schleife durchlaufen und ausgeben</li>
+                <li>Ressourcen freigeben und Verbindung schließen</li>
+            </ol>
+        </div>
+    </div>
 
     <div class="schritt">
         <span class="schritt-nummer">1</span>

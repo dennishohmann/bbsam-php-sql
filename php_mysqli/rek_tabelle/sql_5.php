@@ -204,6 +204,37 @@ mysqli_close($conn);
         color: #6c3483;
         margin-bottom: 10px;
     }
+    .aufgabe {
+        background: #e3f2fd;
+        border: 2px solid #2196f3;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .aufgabe-titel {
+        font-weight: bold;
+        color: #1565c0;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .aufgabe p {
+        color: #333;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .schritte-liste {
+        background: white;
+        padding: 10px 10px 10px 25px;
+        border-radius: 5px;
+    }
+    .schritte-liste ol {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+    }
+    .schritte-liste li {
+        margin: 5px 0;
+        color: #555;
+    }
 </style>
 
 <div class="anleitung">
@@ -214,6 +245,21 @@ mysqli_close($conn);
         <p>Die Spaltenüberschriften werden zu Links, die beim Klick die Seite neu laden und dabei Parameter übergeben. Diese Parameter steuern die Sortierung der SQL-Abfrage. Ein erneuter Klick auf dieselbe Spalte kehrt die Reihenfolge um.</p>
         <div class="parameter">
             <strong>Beispiel-URL:</strong> seite.php?sortierung=name&amp;reihenfolge=asc
+        </div>
+    </div>
+
+    <div class="aufgabe">
+        <div class="aufgabe-titel">📝 Deine Aufgabe</div>
+        <p>Mache die Tabellenspalten klickbar, um die Sortierung zu ändern.</p>
+        <div class="schritte-liste">
+            <strong>Das sollst du tun:</strong>
+            <ol>
+                <li>URL-Parameter für Sortierung und Reihenfolge auslesen</li>
+                <li>SQL-Abfrage mit ORDER BY dynamisch anpassen</li>
+                <li>Toggle-Logik: umgekehrte Reihenfolge für erneuten Klick berechnen</li>
+                <li>Spalten-Array anlegen und Links per foreach erstellen</li>
+                <li>Tabellenüberschriften als klickbare Links ausgeben</li>
+            </ol>
         </div>
     </div>
 
@@ -248,35 +294,10 @@ if (isset($_REQUEST['reihenfolge'])) {
         <p>Die Funktion isset() prüft, ob ein Parameter überhaupt existiert. Falls nicht, setzen wir Standardwerte: Sortierung nach ID, absteigend (DESC).</p>
     </div>
 
-    <h3>Sicherheit: Erlaubte Werte prüfen</h3>
-
-    <div class="schritt">
-        <span class="schritt-nummer">3</span>
-        <span class="schritt-titel">Whitelist für Spaltennamen</span>
-        <code>$erlaubte_spalten = ['id', 'name', 'spezialitaet', 'taeglicher_unfug', 'kaffee_konsum'];
-
-if (!in_array($sortierung, $erlaubte_spalten)) {
-    $sortierung = 'id';
-}</code>
-        <p>Niemals Benutzereingaben direkt in SQL einfügen! Die Whitelist enthält alle erlaubten Spaltennamen. Falls jemand einen ungültigen Wert übergibt, wird auf den Standardwert zurückgesetzt.</p>
-        <div class="warnung">
-            <strong>Sicherheit:</strong> Ohne diese Prüfung könnte ein Angreifer schädlichen SQL-Code einschleusen (SQL-Injection).
-        </div>
-    </div>
-
-    <div class="schritt">
-        <span class="schritt-nummer">4</span>
-        <span class="schritt-titel">Whitelist für Reihenfolge</span>
-        <code>if ($reihenfolge != 'asc' &amp;&amp; $reihenfolge != 'desc') {
-    $reihenfolge = 'desc';
-}</code>
-        <p>Die Reihenfolge kann nur zwei gültige Werte haben: 'asc' oder 'desc'. Alles andere wird auf den Standardwert 'desc' gesetzt.</p>
-    </div>
-
     <h3>SQL-Abfrage anpassen</h3>
 
     <div class="schritt">
-        <span class="schritt-nummer">5</span>
+        <span class="schritt-nummer">3</span>
         <span class="schritt-titel">Dynamische ORDER BY Klausel</span>
         <code>$sql = "SELECT * FROM katzen ORDER BY $sortierung $reihenfolge";
 $result = mysqli_query($conn, $sql);</code>
@@ -290,58 +311,59 @@ $result = mysqli_query($conn, $sql);</code>
     <h3>Toggle-Logik implementieren</h3>
 
     <div class="schritt">
-        <span class="schritt-nummer">6</span>
+        <span class="schritt-nummer">4</span>
         <span class="schritt-titel">Reihenfolge umkehren bei erneutem Klick</span>
-        <code>if ($reihenfolge == 'asc') {
-    $neue_reihenfolge = 'desc';
+        <code>$standard_reihenfolge = 'desc';
+
+if ($reihenfolge == 'asc') {
+    $umgekehrte_reihenfolge = 'desc';
 } else {
-    $neue_reihenfolge = 'asc';
+    $umgekehrte_reihenfolge = 'asc';
 }</code>
         <p>Für die Links berechnen wir die umgekehrte Reihenfolge. Wenn aktuell aufsteigend sortiert wird, soll der nächste Klick absteigend sortieren und umgekehrt.</p>
     </div>
 
-    <h3>Spaltenüberschriften als Links</h3>
+    <h3>Spalten-Array und foreach-Schleife</h3>
+
+    <div class="schritt">
+        <span class="schritt-nummer">5</span>
+        <span class="schritt-titel">Spalten-Array definieren</span>
+        <code>$spalten = [
+    'name' => 'Name',
+    'spezialitaet' => 'Spezialität',
+    'taeglicher_unfug' => 'Täglicher Unfug',
+    'kaffee_konsum' => 'Kaffeekonsum'
+];</code>
+        <p>Das Array enthält alle Spalten als Key-Value-Paare: Der Key ist der Datenbankname, der Value ist der Anzeigetitel. So vermeiden wir Wiederholungen im Code.</p>
+    </div>
+
+    <div class="schritt">
+        <span class="schritt-nummer">6</span>
+        <span class="schritt-titel">Links mit foreach erstellen</span>
+        <code>$links = [];
+foreach ($spalten as $spalte => $titel) {
+    if ($sortierung == $spalte) {
+        $links[$spalte] = "?sortierung=$spalte&amp;reihenfolge=$umgekehrte_reihenfolge";
+    } else {
+        $links[$spalte] = "?sortierung=$spalte&amp;reihenfolge=$standard_reihenfolge";
+    }
+}</code>
+        <p>Die foreach-Schleife durchläuft alle Spalten und erstellt für jede einen Link. Falls die Spalte aktiv ist, wird die umgekehrte Reihenfolge verwendet, sonst die Standard-Reihenfolge.</p>
+    </div>
 
     <div class="schritt">
         <span class="schritt-nummer">7</span>
-        <span class="schritt-titel">Link-Funktion erstellen</span>
-        <code>function sortier_link($spalte, $titel, $aktuelle_sortierung, $aktuelle_reihenfolge) {
-    if ($spalte == $aktuelle_sortierung) {
-        if ($aktuelle_reihenfolge == 'asc') {
-            $neue_reihenfolge = 'desc';
-        } else {
-            $neue_reihenfolge = 'asc';
-        }
-    } else {
-        $neue_reihenfolge = 'desc';
-    }
-    
-    return "&lt;a href='?sortierung=$spalte&amp;reihenfolge=$neue_reihenfolge'&gt;$titel&lt;/a&gt;";
-}</code>
-        <p>Die Funktion erzeugt einen Link für eine Spalte. Parameter:</p>
-        <div class="parameter">
-            <strong>$spalte:</strong> Der Datenbankname der Spalte<br>
-            <strong>$titel:</strong> Der angezeigte Text<br>
-            <strong>$aktuelle_sortierung:</strong> Die aktuell aktive Spalte<br>
-            <strong>$aktuelle_reihenfolge:</strong> Die aktuelle Richtung
-        </div>
-        <p>Wenn die Spalte bereits aktiv ist, wird die Reihenfolge umgekehrt. Bei einer anderen Spalte beginnen wir mit DESC.</p>
+        <span class="schritt-titel">Tabellenkopf mit foreach ausgeben</span>
+        <code>echo "&lt;thead&gt;&lt;tr&gt;";
+foreach ($spalten as $spalte => $titel) {
+    echo "&lt;th&gt;&lt;a href='" . $links[$spalte] . "'&gt;$titel&lt;/a&gt;&lt;/th&gt;";
+}
+echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
+        <p>Eine weitere foreach-Schleife gibt die Tabellenüberschriften aus. Der Titel kommt aus dem $spalten-Array, der Link aus dem $links-Array.</p>
     </div>
 
     <div class="schritt">
         <span class="schritt-nummer">8</span>
-        <span class="schritt-titel">Tabellenkopf mit Links</span>
-        <code>echo "&lt;thead&gt;&lt;tr&gt;";
-echo "&lt;th&gt;" . sortier_link('name', 'Name', $sortierung, $reihenfolge) . "&lt;/th&gt;";
-echo "&lt;th&gt;" . sortier_link('spezialitaet', 'Spezialität', $sortierung, $reihenfolge) . "&lt;/th&gt;";
-echo "&lt;th&gt;" . sortier_link('taeglicher_unfug', 'Täglicher Unfug', $sortierung, $reihenfolge) . "&lt;/th&gt;";
-echo "&lt;th&gt;" . sortier_link('kaffee_konsum', 'Kaffeekonsum', $sortierung, $reihenfolge) . "&lt;/th&gt;";
-echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
-        <p>Jede Überschrift ruft die Funktion auf und übergibt den Spaltennamen und den Anzeigetitel. Die Funktion gibt den fertigen Link zurück.</p>
-    </div>
-
-    <div class="schritt">
-        <span class="schritt-nummer">9</span>
         <span class="schritt-titel">CSS für die Links</span>
         <code>.katzen-tabelle th a {
     color: white;
@@ -356,7 +378,7 @@ echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
     <h3>Vollständiger Code</h3>
 
     <div class="schritt">
-        <span class="schritt-nummer">10</span>
+        <span class="schritt-nummer">9</span>
         <span class="schritt-titel">Alles zusammengesetzt</span>
         <code>&lt;?php
 // Verbindung herstellen
@@ -380,35 +402,36 @@ if (isset($_REQUEST['reihenfolge'])) {
     $reihenfolge = 'desc';
 }
 
-// Whitelist prüfen
-$erlaubte_spalten = ['id', 'name', 'spezialitaet', 'taeglicher_unfug', 'kaffee_konsum'];
-
-if (!in_array($sortierung, $erlaubte_spalten)) {
-    $sortierung = 'id';
-}
-
-if ($reihenfolge != 'asc' &amp;&amp; $reihenfolge != 'desc') {
-    $reihenfolge = 'desc';
-}
-
-// Funktion für Sortier-Links
-function sortier_link($spalte, $titel, $aktuelle_sortierung, $aktuelle_reihenfolge) {
-    if ($spalte == $aktuelle_sortierung) {
-        if ($aktuelle_reihenfolge == 'asc') {
-            $neue_reihenfolge = 'desc';
-        } else {
-            $neue_reihenfolge = 'asc';
-        }
-    } else {
-        $neue_reihenfolge = 'desc';
-    }
-    
-    return "&lt;a href='?sortierung=$spalte&amp;reihenfolge=$neue_reihenfolge'&gt;$titel&lt;/a&gt;";
-}
-
 // Abfrage ausführen
 $sql = "SELECT * FROM katzen ORDER BY $sortierung $reihenfolge";
 $result = mysqli_query($conn, $sql);
+
+// Toggle-Logik vorbereiten
+$standard_reihenfolge = 'desc';
+
+if ($reihenfolge == 'asc') {
+    $umgekehrte_reihenfolge = 'desc';
+} else {
+    $umgekehrte_reihenfolge = 'asc';
+}
+
+// Spalten-Array: Datenbankname =&gt; Anzeigetitel
+$spalten = [
+    'name' =&gt; 'Name',
+    'spezialitaet' =&gt; 'Spezialität',
+    'taeglicher_unfug' =&gt; 'Täglicher Unfug',
+    'kaffee_konsum' =&gt; 'Kaffeekonsum'
+];
+
+// Links für jede Spalte erstellen
+$links = [];
+foreach ($spalten as $spalte =&gt; $titel) {
+    if ($sortierung == $spalte) {
+        $links[$spalte] = "?sortierung=$spalte&amp;reihenfolge=$umgekehrte_reihenfolge";
+    } else {
+        $links[$spalte] = "?sortierung=$spalte&amp;reihenfolge=$standard_reihenfolge";
+    }
+}
 ?&gt;
 
 &lt;style&gt;
@@ -426,16 +449,15 @@ $result = mysqli_query($conn, $sql);
 &lt;?php
 echo "&lt;table class='katzen-tabelle'&gt;";
 echo "&lt;thead&gt;&lt;tr&gt;";
-echo "&lt;th&gt;" . sortier_link('name', 'Name', $sortierung, $reihenfolge) . "&lt;/th&gt;";
-echo "&lt;th&gt;" . sortier_link('spezialitaet', 'Spezialität', $sortierung, $reihenfolge) . "&lt;/th&gt;";
-echo "&lt;th&gt;" . sortier_link('taeglicher_unfug', 'Täglicher Unfug', $sortierung, $reihenfolge) . "&lt;/th&gt;";
-echo "&lt;th&gt;" . sortier_link('kaffee_konsum', 'Kaffeekonsum', $sortierung, $reihenfolge) . "&lt;/th&gt;";
+foreach ($spalten as $spalte =&gt; $titel) {
+    echo "&lt;th&gt;&lt;a href='" . $links[$spalte] . "'&gt;$titel&lt;/a&gt;&lt;/th&gt;";
+}
 echo "&lt;/tr&gt;&lt;/thead&gt;";
 echo "&lt;tbody&gt;";
 
 while ($katze = mysqli_fetch_assoc($result)) {
     $kaffee = $katze['kaffee_konsum'] ?? '???';
-    
+
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
@@ -456,41 +478,6 @@ mysqli_close($conn);
 
     <div class="zusatz">
         <div class="zusatz-titel">⭐ Pfeile für die aktive Sortierung</div>
-        <p>Die aktive Spalte soll einen Pfeil zeigen, der die Sortierrichtung anzeigt: ↑ für aufsteigend, ↓ für absteigend.</p>
-    </div>
-
-    <div class="schritt">
-        <span class="schritt-nummer">11</span>
-        <span class="schritt-titel">Funktion erweitern</span>
-        <code>function sortier_link($spalte, $titel, $aktuelle_sortierung, $aktuelle_reihenfolge) {
-    if ($spalte == $aktuelle_sortierung) {
-        if ($aktuelle_reihenfolge == 'asc') {
-            $neue_reihenfolge = 'desc';
-            $pfeil = ' ↑';
-        } else {
-            $neue_reihenfolge = 'asc';
-            $pfeil = ' ↓';
-        }
-    } else {
-        $neue_reihenfolge = 'desc';
-        $pfeil = '';
-    }
-    
-    return "&lt;a href='?sortierung=$spalte&amp;reihenfolge=$neue_reihenfolge'&gt;$titel$pfeil&lt;/a&gt;";
-}</code>
-        <p>Die Funktion prüft nun zusätzlich, ob die Spalte aktiv ist. Falls ja, wird der passende Pfeil an den Titel angehängt. Inaktive Spalten zeigen keinen Pfeil.</p>
-        <div class="hinweis">
-            <strong>Ergebnis:</strong> "Name ↑" zeigt an, dass nach Name aufsteigend sortiert wird. Ein Klick wechselt zu "Name ↓".
-        </div>
-    </div>
-
-    <div class="schritt">
-        <span class="schritt-nummer">12</span>
-        <span class="schritt-titel">Optionales CSS für den Pfeil</span>
-        <code>.katzen-tabelle th a .pfeil {
-    font-size: 0.8em;
-    margin-left: 5px;
-}</code>
-        <p>Falls du die Pfeile als eigenes Element stylen möchtest, kannst du sie in ein span-Tag packen und dieses CSS verwenden. Die einfache Variante mit direktem Unicode-Zeichen funktioniert aber genauso gut.</p>
+        <p>Die aktive Spalte soll einen Pfeil zeigen, der die Sortierrichtung anzeigt: ↑ für aufsteigend, ↓ für absteigend. Siehe sql_7.php für die Lösung mit foreach!</p>
     </div>
 </div>

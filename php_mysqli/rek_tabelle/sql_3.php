@@ -187,6 +187,37 @@ mysqli_close($conn);
     .hinweis strong {
         color: #155724;
     }
+    .aufgabe {
+        background: #e3f2fd;
+        border: 2px solid #2196f3;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .aufgabe-titel {
+        font-weight: bold;
+        color: #1565c0;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .aufgabe p {
+        color: #333;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .schritte-liste {
+        background: white;
+        padding: 10px 10px 10px 25px;
+        border-radius: 5px;
+    }
+    .schritte-liste ol {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+    }
+    .schritte-liste li {
+        margin: 5px 0;
+        color: #555;
+    }
 </style>
 
 <div class="anleitung">
@@ -195,6 +226,21 @@ mysqli_close($conn);
     <div class="konzept">
         <div class="konzept-titel">💡 Das Konzept</div>
         <p>Statt jeden Datensatz einzeln mit Absätzen auszugeben, bauen wir eine HTML-Tabelle auf. Die Schleife durchläuft alle Datensätze und erzeugt für jeden eine neue Tabellenzeile. So entsteht die Tabelle Zeile für Zeile dynamisch.</p>
+    </div>
+
+    <div class="aufgabe">
+        <div class="aufgabe-titel">📝 Deine Aufgabe</div>
+        <p>Baue die einfache Textausgabe zu einer HTML-Tabelle um.</p>
+        <div class="schritte-liste">
+            <strong>Das sollst du tun:</strong>
+            <ol>
+                <li>Tabellenkopf mit Spaltenüberschriften vor der Schleife ausgeben</li>
+                <li>In der Schleife: statt &lt;p&gt;-Tags eine Tabellenzeile erzeugen</li>
+                <li>Jeden Datenbankwert in eine eigene Tabellenzelle schreiben</li>
+                <li>Tabelle nach der Schleife schließen</li>
+                <li>BONUS: CSS für schönere Darstellung hinzufügen</li>
+            </ol>
+        </div>
     </div>
 
     <h3>Aufbau der HTML-Tabelle</h3>
