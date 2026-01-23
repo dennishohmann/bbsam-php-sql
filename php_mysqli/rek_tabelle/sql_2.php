@@ -139,10 +139,33 @@ mysqli_close($conn);
     .parameter strong {
         color: #e74c3c;
     }
+    .musterloesung {
+        background: #d4edda;
+        border: 2px solid #28a745;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .musterloesung-titel {
+        font-weight: bold;
+        color: #155724;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .musterloesung p {
+        color: #155724;
+        font-size: 1.05em;
+        margin: 0;
+    }
 </style>
 
 <div class="anleitung">
     <h2>📚 PHP &amp; MariaDB: Schritt-für-Schritt</h2>
+
+    <div class="musterloesung">
+        <div class="musterloesung-titel">✅ Musterlösung</div>
+        <p>Dies ist die fertige Lösung zur Aufgabe aus sql_1.php. Vergleiche deinen Code mit dieser Lösung!</p>
+    </div>
 
     <div class="schritt">
         <span class="schritt-nummer">1</span>

@@ -203,10 +203,33 @@ mysqli_close($conn);
     .hinweis strong {
         color: #155724;
     }
+    .musterloesung {
+        background: #d4edda;
+        border: 2px solid #28a745;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .musterloesung-titel {
+        font-weight: bold;
+        color: #155724;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .musterloesung p {
+        color: #155724;
+        font-size: 1.05em;
+        margin: 0;
+    }
 </style>
 
 <div class="anleitung">
     <h2>📊 Tabellenausgabe mit PHP &amp; MySQL</h2>
+
+    <div class="musterloesung">
+        <div class="musterloesung-titel">✅ Musterlösung</div>
+        <p>Dies ist die fertige Lösung zur Aufgabe aus sql_3.php. Vergleiche deinen Code mit dieser Lösung!</p>
+    </div>
 
     <div class="konzept">
         <div class="konzept-titel">💡 Das Konzept</div>
