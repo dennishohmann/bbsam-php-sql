@@ -97,9 +97,9 @@ mysqli_close($conn);
         Diese Anleitung braucht nur im Browser gelesen zu werden...
 -->
 <div class="navigation">
-    <a href="sql_5a.php" class="nav-btn zurueck">Zurueck</a>
+    <a href="sql_5b.php" class="nav-btn zurueck">&larr; Zurueck</a>
     <div class="nav-platzhalter"></div>
-    <a href="sql_7.php" class="nav-btn weiter">Weiter zur Bonus-Loesung</a>
+    <a href="sql_7.php" class="nav-btn weiter">Weiter zur Bonus-Loesung &rarr;</a>
 </div>   
 
 <style>
@@ -273,7 +273,7 @@ mysqli_close($conn);
 
     <div class="musterloesung">
         <div class="musterloesung-titel">Musterloesung</div>
-        <p>Dies ist die fertige Loesung zur Aufgabe aus sql_5a.php. Vergleiche deinen optimierten Code mit dieser Loesung!</p>
+        <p>Dies ist die fertige Loesung zur Aufgabe aus sql_5b.php. Vergleiche deinen optimierten Code mit dieser Loesung!</p>
     </div>
 
     <div class="konzept">
