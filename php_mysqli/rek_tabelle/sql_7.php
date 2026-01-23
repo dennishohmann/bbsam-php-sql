@@ -109,7 +109,7 @@ mysqli_close($conn);
 <div class="navigation">
     <a href="sql_6.php" class="nav-btn zurueck">← Zurück</a>
     <div class="nav-platzhalter"></div>
-    <a class="nav-btn weiter">Ende :)</a>
+    <a href="sql_8.php" class="nav-btn weiter">Weiter →</a>
 </div>   
 
 <style>
