@@ -30,17 +30,18 @@ mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 
+
+<!--    #######################################
+        Ab hier braucht ihr nicht weiter lesen :)
+
+        Diese Anleitung ist nur für die Anzeige im Browser gedacht...
+-->
+
 <div class="navigation">
     <a href="sql_1.php" class="nav-btn zurueck">← Zurück</a>
     <div class="nav-platzhalter"></div>
     <a href="sql_3.php" class="nav-btn weiter">Weiter zur nächsten Aufgabe→</a>
-</div>   
-<!--    #######################################
-        Ab hier braucht ihr nicht weiter lesen :)
-        
-        Diese Anleitung braucht nur im Browser gelesen zu werden...
--->
-
+</div>
 <style>
         .navigation {
         display: flex;

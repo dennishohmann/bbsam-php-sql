@@ -46,7 +46,7 @@ mysqli_close($conn);
 <div class="navigation">
     <a href="sql_3.php" class="nav-btn zurueck">← Zurück</a>
     <div class="nav-platzhalter"></div>
-    <a href="sql_5.php" class="nav-btn weiter">Weiter zur Lösung→</a>
+    <a href="sql_5.php" class="nav-btn weiter">Weiter zur nächsten Aufgabe→</a>
 </div>   
 
 <!--    #######################################

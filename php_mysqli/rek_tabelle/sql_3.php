@@ -29,17 +29,19 @@ mysqli_free_result($result);
 // Schritt 8: Verbindung schließen
 mysqli_close($conn);
 ?>
+
+
+
+<!--    #######################################
+        Ab hier braucht ihr nicht weiter lesen :)
+
+        Diese Anleitung ist nur für die Anzeige im Browser gedacht...
+-->
 <div class="navigation">
     <a href="sql_2.php" class="nav-btn zurueck">&larr; Zurück</a>
     <div class="nav-platzhalter"></div>
     <a href="sql_4.php" class="nav-btn weiter">Weiter zur Lösung &rarr;</a>
 </div>
-<!--    #######################################
-        Ab hier braucht ihr nicht weiter lesen :)
-
-        Diese Anleitung braucht nur im Browser gelesen zu werden...
--->
-
 <style>
     .navigation {
         display: flex;

@@ -7,7 +7,6 @@
 
 // Schritt 3: Verbindung prüfen
 
-
 // Schritt 4: Abfrage ausführen
 
 // Schritt 5 & 6: Ergebnisse durchlaufen und ausgeben
@@ -23,10 +22,10 @@
 <!--    #######################################
         Ab hier braucht ihr nicht weiter lesen :)
 
-        Diese Anleitung braucht nur im Browser gelesen zu werden...
+        Diese Anleitung ist nur für die Anzeige im Browser gedacht...
 -->
 <div class="navigation">
-    <a href="sql_0.php" class="nav-btn zurueck">&larr; Zurück zur Einführung</a>
+    <a href="sql_0.html" class="nav-btn zurueck">&larr; Zurück zur Einführung</a>
     <a href="sql_2.php" class="nav-btn weiter">Weiter zur Lösung &rarr;</a>
 </div>
 <style>
