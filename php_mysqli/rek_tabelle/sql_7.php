@@ -376,6 +376,9 @@ $result = mysqli_query($conn, $sql);</code>
         <span class="schritt-titel">Pfeil mit Ternary-Operator</span>
         <code>$pfeil = ($reihenfolge == 'asc') ? '&amp;nbsp;↑' : '&amp;nbsp;↓';</code>
         <p>Der Ternary-Operator ist eine Kurzform für if/else. Hier wird der Pfeil je nach aktueller Reihenfolge gesetzt. &amp;nbsp; sorgt für einen geschützten Abstand vor dem Pfeil.</p>
+        <div class="hinweis">
+            <strong>Warum Ternary-Operator?</strong> Der Ternary-Operator macht einfache Entweder-Oder-Entscheidungen kompakt. Statt 5 Zeilen if/else schreiben wir alles in einer Zeile. <strong>Achtung:</strong> Ternary nur für einfache Fälle! Bei komplexer Logik wird er unlesbar.
+        </div>
     </div>
 
     <div class="schritt">
@@ -393,6 +396,9 @@ foreach ($spalten as $spalte => $anzeigename) {
     }
 }</code>
         <p>Eine einzige foreach-Schleife erstellt sowohl Links als auch Titel für alle Spalten. Die aktive Spalte bekommt die umgekehrte Reihenfolge und den Pfeil, alle anderen die Standard-Reihenfolge ohne Pfeil.</p>
+        <div class="hinweis">
+            <strong>Warum zwei Arrays in einer Schleife?</strong> Wir brauchen für jede Spalte zwei Informationen: Link und Titel. Da die Entscheidungslogik dieselbe ist (aktiv oder nicht?), berechnen wir beides in einer Schleife - effizienter als zwei separate Schleifen.
+        </div>
     </div>
 
     <h3>Tabellenkopf mit foreach ausgeben</h3>

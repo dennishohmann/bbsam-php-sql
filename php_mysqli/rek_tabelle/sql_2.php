@@ -139,6 +139,26 @@ mysqli_close($conn);
     .parameter strong {
         color: #e74c3c;
     }
+    .hinweis {
+        background: #d4edda;
+        border: 1px solid #28a745;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .hinweis strong {
+        color: #155724;
+    }
+    .warnung {
+        background: #f8d7da;
+        border: 1px solid #dc3545;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .warnung strong {
+        color: #721c24;
+    }
     .musterloesung {
         background: #d4edda;
         border: 2px solid #28a745;
@@ -172,6 +192,9 @@ mysqli_close($conn);
         <span class="schritt-titel">Verbindung zur Datenbank herstellen</span>
         <code>$conn = mysqli_connect("localhost", "root", "", "katzencafe");</code>
         <p>Diese Funktion baut die Verbindung zum Datenbankserver auf.</p>
+        <div class="hinweis">
+            <strong>Warum eine Verbindung?</strong> PHP und die Datenbank sind zwei getrennte Programme. Ohne Verbindung kann PHP keine Daten lesen oder schreiben. Die Verbindung ist wie ein Telefonanruf: Erst wenn die Leitung steht, können wir kommunizieren.
+        </div>
         <div class="parameter">
             <strong>Host:</strong> Wo läuft der Server? Bei lokaler Entwicklung localhost<br>
             <strong>Benutzername:</strong> Der Datenbank-Benutzer<br>
@@ -194,6 +217,9 @@ mysqli_close($conn);
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }</code>
         <p>Prüft, ob die Verbindung erfolgreich war. Falls nicht, gibt mysqli_connect_error() eine Fehlermeldung zurück. Die Funktion die() beendet das Skript sofort.</p>
+        <div class="warnung">
+            <strong>Warum prüfen?</strong> Verbindungen können fehlschlagen: Server läuft nicht, Passwort falsch, Datenbank existiert nicht. Ohne Prüfung stürzt das Skript später mit kryptischen Fehlern ab. Mit Prüfung erhalten wir sofort eine verständliche Meldung.
+        </div>
     </div>
 
     <div class="schritt">
@@ -208,6 +234,9 @@ mysqli_close($conn);
         <span class="schritt-titel">Ergebnisse durchlaufen</span>
         <code>while ($katze = mysqli_fetch_assoc($result)) { ... }</code>
         <p>Holt nacheinander jeden Datensatz als assoziatives Array. Die Spaltennamen dienen als Schlüssel. Gibt false zurück wenn keine Daten mehr vorhanden sind.</p>
+        <div class="hinweis">
+            <strong>Warum while-Schleife?</strong> Die Datenbank liefert möglicherweise hunderte Datensätze. Die while-Schleife holt immer nur einen, verarbeitet ihn, und macht dann Platz für den nächsten. Das ist speichereffizient und funktioniert auch bei großen Datenmengen.
+        </div>
     </div>
 
     <div class="schritt">
@@ -216,6 +245,9 @@ mysqli_close($conn);
         <code>echo $katze['name'];
 $kaffee = $katze['kaffee_konsum'] ?? '???';</code>
         <p>Zugriff auf Spalten über ihre Namen. Der Operator ?? ist der Null-Coalescing-Operator: Falls der Wert NULL ist, wird der Ersatzwert verwendet.</p>
+        <div class="hinweis">
+            <strong>Warum ???</strong> Datenbankfelder können NULL sein - "kein Wert vorhanden". Der ?? Operator fängt diesen Fall ab und zeigt einen Ersatzwert. So vermeiden wir leere Stellen oder Fehlermeldungen in der Ausgabe.
+        </div>
     </div>
 
     <div class="schritt">
@@ -223,6 +255,9 @@ $kaffee = $katze['kaffee_konsum'] ?? '???';</code>
         <span class="schritt-titel">Ressourcen freigeben</span>
         <code>mysqli_free_result($result);</code>
         <p>Gibt den Speicher frei, der für das Abfrageergebnis reserviert wurde. Bei großen Datenmengen wichtig für die Performance.</p>
+        <div class="hinweis">
+            <strong>Warum freigeben?</strong> Bei 5 Katzen ist das egal. Aber bei 10.000 Bestellungen bleibt der Speicher belegt bis das Skript endet. Bei vielen gleichzeitigen Nutzern führt das zu Speicherengpässen. Frühes Freigeben ist vorausschauende Programmierung.
+        </div>
     </div>
 
     <div class="schritt">

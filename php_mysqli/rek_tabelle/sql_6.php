@@ -315,6 +315,9 @@ if (isset($_REQUEST['reihenfolge'])) {
     $reihenfolge = 'desc';
 }</code>
         <p>Die Funktion isset() prüft, ob ein Parameter überhaupt existiert. Falls nicht, setzen wir Standardwerte: Sortierung nach ID, absteigend (DESC).</p>
+        <div class="hinweis">
+            <strong>Warum Standardwerte?</strong> Beim ersten Aufruf gibt es noch keine Parameter - der Nutzer hat ja noch nichts angeklickt. Ohne Standardwerte gibt PHP eine Warnung aus. Standardwerte sorgen dafür, dass die Seite auch ohne Parameter funktioniert.
+        </div>
     </div>
 
     <h3>SQL-Abfrage anpassen</h3>
@@ -349,6 +352,9 @@ $result = mysqli_query($conn, $sql);</code>
     $umgekehrte_reihenfolge = 'asc';
 }</code>
         <p>Für die aktive Spalte berechnen wir die umgekehrte Reihenfolge. Diese wird im Link verwendet, damit ein erneuter Klick die Richtung wechselt.</p>
+        <div class="hinweis">
+            <strong>Warum Toggle-Logik?</strong> Die Toggle-Logik macht die Sortierung intuitiv: Klick auf neue Spalte = aufsteigend. Zweiter Klick = Richtung umkehren. So muss der Nutzer nicht nachdenken. Dieses Verhalten kennt man von Excel.
+        </div>
     </div>
 
     <h3>Spalten-Array und foreach-Schleife</h3>
@@ -362,7 +368,10 @@ $result = mysqli_query($conn, $sql);</code>
     'taeglicher_unfug' => 'Täglicher Unfug',
     'kaffee_konsum' => 'Kaffeekonsum'
 ];</code>
-        <p>Das Array enthält alle Spalten als Key-Value-Paare: Der Key ist der Datenbankname, der Value ist der Anzeigetitel. So vermeiden wir Wiederholungen im Code.</p>
+        <p>Das Array enthält alle Spalten als Key-Value-Paare: Der Key ist der Datenbankname, der Value ist der Anzeigetitel.</p>
+        <div class="warnung">
+            <strong>Warum ein Array? Das DRY-Prinzip:</strong> Ohne Array müsstest du denselben Code viermal schreiben. Das verstößt gegen das DRY-Prinzip (Don't Repeat Yourself). Bei einer fünften Spalte: Mit Array = eine Zeile hinzufügen. Ohne Array = an vier Stellen Code kopieren und anpassen. Bei jeder Stelle riskierst du Tippfehler!
+        </div>
     </div>
 
     <div class="schritt">
@@ -377,6 +386,9 @@ foreach ($spalten as $spalte => $titel) {
     }
 }</code>
         <p>Die foreach-Schleife durchläuft alle Spalten und erstellt für jede einen Link. Falls die Spalte aktiv ist, wird die umgekehrte Reihenfolge verwendet, sonst die Standard-Reihenfolge.</p>
+        <div class="hinweis">
+            <strong>Warum foreach?</strong> foreach durchläuft automatisch jedes Element - du musst nicht wissen, wie viele es sind. Fügst du eine Spalte zum Array hinzu, wird sie automatisch mitverarbeitet. Ändert sich die Link-Logik, änderst du sie an einer Stelle statt an vier.
+        </div>
     </div>
 
     <h3>Tabellenkopf mit foreach ausgeben</h3>

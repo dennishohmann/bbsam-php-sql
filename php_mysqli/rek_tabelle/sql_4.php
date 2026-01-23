@@ -203,6 +203,16 @@ mysqli_close($conn);
     .hinweis strong {
         color: #155724;
     }
+    .warnung {
+        background: #f8d7da;
+        border: 1px solid #dc3545;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .warnung strong {
+        color: #721c24;
+    }
     .musterloesung {
         background: #d4edda;
         border: 2px solid #28a745;
@@ -272,6 +282,10 @@ echo "&lt;th&gt;Täglicher Unfug&lt;/th&gt;";
 echo "&lt;th&gt;Kaffeekonsum&lt;/th&gt;";
 echo "&lt;/tr&gt;";</code>
         <p>Der Tabellenkopf wird einmalig vor der Schleife ausgegeben. Er enthält die Spaltenüberschriften, die den Feldern in der Datenbank entsprechen.</p>
+        <div class="hinweis">
+            <strong>Warum vor der Schleife?</strong> Der Tabellenkopf soll nur einmal erscheinen. Würde er in der Schleife stehen, hätten wir bei 5 Katzen 5 Überschriftenzeilen!<br><br>
+            <strong>Faustregel:</strong> Einmalig = vor/nach der Schleife. Für jeden Datensatz = in der Schleife.
+        </div>
     </div>
 
     <div class="schritt">
@@ -305,7 +319,7 @@ echo "&lt;/tr&gt;";</code>
         <span class="schritt-titel">Alle Spalten in die Zeile einfügen</span>
         <code>while ($katze = mysqli_fetch_assoc($result)) {
     $kaffee = $katze['kaffee_konsum'] ?? '???';
-    
+
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
@@ -313,7 +327,10 @@ echo "&lt;/tr&gt;";</code>
     echo "&lt;td&gt;" . $kaffee . " ☕&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }</code>
-        <p>Jede Spalte aus der Datenbank bekommt eine eigene &lt;td&gt;-Zelle. Die Reihenfolge muss mit den Überschriften im Tabellenkopf übereinstimmen. Der Null-Coalescing-Operator behandelt NULL-Werte.</p>
+        <p>Jede Spalte aus der Datenbank bekommt eine eigene &lt;td&gt;-Zelle. Der Null-Coalescing-Operator behandelt NULL-Werte.</p>
+        <div class="warnung">
+            <strong>Reihenfolge beachten!</strong> HTML-Tabellen ordnen Zellen von links nach rechts. Wenn Überschriften "Name, Spezialität, Unfug, Kaffee" lauten, müssen die Daten in derselben Reihenfolge kommen. Sonst steht der Kaffeekonsum unter "Name"!
+        </div>
     </div>
 
     <div class="schritt">
@@ -365,6 +382,9 @@ echo "&lt;/table&gt;";</code>
         <span class="schritt-titel">CSS-Klasse der Tabelle zuweisen</span>
         <code>echo "&lt;table class='katzen-tabelle'&gt;";</code>
         <p>Die Klasse verbindet die Tabelle mit dem CSS. Ohne diese Zuweisung greifen die Styles nicht.</p>
+        <div class="hinweis">
+            <strong>Warum CSS-Klassen?</strong> CSS-Klassen trennen Design vom Inhalt. Änderungen wirken sofort überall, der PHP-Code bleibt lesbar, und das Design kann separat bearbeitet werden - ohne den PHP-Code anzufassen.
+        </div>
     </div>
 
     <h3>Vollständiger Code</h3>
