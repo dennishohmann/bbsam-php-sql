@@ -1,4 +1,5 @@
 <?php
+// MUSTERLÖSUNG
 // Schritt 1: Verbindung herstellen
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 

@@ -1,32 +1,20 @@
 <?php
-// Schritt 1: Verbindung herstellen
+// AUFGABE:
+
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
-
-// Schritt 2: Zeichensatz festlegen
 mysqli_set_charset($conn, "utf8mb4");
-
-// Schritt 3: Verbindung prüfen
 if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
-
-// Schritt 4: Abfrage ausführen
 $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
-
-// Schritt 5 & 6: Ergebnisse durchlaufen und ausgeben
 echo "<h2>Mitarbeiter des Monats</h2>";
-
 while ($katze = mysqli_fetch_array($result)) {
     echo "<p><b>{$katze['name']}</b><br>";
     echo "Spezialität: {$katze['spezialitaet']}<br>";
     echo "Täglicher Unfug: {$katze['taeglicher_unfug']}<br>";
     echo "Kaffeekonsum: {$katze['kaffee_konsum']} Tassen</p><hr>";
 }
-
-// Schritt 7: Ressourcen freigeben
 mysqli_free_result($result);
-
-// Schritt 8: Verbindung schließen
 mysqli_close($conn);
 ?>
 

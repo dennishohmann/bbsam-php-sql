@@ -1,4 +1,7 @@
 <?php
+// Musterlösung für Aufgabe 3 Sortierung
+// Aufgabe: Sortierung umschalten
+
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -12,52 +15,19 @@ if (isset($_REQUEST['sortierung'])) {
     $sortierung = $_REQUEST['sortierung'];
 }
 
-$reihenfolge = 'desc';
-if (isset($_REQUEST['reihenfolge'])) {
-    $reihenfolge = $_REQUEST['reihenfolge'];
-}
-
-// SQL-Abfrage mit Sortierung und Reihenfolge
-$sql = "SELECT * FROM katzen ORDER BY $sortierung $reihenfolge";
+// SQL-Abfrage mit Sortierung (immer absteigend)
+$sql = "SELECT * FROM katzen ORDER BY $sortierung DESC";
 $result = mysqli_query($conn, $sql);
 
-// Toggle-Logik: Reihenfolge umkehren
-$standard_reihenfolge = 'desc';
-
-if ($reihenfolge == 'asc') {
-    $umgekehrte_reihenfolge = 'desc';
-} else {
-    $umgekehrte_reihenfolge = 'asc';
-}
-
-// Links fuer jede Spalte erstellen
-if ($sortierung == 'name') {
-    $link_name = "?sortierung=name&reihenfolge=$umgekehrte_reihenfolge";
-} else {
-    $link_name = "?sortierung=name&reihenfolge=$standard_reihenfolge";
-}
-
-if ($sortierung == 'spezialitaet') {
-    $link_spezialitaet = "?sortierung=spezialitaet&reihenfolge=$umgekehrte_reihenfolge";
-} else {
-    $link_spezialitaet = "?sortierung=spezialitaet&reihenfolge=$standard_reihenfolge";
-}
-
-if ($sortierung == 'taeglicher_unfug') {
-    $link_taeglicher_unfug = "?sortierung=taeglicher_unfug&reihenfolge=$umgekehrte_reihenfolge";
-} else {
-    $link_taeglicher_unfug = "?sortierung=taeglicher_unfug&reihenfolge=$standard_reihenfolge";
-}
-
-if ($sortierung == 'kaffee_konsum') {
-    $link_kaffee_konsum = "?sortierung=kaffee_konsum&reihenfolge=$umgekehrte_reihenfolge";
-} else {
-    $link_kaffee_konsum = "?sortierung=kaffee_konsum&reihenfolge=$standard_reihenfolge";
-}
+// Links fuer Spalten
+$link_name = "?sortierung=name";
+$link_spezialitaet = "?sortierung=spezialitaet";
+$link_taeglicher_unfug = "?sortierung=taeglicher_unfug";
+$link_kaffee_konsum = "?sortierung=kaffee_konsum";
 ?>
 
 <style>
-    .katzen-tabelle { width: 100%; border-collapse: collapse; margin: 20px 0; max-width: 800px; }
+    .katzen-tabelle { width: 100%; border-collapse: collapse; margin: 20px 0; }
     .katzen-tabelle th, .katzen-tabelle td { border: 1px solid #ddd; padding: 12px; text-align: left; }
     .katzen-tabelle th { background: #3498db; color: white; }
     .katzen-tabelle th a { color: white; text-decoration: none; }
@@ -94,18 +64,18 @@ mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 
+
+<!--    #######################################
+        Ab hier braucht ihr nicht weiter lesen :)
+
+        Diese Anleitung ist nur für die Anzeige im Browser gedacht...
+-->
+
 <div class="navigation">
     <a href="sql_5.php" class="nav-btn zurueck">&larr; Zurueck</a>
     <div class="nav-platzhalter"></div>
     <a href="sql_5b.php" class="nav-btn weiter">Weiter zur Optimierung &rarr;</a>
 </div>
-
-<!--    #######################################
-        Ab hier braucht ihr nicht weiter lesen :)
-
-        Diese Anleitung braucht nur im Browser gelesen zu werden...
--->
-
 
 <style>
     .navigation {

@@ -1,4 +1,6 @@
 <?php
+//  AUFGABE: Die Tabelle sortierbar machen:
+
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -6,74 +8,56 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
-// Parameter auslesen
-$sortierung = 'id';
-if (isset($_REQUEST['sortierung'])) {
-    $sortierung = $_REQUEST['sortierung'];
-}
-
-// SQL-Abfrage mit Sortierung (immer absteigend)
-$sql = "SELECT * FROM katzen ORDER BY $sortierung DESC";
-$result = mysqli_query($conn, $sql);
-
-// Links fuer Spalten (alle sortieren absteigend)
-$link_name = "?sortierung=name";
-$link_spezialitaet = "?sortierung=spezialitaet";
-$link_taeglicher_unfug = "?sortierung=taeglicher_unfug";
-$link_kaffee_konsum = "?sortierung=kaffee_konsum";
+$result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
 ?>
 
 <style>
-    .katzen-tabelle { width: 100%; border-collapse: collapse; margin: 20px 0; max-width: 800px; }
+    .katzen-tabelle { width: 100%; border-collapse: collapse; margin: 20px 0; }
     .katzen-tabelle th, .katzen-tabelle td { border: 1px solid #ddd; padding: 12px; text-align: left; }
     .katzen-tabelle th { background: #3498db; color: white; }
-    .katzen-tabelle th a { color: white; text-decoration: none; }
-    .katzen-tabelle th a:hover { text-decoration: underline; }
     .katzen-tabelle tr:nth-child(even) { background: #f2f2f2; }
     .katzen-tabelle tr:hover { background: #e8f4fc; }
 </style>
 
-<h2>Mitarbeiter des Monats</h2>
+<h2>🐱 Mitarbeiter des Monats 🐱</h2>
 
 <?php
 echo "<table class='katzen-tabelle'>";
-echo "<thead><tr>";
-echo "<th><a href='$link_name'>Name</a></th>";
-echo "<th><a href='$link_spezialitaet'>Spezialitaet</a></th>";
-echo "<th><a href='$link_taeglicher_unfug'>Taeglicher Unfug</a></th>";
-echo "<th><a href='$link_kaffee_konsum'>Kaffeekonsum</a></th>";
-echo "</tr></thead>";
-echo "<tbody>";
+echo "<tr>";
+echo "<th>Name</th>";
+echo "<th>Spezialität</th>";
+echo "<th>Täglicher Unfug</th>";
+echo "<th>Kaffeekonsum</th>";
+echo "</tr>";
 
 while ($katze = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $katze['name'] . "</td>";
     echo "<td>" . $katze['spezialitaet'] . "</td>";
     echo "<td>" . $katze['taeglicher_unfug'] . "</td>";
-    echo "<td>" . $katze['kaffee_konsum'] . "</td>";
+    echo "<td>" . $katze['kaffee_konsum'] . " ☕</td>";
     echo "</tr>";
 }
 
-echo "</tbody>";
 echo "</table>";
 
 mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 
-<div class="navigation">
-    <a href="sql_4.php" class="nav-btn zurueck">&larr; Zurueck</a>
-    <div class="nav-platzhalter"></div>
-    <a href="sql_5a.php" class="nav-btn weiter">Weiter zur Erweiterung &rarr;</a>
-</div>
+
 
 <!--    #######################################
         Ab hier braucht ihr nicht weiter lesen :)
 
-        Diese Anleitung braucht nur im Browser gelesen zu werden...
+        Diese Anleitung ist nur für die Anzeige im Browser gedacht...
 -->
 
-
+<div class="navigation">
+    <a href="sql_4.php" class="nav-btn zurueck">&larr; Zurück</a>
+    <div class="nav-platzhalter"></div>
+    <a href="sql_5a.php" class="nav-btn weiter">Weiter zur Optimierung &rarr;</a>
+</div>
 <style>
     .navigation {
         display: flex;
@@ -364,6 +348,14 @@ mysqli_close($conn);
                 <code>$sortierung = 'id';
 if (isset($_REQUEST['sortierung'])) {
     $sortierung = $_REQUEST['sortierung'];
+} else {
+    $sortierung = 'id';
+}
+
+if (isset($_REQUEST['reihenfolge'])) {
+    $reihenfolge = $_REQUEST['reihenfolge'];
+} else {
+    $reihenfolge = 'desc';
 }</code>
                 <div class="hinweis">
                     <strong>Warum so?</strong> Diese Schreibweise ist kurz und uebersichtlich:

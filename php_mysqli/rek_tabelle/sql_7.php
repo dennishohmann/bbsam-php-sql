@@ -1,5 +1,5 @@
 <?php
-// Verbindung herstellen
+// MUSTERLÖSUNG mit Zusatz wechselnde Pfeile zur Darstellung der Sortierrichtung
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -58,8 +58,9 @@ foreach ($spalten as $spalte => $anzeigename) {
 }
 ?>
 
+
 <style>
-    .katzen-tabelle { width: 100%; border-collapse: collapse; margin: 20px 0; max-width: 800px; }
+    .katzen-tabelle { width: 100%; border-collapse: collapse; margin: 20px 0; }
     .katzen-tabelle th, .katzen-tabelle td { border: 1px solid #ddd; padding: 12px; text-align: left; }
     .katzen-tabelle th { background: #3498db; color: white; }
     .katzen-tabelle th a { color: white; text-decoration: none; }

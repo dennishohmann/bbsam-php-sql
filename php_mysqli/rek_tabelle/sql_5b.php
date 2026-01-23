@@ -1,4 +1,7 @@
 <?php
+// MUSTERLÖSUNG Aufgabe 3 mit umschaltbarer Sortierung
+// Aufgabe: DRY Vereinfachungen
+
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -6,13 +9,62 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
-$result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
+// Parameter auslesen
+$sortierung = 'id';
+if (isset($_REQUEST['sortierung'])) {
+    $sortierung = $_REQUEST['sortierung'];
+}
+
+$reihenfolge = 'desc';
+if (isset($_REQUEST['reihenfolge'])) {
+    $reihenfolge = $_REQUEST['reihenfolge'];
+}
+
+// SQL-Abfrage mit Sortierung und Reihenfolge
+$sql = "SELECT * FROM katzen ORDER BY $sortierung $reihenfolge";
+$result = mysqli_query($conn, $sql);
+
+// Toggle-Logik: Reihenfolge umkehren
+$standard_reihenfolge = 'desc';
+
+if ($reihenfolge == 'asc') {
+    $umgekehrte_reihenfolge = 'desc';
+} else {
+    $umgekehrte_reihenfolge = 'asc';
+}
+
+// Links fuer jede Spalte erstellen
+if ($sortierung == 'name') {
+    $link_name = "?sortierung=name&reihenfolge=$umgekehrte_reihenfolge";
+} else {
+    $link_name = "?sortierung=name&reihenfolge=$standard_reihenfolge";
+}
+
+if ($sortierung == 'spezialitaet') {
+    $link_spezialitaet = "?sortierung=spezialitaet&reihenfolge=$umgekehrte_reihenfolge";
+} else {
+    $link_spezialitaet = "?sortierung=spezialitaet&reihenfolge=$standard_reihenfolge";
+}
+
+if ($sortierung == 'taeglicher_unfug') {
+    $link_taeglicher_unfug = "?sortierung=taeglicher_unfug&reihenfolge=$umgekehrte_reihenfolge";
+} else {
+    $link_taeglicher_unfug = "?sortierung=taeglicher_unfug&reihenfolge=$standard_reihenfolge";
+}
+
+if ($sortierung == 'kaffee_konsum') {
+    $link_kaffee_konsum = "?sortierung=kaffee_konsum&reihenfolge=$umgekehrte_reihenfolge";
+} else {
+    $link_kaffee_konsum = "?sortierung=kaffee_konsum&reihenfolge=$standard_reihenfolge";
+}
 ?>
 
 <style>
     .katzen-tabelle { width: 100%; border-collapse: collapse; margin: 20px 0; }
     .katzen-tabelle th, .katzen-tabelle td { border: 1px solid #ddd; padding: 12px; text-align: left; }
     .katzen-tabelle th { background: #3498db; color: white; }
+    .katzen-tabelle th a { color: white; text-decoration: none; }
+    .katzen-tabelle th a:hover { text-decoration: underline; }
     .katzen-tabelle tr:nth-child(even) { background: #f2f2f2; }
     .katzen-tabelle tr:hover { background: #e8f4fc; }
 </style>
@@ -21,12 +73,13 @@ $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC"
 
 <?php
 echo "<table class='katzen-tabelle'>";
-echo "<tr>";
-echo "<th>Name</th>";
-echo "<th>Spezialitaet</th>";
-echo "<th>Taeglicher Unfug</th>";
-echo "<th>Kaffeekonsum</th>";
-echo "</tr>";
+echo "<thead><tr>";
+echo "<th><a href='$link_name'>Name</a></th>";
+echo "<th><a href='$link_spezialitaet'>Spezialitaet</a></th>";
+echo "<th><a href='$link_taeglicher_unfug'>Taeglicher Unfug</a></th>";
+echo "<th><a href='$link_kaffee_konsum'>Kaffeekonsum</a></th>";
+echo "</tr></thead>";
+echo "<tbody>";
 
 while ($katze = mysqli_fetch_array($result)) {
     echo "<tr>";
@@ -37,11 +90,13 @@ while ($katze = mysqli_fetch_array($result)) {
     echo "</tr>";
 }
 
+echo "</tbody>";
 echo "</table>";
 
 mysqli_free_result($result);
 mysqli_close($conn);
 ?>
+
 
 <div class="navigation">
     <a href="sql_5a.php" class="nav-btn zurueck">&larr; Zurueck</a>
