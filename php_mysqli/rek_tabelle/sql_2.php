@@ -16,12 +16,11 @@ $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC"
 // Schritt 5 & 6: Ergebnisse durchlaufen und ausgeben
 echo "<h2>🐱 Mitarbeiter des Monats 🐱</h2>";
 
-while ($katze = mysqli_fetch_assoc($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
+while ($katze = mysqli_fetch_array($result)) {
     echo "<p><b>{$katze['name']}</b><br>";
     echo "Spezialität: {$katze['spezialitaet']}<br>";
     echo "Täglicher Unfug: {$katze['taeglicher_unfug']}<br>";
-    echo "Kaffeekonsum: {$kaffee} Tassen ☕</p><hr>";
+    echo "Kaffeekonsum: {$katze['kaffee_konsum']} Tassen ☕</p><hr>";
 }
 
 // Schritt 7: Ressourcen freigeben
@@ -232,7 +231,7 @@ mysqli_close($conn);
     <div class="schritt">
         <span class="schritt-nummer">5</span>
         <span class="schritt-titel">Ergebnisse durchlaufen</span>
-        <code>while ($katze = mysqli_fetch_assoc($result)) { ... }</code>
+        <code>while ($katze = mysqli_fetch_array($result)) { ... }</code>
         <p>Holt nacheinander jeden Datensatz als assoziatives Array. Die Spaltennamen dienen als Schlüssel. Gibt false zurück wenn keine Daten mehr vorhanden sind.</p>
         <div class="hinweis">
             <strong>Warum while-Schleife?</strong> Die Datenbank liefert möglicherweise hunderte Datensätze. Die while-Schleife holt immer nur einen, verarbeitet ihn, und macht dann Platz für den nächsten. Das ist speichereffizient und funktioniert auch bei großen Datenmengen.
@@ -243,11 +242,8 @@ mysqli_close($conn);
         <span class="schritt-nummer">6</span>
         <span class="schritt-titel">Daten ausgeben</span>
         <code>echo $katze['name'];
-$kaffee = $katze['kaffee_konsum'] ?? '???';</code>
-        <p>Zugriff auf Spalten über ihre Namen. Der Operator ?? ist der Null-Coalescing-Operator: Falls der Wert NULL ist, wird der Ersatzwert verwendet.</p>
-        <div class="hinweis">
-            <strong>Warum ???</strong> Datenbankfelder können NULL sein - "kein Wert vorhanden". Der ?? Operator fängt diesen Fall ab und zeigt einen Ersatzwert. So vermeiden wir leere Stellen oder Fehlermeldungen in der Ausgabe.
-        </div>
+echo $katze['kaffee_konsum'];</code>
+        <p>Zugriff auf Spalten über ihre Namen. Das Array $katze enthält alle Felder des aktuellen Datensatzes.</p>
     </div>
 
     <div class="schritt">

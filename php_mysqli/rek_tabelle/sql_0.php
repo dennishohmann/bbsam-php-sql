@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katzencafe Tutorial - Start</title>
+</head>
+<body>
+
+<div class="anleitung">
+    <h2>Willkommen im Katzencafe!</h2>
+
+    <div class="story-box">
+        <div class="story-titel">Das Problem</div>
+        <p>
+            Das <strong>Katzencafe</strong> hat ein ernstes Problem: Die Katzen-Mitarbeiter sind vollkommen chaotisch!
+        </p>
+        <p>
+            <em>Herr Schnurrbert</em> behauptet, er sei der Barista - dabei verschläft er jeden Tag im Brotkorb.
+            <em>DJ Katzenklo</em> trinkt 12 Tassen Kaffee pro Tag und singt um 3 Uhr nachts.
+            Und <em>Ninja Fellknäuel</em>? Den hat seit Wochen niemand gesehen.
+        </p>
+        <p>
+            Niemand weiß mehr, wer welche Spezialität hat, wer wieviel Kaffee trinkt,
+            und wer für welchen täglichen Unfug verantwortlich ist.
+        </p>
+        <p class="loesung">
+            <strong>Die Lösung:</strong> Eine Datenbank zur Mitarbeiterverwaltung!
+            Mit PHP und MariaDB bringen wir endlich Ordnung ins Chaos.
+        </p>
+    </div>
+
+    <div class="konzept">
+        <div class="konzept-titel">So funktioniert dieses Tutorial</div>
+        <div class="tutorial-erklaerung">
+            <div class="seiten-typ aufgabe-typ">
+                <div class="typ-header">Aufgaben-Seiten</div>
+                <div class="typ-beispiele">sql_1, sql_3, sql_5</div>
+                <p>Schritt-für-Schritt Anleitungen zum Selbermachen. Hier schreibst du den Code selbst!</p>
+            </div>
+            <div class="seiten-typ loesung-typ">
+                <div class="typ-header">Musterlösungs-Seiten</div>
+                <div class="typ-beispiele">sql_2, sql_4, sql_6, sql_7</div>
+                <p>Fertige Lösungen mit "Warum"-Erklärungen. Vergleiche deinen Code und lerne dazu!</p>
+            </div>
+        </div>
+        <div class="hinweis">
+            <strong>Tipp:</strong> Versuche erst selbst die Aufgabe zu lösen, bevor du dir die Musterlösung anschaust.
+            So lernst du am meisten!
+        </div>
+    </div>
+
+    <details class="db-setup">
+        <summary>Datenbank einrichten (hier klicken)</summary>
+        <div class="setup-inhalt">
+            <p><strong>So richtest du die Datenbank ein:</strong></p>
+            <ol>
+                <li>Öffne <strong>phpMyAdmin</strong> in deinem Browser (meistens unter <code>localhost/phpmyadmin</code>)</li>
+                <li>Klicke oben auf den Reiter <strong>"SQL"</strong></li>
+                <li>Kopiere den folgenden Code und füge ihn ein</li>
+                <li>Klicke auf <strong>"OK"</strong> oder <strong>"Ausführen"</strong></li>
+            </ol>
+            <div class="sql-code">
+                <div class="sql-header">SQL-Code zum Kopieren:</div>
+<pre>-- Datenbank erstellen
+CREATE DATABASE IF NOT EXISTS katzencafe;
+USE katzencafe;
+
+-- Tabelle für die Café-Katzen
+CREATE TABLE katzen (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    spezialitaet VARCHAR(100),
+    taeglicher_unfug VARCHAR(200),
+    kaffee_konsum INT
+);
+
+-- Die chaotische Belegschaft
+INSERT INTO katzen (name, spezialitaet, taeglicher_unfug, kaffee_konsum) VALUES
+('Herr Schnurrbert', 'Stühle zerstören', 'Schläft im Brotkorb', 3),
+('Gräfin Flauschine', 'Gäste ignorieren', 'Wirft Zuckerstreuer vom Tisch', 0),
+('Professor Maunz', 'Tastatur besetzen', 'Tippt Bestellungen um', 7),
+('Sir Pfötchen III', 'Milch stehlen', 'Leckt heimlich die Sahne', 1),
+('DJ Katzenklo', 'Um 3 Uhr nachts singen', 'Rennt grundlos durch den Raum', 12),
+('Ninja Fellknäuel', 'Unsichtbar sein', 'Niemand weiß wo er ist', NULL),
+('Baronin Zickzack', 'Beine umschleichen', 'Stolperfallen bauen', 2);</pre>
+            </div>
+        </div>
+    </details>
+</div>
+
+<div class="navigation">
+    <div class="nav-platzhalter"></div>
+    <a href="sql_1.php" class="nav-btn weiter">Los geht's! Zur ersten Aufgabe &rarr;</a>
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+    }
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        max-width: 800px;
+        margin: 20px auto;
+    }
+    .nav-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        transition: background 0.3s, transform 0.2s;
+    }
+    .nav-btn:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+    }
+    .nav-btn.weiter {
+        background: #9b59b6;
+    }
+    .nav-btn.weiter:hover {
+        background: #8e44ad;
+    }
+    .nav-platzhalter {
+        width: 150px;
+    }
+    .anleitung {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+    }
+    .anleitung h2 {
+        color: #333;
+        border-bottom: 3px solid #e74c3c;
+        padding-bottom: 10px;
+        text-align: center;
+        font-size: 1.8em;
+    }
+
+    /* Story Box */
+    .story-box {
+        background: #fff3e0;
+        border: 2px solid #ff9800;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 25px 0;
+    }
+    .story-titel {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    .story-box p {
+        color: #5d4037;
+        line-height: 1.7;
+        margin: 10px 0;
+    }
+    .story-box em {
+        color: #bf360c;
+        font-style: normal;
+        font-weight: bold;
+    }
+    .story-box .loesung {
+        background: #c8e6c9;
+        padding: 12px;
+        border-radius: 6px;
+        margin-top: 15px;
+        color: #2e7d32;
+    }
+
+    /* Konzept Box */
+    .konzept {
+        background: #fff8e1;
+        border: 2px solid #ffc107;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 25px 0;
+    }
+    .konzept-titel {
+        font-weight: bold;
+        color: #f57f17;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+    .tutorial-erklaerung {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .seiten-typ {
+        flex: 1;
+        min-width: 200px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .aufgabe-typ {
+        background: #e3f2fd;
+        border: 1px solid #2196f3;
+    }
+    .loesung-typ {
+        background: #e8f5e9;
+        border: 1px solid #4caf50;
+    }
+    .typ-header {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+    .aufgabe-typ .typ-header {
+        color: #1565c0;
+    }
+    .loesung-typ .typ-header {
+        color: #2e7d32;
+    }
+    .typ-beispiele {
+        font-family: monospace;
+        background: rgba(0,0,0,0.1);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    .seiten-typ p {
+        margin: 0;
+        color: #555;
+        line-height: 1.5;
+    }
+    .hinweis {
+        background: #d4edda;
+        border: 1px solid #28a745;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 15px;
+    }
+    .hinweis strong {
+        color: #155724;
+    }
+
+    /* Datenbank Setup */
+    .db-setup {
+        background: #fafafa;
+        border: 2px solid #9e9e9e;
+        border-radius: 10px;
+        margin: 25px 0;
+    }
+    .db-setup summary {
+        padding: 15px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #424242;
+        font-size: 1.1em;
+        list-style: none;
+    }
+    .db-setup summary::-webkit-details-marker {
+        display: none;
+    }
+    .db-setup summary::before {
+        content: ">";
+        display: inline-block;
+        margin-right: 10px;
+        transition: transform 0.2s;
+    }
+    .db-setup[open] summary::before {
+        transform: rotate(90deg);
+    }
+    .db-setup summary:hover {
+        background: #eeeeee;
+        border-radius: 8px 8px 0 0;
+    }
+    .setup-inhalt {
+        padding: 0 20px 20px 20px;
+    }
+    .setup-inhalt ol {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+    .setup-inhalt li {
+        margin: 8px 0;
+        line-height: 1.5;
+    }
+    .setup-inhalt code {
+        background: #eceff1;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: monospace;
+    }
+    .sql-code {
+        background: #263238;
+        border-radius: 8px;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+    .sql-header {
+        background: #37474f;
+        color: #90a4ae;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .sql-code pre {
+        color: #a5d6a7;
+        padding: 15px;
+        margin: 0;
+        overflow-x: auto;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+</style>
+
+</body>
+</html>

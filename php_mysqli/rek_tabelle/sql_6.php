@@ -73,14 +73,12 @@ foreach ($spalten as $spalte => $titel) {
 echo "</tr></thead>";
 echo "<tbody>";
 
-while ($katze = mysqli_fetch_assoc($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-    
+while ($katze = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $katze['name'] . "</td>";
     echo "<td>" . $katze['spezialitaet'] . "</td>";
     echo "<td>" . $katze['taeglicher_unfug'] . "</td>";
-    echo "<td>" . $kaffee . " ☕</td>";
+    echo "<td>" . $katze['kaffee_konsum'] . " ☕</td>";
     echo "</tr>";
 }
 
@@ -497,14 +495,12 @@ foreach ($spalten as $spalte =&gt; $titel) {
 echo "&lt;/tr&gt;&lt;/thead&gt;";
 echo "&lt;tbody&gt;";
 
-while ($katze = mysqli_fetch_assoc($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-
+while ($katze = mysqli_fetch_array($result)) {
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['taeglicher_unfug'] . "&lt;/td&gt;";
-    echo "&lt;td&gt;" . $kaffee . " ☕&lt;/td&gt;";
+    echo "&lt;td&gt;" . $katze['kaffee_konsum'] . " ☕&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }
 

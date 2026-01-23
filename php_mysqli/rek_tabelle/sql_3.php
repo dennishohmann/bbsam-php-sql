@@ -17,11 +17,10 @@ $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC"
 echo "<h2>Mitarbeiter des Monats</h2>";
 
 while ($katze = mysqli_fetch_array($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
     echo "<p><b>{$katze['name']}</b><br>";
     echo "Spezialität: {$katze['spezialitaet']}<br>";
     echo "Täglicher Unfug: {$katze['taeglicher_unfug']}<br>";
-    echo "Kaffeekonsum: {$kaffee} Tassen</p><hr>";
+    echo "Kaffeekonsum: {$katze['kaffee_konsum']} Tassen</p><hr>";
 }
 
 // Schritt 7: Ressourcen freigeben
@@ -359,20 +358,18 @@ echo "&lt;/tr&gt;";</code>
         <p class="schritt-auftrag">
             Erweitere die Schleife, sodass alle Datenbankfelder (<code>name</code>, <code>spezialitaet</code>,
             <code>taeglicher_unfug</code>, <code>kaffee_konsum</code>) als eigene <code>&lt;td&gt;</code>-Zellen
-            ausgegeben werden. Vergiss nicht den <code>??</code> Operator für NULL-Werte.
+            ausgegeben werden.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
                 <p>Jede Spalte bekommt eine eigene Zelle. Die Reihenfolge muss mit dem Tabellenkopf übereinstimmen:</p>
                 <code>while ($katze = mysqli_fetch_array($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['taeglicher_unfug'] . "&lt;/td&gt;";
-    echo "&lt;td&gt;" . $kaffee . "&lt;/td&gt;";
+    echo "&lt;td&gt;" . $katze['kaffee_konsum'] . "&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }</code>
             </div>
@@ -485,13 +482,11 @@ echo "&lt;th&gt;Kaffeekonsum&lt;/th&gt;";
 echo "&lt;/tr&gt;";
 
 while ($katze = mysqli_fetch_array($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['taeglicher_unfug'] . "&lt;/td&gt;";
-    echo "&lt;td&gt;" . $kaffee . "&lt;/td&gt;";
+    echo "&lt;td&gt;" . $katze['kaffee_konsum'] . "&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }
 

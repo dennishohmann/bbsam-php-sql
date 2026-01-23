@@ -28,14 +28,12 @@ echo "<th>Taeglicher Unfug</th>";
 echo "<th>Kaffeekonsum</th>";
 echo "</tr>";
 
-while ($katze = mysqli_fetch_assoc($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-
+while ($katze = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $katze['name'] . "</td>";
     echo "<td>" . $katze['spezialitaet'] . "</td>";
     echo "<td>" . $katze['taeglicher_unfug'] . "</td>";
-    echo "<td>" . $kaffee . "</td>";
+    echo "<td>" . $katze['kaffee_konsum'] . "</td>";
     echo "</tr>";
 }
 

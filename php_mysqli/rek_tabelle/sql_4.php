@@ -28,14 +28,12 @@ echo "<th>Täglicher Unfug</th>";
 echo "<th>Kaffeekonsum</th>";
 echo "</tr>";
 
-while ($katze = mysqli_fetch_assoc($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-    
+while ($katze = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $katze['name'] . "</td>";
     echo "<td>" . $katze['spezialitaet'] . "</td>";
     echo "<td>" . $katze['taeglicher_unfug'] . "</td>";
-    echo "<td>" . $kaffee . " ☕</td>";
+    echo "<td>" . $katze['kaffee_konsum'] . " ☕</td>";
     echo "</tr>";
 }
 
@@ -295,7 +293,7 @@ echo "&lt;/tr&gt;";</code>
         <div class="vergleich">
             <div class="vergleich-box vorher">
                 <div class="vergleich-label">❌ Vorher:</div>
-                <code>while ($katze = mysqli_fetch_assoc($result)) {
+                <code>while ($katze = mysqli_fetch_array($result)) {
     echo "&lt;p&gt;";
     echo $katze['name'];
     echo "&lt;/p&gt;";
@@ -303,7 +301,7 @@ echo "&lt;/tr&gt;";</code>
             </div>
             <div class="vergleich-box nachher">
                 <div class="vergleich-label">✅ Nachher:</div>
-                <code>while ($katze = mysqli_fetch_assoc($result)) {
+                <code>while ($katze = mysqli_fetch_array($result)) {
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;/tr&gt;";
@@ -317,17 +315,15 @@ echo "&lt;/tr&gt;";</code>
     <div class="schritt">
         <span class="schritt-nummer">4</span>
         <span class="schritt-titel">Alle Spalten in die Zeile einfügen</span>
-        <code>while ($katze = mysqli_fetch_assoc($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-
+        <code>while ($katze = mysqli_fetch_array($result)) {
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['taeglicher_unfug'] . "&lt;/td&gt;";
-    echo "&lt;td&gt;" . $kaffee . " ☕&lt;/td&gt;";
+    echo "&lt;td&gt;" . $katze['kaffee_konsum'] . " ☕&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }</code>
-        <p>Jede Spalte aus der Datenbank bekommt eine eigene &lt;td&gt;-Zelle. Der Null-Coalescing-Operator behandelt NULL-Werte.</p>
+        <p>Jede Spalte aus der Datenbank bekommt eine eigene &lt;td&gt;-Zelle.</p>
         <div class="warnung">
             <strong>Reihenfolge beachten!</strong> HTML-Tabellen ordnen Zellen von links nach rechts. Wenn Überschriften "Name, Spezialität, Unfug, Kaffee" lauten, müssen die Daten in derselben Reihenfolge kommen. Sonst steht der Kaffeekonsum unter "Name"!
         </div>
@@ -422,14 +418,12 @@ echo "&lt;th&gt;Täglicher Unfug&lt;/th&gt;";
 echo "&lt;th&gt;Kaffeekonsum&lt;/th&gt;";
 echo "&lt;/tr&gt;";
 
-while ($katze = mysqli_fetch_assoc($result)) {
-    $kaffee = $katze['kaffee_konsum'] ?? '???';
-    
+while ($katze = mysqli_fetch_array($result)) {
     echo "&lt;tr&gt;";
     echo "&lt;td&gt;" . $katze['name'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['spezialitaet'] . "&lt;/td&gt;";
     echo "&lt;td&gt;" . $katze['taeglicher_unfug'] . "&lt;/td&gt;";
-    echo "&lt;td&gt;" . $kaffee . " ☕&lt;/td&gt;";
+    echo "&lt;td&gt;" . $katze['kaffee_konsum'] . " ☕&lt;/td&gt;";
     echo "&lt;/tr&gt;";
 }
 

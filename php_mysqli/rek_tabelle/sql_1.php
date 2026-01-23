@@ -338,19 +338,17 @@
         </div>
         <p class="schritt-auftrag">
             Gib innerhalb der Schleife die Daten mit <code>echo</code> aus. Greife auf die
-            Spalten mit <code>$katze['spaltenname']</code> zu. Nutze den <code>??</code> Operator,
-            um NULL-Werte durch einen Ersatztext zu ersetzen.
+            Spalten mit <code>$katze['spaltenname']</code> zu.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
                 <p>Die Spaltennamen sind: <code>name</code>, <code>spezialitaet</code>,
                 <code>taeglicher_unfug</code>, <code>kaffee_konsum</code></p>
-                <code>$kaffee = $katze['kaffee_konsum'] ?? '???';
-echo "&lt;p&gt;&lt;b&gt;{$katze['name']}&lt;/b&gt;&lt;br&gt;";
+                <code>echo "&lt;p&gt;&lt;b&gt;{$katze['name']}&lt;/b&gt;&lt;br&gt;";
 echo "Spezialität: {$katze['spezialitaet']}&lt;br&gt;";
 echo "Täglicher Unfug: {$katze['taeglicher_unfug']}&lt;br&gt;";
-echo "Kaffeekonsum: {$kaffee} Tassen&lt;/p&gt;&lt;hr&gt;";</code>
+echo "Kaffeekonsum: {$katze['kaffee_konsum']} Tassen&lt;/p&gt;&lt;hr&gt;";</code>
             </div>
         </details>
     </div>
