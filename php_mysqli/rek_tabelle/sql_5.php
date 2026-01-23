@@ -298,7 +298,7 @@ mysqli_close($conn);
 
     <div class="konzept">
         <div class="konzept-titel">Das Konzept</div>
-        <p>Die Spaltenueberschriften werden zu Links, die beim Klick die Seite neu laden und dabei einen Parameter uebergeben. Dieser Parameter steuert die Sortierung der SQL-Abfrage.</p>
+        <p>Die Spaltenüberschriften werden zu Links, die beim Klick die Seite neu laden und dabei einen Parameter übergeben. Dieser Parameter steuert die Sortierung der SQL-Abfrage.</p>
         <div class="parameter">
             <strong>Beispiel-URL:</strong> seite.php?sortierung=name
         </div>
@@ -306,14 +306,14 @@ mysqli_close($conn);
 
     <div class="aufgabe">
         <div class="aufgabe-titel">Deine Aufgabe</div>
-        <p>Mache die Tabellenspalten klickbar, um die Sortierung zu aendern.</p>
+        <p>Mache die Tabellenspalten klickbar, um die Sortierung zu ändern.</p>
         <div class="schritte-liste">
             <strong>Das sollst du tun:</strong>
             <ol>
-                <li>URL-Parameter fuer Sortierung auslesen</li>
+                <li>URL-Parameter für Sortierung auslesen</li>
                 <li>SQL-Abfrage mit ORDER BY dynamisch anpassen</li>
-                <li>Fuer jede Spalte einen Link erstellen</li>
-                <li>Tabellenueberschriften als klickbare Links ausgeben</li>
+                <li>Für jede Spalte einen Link erstellen</li>
+                <li>Tabellenüberschriften als klickbare Links ausgeben</li>
             </ol>
         </div>
     </div>
@@ -326,14 +326,14 @@ mysqli_close($conn);
             <span class="schritt-titel">$_REQUEST verstehen</span>
         </div>
         <p class="schritt-auftrag">
-            Mache dich mit dem <code>$_REQUEST</code>-Array vertraut. Es enthaelt alle Parameter,
-            die ueber die URL uebergeben werden. Wenn du <code>seite.php?name=Wert</code> aufrufst,
+            Mache dich mit dem <code>$_REQUEST</code>-Array vertraut. Es enthält alle Parameter,
+            die über die URL übergeben werden. Wenn du <code>seite.php?name=Wert</code> aufrufst,
             steht der Wert in <code>$_REQUEST['name']</code>.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
-                <p><code>$_REQUEST</code> ist ein Array mit allen uebergebenen Parametern:</p>
+                <p><code>$_REQUEST</code> ist ein Array mit allen übergebenen Parametern:</p>
                 <ul>
                     <li><strong>URL:</strong> seite.php?sortierung=name</li>
                     <li><strong>$_REQUEST['sortierung']:</strong> "name"</li>
@@ -350,13 +350,13 @@ mysqli_close($conn);
         </div>
         <p class="schritt-auftrag">
             Lies den Parameter <code>sortierung</code> aus. Setze zuerst einen Standardwert
-            (<code>'id'</code>), dann ueberschreibe ihn falls der Parameter existiert.
-            Nutze <code>isset()</code> um zu pruefen, ob der Parameter vorhanden ist.
+            (<code>'id'</code>), dann überschreibe ihn falls der Parameter existiert.
+            Nutze <code>isset()</code> um zu prüfen, ob der Parameter vorhanden ist.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
-                <p>Zuerst Standardwert setzen, dann ueberschreiben falls vorhanden:</p>
+                <p>Zuerst Standardwert setzen, dann überschreiben falls vorhanden:</p>
                 <code>$sortierung = 'id';
 if (isset($_REQUEST['sortierung'])) {
     $sortierung = $_REQUEST['sortierung'];
@@ -370,8 +370,8 @@ if (isset($_REQUEST['reihenfolge'])) {
     $reihenfolge = 'desc';
 }</code>
                 <div class="hinweis">
-                    <strong>Warum so?</strong> Diese Schreibweise ist kurz und uebersichtlich:
-                    Standardwert steht in Zeile 1, Ueberschreibung in Zeile 2-4.
+                    <strong>Warum so?</strong> Diese Schreibweise ist kurz und übersichtlich:
+                    Standardwert steht in Zeile 1, Überschreibung in Zeile 2-4.
                 </div>
             </div>
         </details>
@@ -407,21 +407,21 @@ $result = mysqli_query($conn, $sql);</code>
     <div class="arbeitsschritt">
         <div class="schritt-header">
             <span class="schritt-nummer">4</span>
-            <span class="schritt-titel">Ueberschriften als klickbare Links ausgeben</span>
+            <span class="schritt-titel">Überschriften als klickbare Links ausgeben</span>
         </div>
         <p class="schritt-auftrag">
-            Aendere die Ausgabe des Tabellenkopfes: Jede Ueberschrift wird zu einem Link mit
-            <code>&lt;a href='?sortierung=spaltenname'&gt;</code>. Der Link uebergibt den
+            Ändere die Ausgabe des Tabellenkopfes: Jede Überschrift wird zu einem Link mit
+            <code>&lt;a href='?sortierung=spaltenname'&gt;</code>. Der Link übergibt den
             Spaltennamen als Parameter.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
-                <p>Die Ueberschriften werden zu klickbaren Links:</p>
+                <p>Die Überschriften werden zu klickbaren Links:</p>
                 <code>echo "&lt;thead&gt;&lt;tr&gt;";
 echo "&lt;th&gt;&lt;a href='?sortierung=name'&gt;Name&lt;/a&gt;&lt;/th&gt;";
-echo "&lt;th&gt;&lt;a href='?sortierung=spezialitaet'&gt;Spezialitaet&lt;/a&gt;&lt;/th&gt;";
-echo "&lt;th&gt;&lt;a href='?sortierung=taeglicher_unfug'&gt;Taeglicher Unfug&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='?sortierung=spezialitaet'&gt;Spezialität&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='?sortierung=taeglicher_unfug'&gt;Täglicher Unfug&lt;/a&gt;&lt;/th&gt;";
 echo "&lt;th&gt;&lt;a href='?sortierung=kaffee_konsum'&gt;Kaffeekonsum&lt;/a&gt;&lt;/th&gt;";
 echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
             </div>
@@ -431,16 +431,16 @@ echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
     <div class="arbeitsschritt">
         <div class="schritt-header">
             <span class="schritt-nummer">5</span>
-            <span class="schritt-titel">CSS fuer die Links hinzufuegen</span>
+            <span class="schritt-titel">CSS für die Links hinzufügen</span>
         </div>
         <p class="schritt-auftrag">
-            Fuege CSS-Regeln hinzu, damit die Links in den Ueberschriften weiss sind und sich
+            Füge CSS-Regeln hinzu, damit die Links in den Überschriften weiß sind und sich
             beim Hover unterstreichen. Nutze den Selektor <code>.katzen-tabelle th a</code>.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
-                <p>CSS fuer weisse Links, die sich ins Design einfuegen:</p>
+                <p>CSS für weiße Links, die sich ins Design einfügen:</p>
                 <code>.katzen-tabelle th a {
     color: white;
     text-decoration: none;
@@ -452,7 +452,7 @@ echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
         </details>
     </div>
 
-    <h3>Vollstaendiger Code</h3>
+    <h3>Vollständiger Code</h3>
 
     <div class="arbeitsschritt">
         <div class="schritt-header">
@@ -460,11 +460,11 @@ echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
             <span class="schritt-titel">Alles zusammengesetzt</span>
         </div>
         <p class="schritt-auftrag">
-            Vergleiche deinen Code mit der vollstaendigen Loesung. Alle Teile sollten zusammenpassen:
+            Vergleiche deinen Code mit der vollständigen Lösung. Alle Teile sollten zusammenpassen:
             Parameter auslesen, SQL dynamisch bauen, Links erstellen und ausgeben.
         </p>
         <details class="hilfe">
-            <summary>Loesung anzeigen</summary>
+            <summary>Lösung anzeigen</summary>
             <div class="hilfe-inhalt">
                 <code>&lt;?php
 // Verbindung herstellen
@@ -485,7 +485,7 @@ if (isset($_REQUEST['sortierung'])) {
 $sql = "SELECT * FROM katzen ORDER BY $sortierung DESC";
 $result = mysqli_query($conn, $sql);
 
-// Links fuer Spalten
+// Links für Spalten
 $link_name = "?sortierung=name";
 $link_spezialitaet = "?sortierung=spezialitaet";
 $link_taeglicher_unfug = "?sortierung=taeglicher_unfug";
@@ -508,8 +508,8 @@ $link_kaffee_konsum = "?sortierung=kaffee_konsum";
 echo "&lt;table class='katzen-tabelle'&gt;";
 echo "&lt;thead&gt;&lt;tr&gt;";
 echo "&lt;th&gt;&lt;a href='$link_name'&gt;Name&lt;/a&gt;&lt;/th&gt;";
-echo "&lt;th&gt;&lt;a href='$link_spezialitaet'&gt;Spezialitaet&lt;/a&gt;&lt;/th&gt;";
-echo "&lt;th&gt;&lt;a href='$link_taeglicher_unfug'&gt;Taeglicher Unfug&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='$link_spezialitaet'&gt;Spezialität&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='$link_taeglicher_unfug'&gt;Täglicher Unfug&lt;/a&gt;&lt;/th&gt;";
 echo "&lt;th&gt;&lt;a href='$link_kaffee_konsum'&gt;Kaffeekonsum&lt;/a&gt;&lt;/th&gt;";
 echo "&lt;/tr&gt;&lt;/thead&gt;";
 echo "&lt;tbody&gt;";
@@ -533,11 +533,11 @@ mysqli_close($conn);
         </details>
     </div>
 
-    <h3>Naechster Schritt: Richtungswechsel</h3>
+    <h3>Nächster Schritt: Richtungswechsel</h3>
 
     <div class="zusatz">
         <div class="zusatz-titel">Erweiterung: ASC/DESC umschalten</div>
         <p>Aktuell sortiert jeder Klick absteigend. In sql_5a.php lernst du, wie man einen zweiten Parameter
-        hinzufuegt, damit ein erneuter Klick auf dieselbe Spalte die Sortierrichtung umkehrt!</p>
+        hinzufügt, damit ein erneuter Klick auf dieselbe Spalte die Sortierrichtung umkehrt!</p>
     </div>
 </div>

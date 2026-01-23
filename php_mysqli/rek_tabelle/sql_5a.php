@@ -70,7 +70,7 @@ mysqli_close($conn);
 -->
 
 <div class="navigation">
-    <a href="sql_5.php" class="nav-btn zurueck">&larr; Zurueck</a>
+    <a href="sql_5.php" class="nav-btn zurueck">&larr; Zurück</a>
     <div class="nav-platzhalter"></div>
     <a href="sql_5b.php" class="nav-btn weiter">Weiter zur Optimierung &rarr;</a>
 </div>
@@ -303,7 +303,7 @@ mysqli_close($conn);
 
     <div class="konzept">
         <div class="konzept-titel">Das Konzept</div>
-        <p>Ein erneuter Klick auf dieselbe Spalte soll die Sortierrichtung umkehren (Toggle). Dafuer brauchen wir einen zweiten URL-Parameter: <code>reihenfolge</code>.</p>
+        <p>Ein erneuter Klick auf dieselbe Spalte soll die Sortierrichtung umkehren (Toggle). Dafür brauchen wir einen zweiten URL-Parameter: <code>reihenfolge</code>.</p>
         <div class="parameter">
             <strong>Beispiel-URL:</strong> seite.php?sortierung=name&amp;reihenfolge=asc
         </div>
@@ -328,10 +328,10 @@ mysqli_close($conn);
     <div class="arbeitsschritt">
         <div class="schritt-header">
             <span class="schritt-nummer">1</span>
-            <span class="schritt-titel">Parameter reihenfolge hinzufuegen</span>
+            <span class="schritt-titel">Parameter reihenfolge hinzufügen</span>
         </div>
         <p class="schritt-auftrag">
-            Lies zusaetzlich den Parameter <code>reihenfolge</code> aus. Standardwert ist <code>'desc'</code>.
+            Lies zusätzlich den Parameter <code>reihenfolge</code> aus. Standardwert ist <code>'desc'</code>.
             Das Muster ist identisch zum Parameter <code>sortierung</code>.
         </p>
         <details class="hilfe">
@@ -377,8 +377,8 @@ $result = mysqli_query($conn, $sql);</code>
             <span class="schritt-titel">Umgekehrte Reihenfolge berechnen</span>
         </div>
         <p class="schritt-auftrag">
-            Definiere eine Variable <code>$standard_reihenfolge</code> (fuer neue Spalten) und
-            berechne <code>$umgekehrte_reihenfolge</code> (fuer die aktive Spalte).
+            Definiere eine Variable <code>$standard_reihenfolge</code> (für neue Spalten) und
+            berechne <code>$umgekehrte_reihenfolge</code> (für die aktive Spalte).
             Wenn aktuell <code>'asc'</code>, dann umgekehrt <code>'desc'</code> und umgekehrt.
         </p>
         <details class="hilfe">
@@ -394,8 +394,8 @@ if ($reihenfolge == 'asc') {
 }</code>
                 <div class="hinweis">
                     <strong>Warum zwei Variablen?</strong><br>
-                    - <code>$standard_reihenfolge</code>: Fuer Spalten, die NICHT aktiv sind<br>
-                    - <code>$umgekehrte_reihenfolge</code>: Fuer die aktive Spalte (Toggle)
+                    - <code>$standard_reihenfolge</code>: Für Spalten, die NICHT aktiv sind<br>
+                    - <code>$umgekehrte_reihenfolge</code>: Für die aktive Spalte (Toggle)
                 </div>
             </div>
         </details>
@@ -409,9 +409,9 @@ if ($reihenfolge == 'asc') {
             <span class="schritt-titel">Link-Variablen definieren</span>
         </div>
         <p class="schritt-auftrag">
-            Wenn mehrere Links oder komplexe URLs entstehen, ist es uebersichtlicher, die
+            Wenn mehrere Links oder komplexe URLs entstehen, ist es übersichtlicher, die
             Link-Strings vorher in einem Block zu definieren. So stehen alle URLs an einer
-            Stelle und sind leichter zu warten und zu aendern.
+            Stelle und sind leichter zu warten und zu ändern.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
@@ -422,8 +422,8 @@ $link_spezialitaet = "?sortierung=spezialitaet&amp;reihenfolge=...";
 $link_taeglicher_unfug = "?sortierung=taeglicher_unfug&amp;reihenfolge=...";
 $link_kaffee_konsum = "?sortierung=kaffee_konsum&amp;reihenfolge=...";</code>
                 <div class="hinweis">
-                    <strong>Vorteil:</strong> Alle URLs sind an einer Stelle gebuendelt.
-                    Wenn sich das URL-Schema aendert, musst du nur diesen Block anpassen.
+                    <strong>Vorteil:</strong> Alle URLs sind an einer Stelle gebündelt.
+                    Wenn sich das URL-Schema ändert, musst du nur diesen Block anpassen.
                 </div>
             </div>
         </details>
@@ -437,34 +437,34 @@ $link_kaffee_konsum = "?sortierung=kaffee_konsum&amp;reihenfolge=...";</code>
             <span class="schritt-titel">Links mit Bedingung erstellen</span>
         </div>
         <p class="schritt-auftrag">
-            Fuer jede Spalte: Pruefe mit <code>if</code>, ob diese Spalte gerade aktiv ist.
+            Für jede Spalte: Prüfe mit <code>if</code>, ob diese Spalte gerade aktiv ist.
             Falls ja, verwende <code>$umgekehrte_reihenfolge</code>.
             Falls nein, verwende <code>$standard_reihenfolge</code>.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
-                <p>Fuer jede Spalte einen eigenen if-Block:</p>
-                <code>// Link fuer "Name"
+                <p>Für jede Spalte einen eigenen if-Block:</p>
+                <code>// Link für "Name"
 if ($sortierung == 'name') {
     $link_name = "?sortierung=name&amp;reihenfolge=$umgekehrte_reihenfolge";
 } else {
     $link_name = "?sortierung=name&amp;reihenfolge=$standard_reihenfolge";
 }
 
-// Link fuer "Spezialitaet"
+// Link für "Spezialität"
 if ($sortierung == 'spezialitaet') {
     $link_spezialitaet = "?sortierung=spezialitaet&amp;reihenfolge=$umgekehrte_reihenfolge";
 } else {
     $link_spezialitaet = "?sortierung=spezialitaet&amp;reihenfolge=$standard_reihenfolge";
 }
 
-// ... und so weiter fuer die anderen Spalten</code>
+// ... und so weiter für die anderen Spalten</code>
             </div>
         </details>
     </div>
 
-    <h3>Vollstaendiger Code</h3>
+    <h3>Vollständiger Code</h3>
 
     <div class="arbeitsschritt">
         <div class="schritt-header">
@@ -472,11 +472,11 @@ if ($sortierung == 'spezialitaet') {
             <span class="schritt-titel">Alles zusammengesetzt</span>
         </div>
         <p class="schritt-auftrag">
-            Vergleiche deinen Code mit der vollstaendigen Loesung. Teste das Toggle-Verhalten:
+            Vergleiche deinen Code mit der vollständigen Lösung. Teste das Toggle-Verhalten:
             Klick auf "Name" sortiert absteigend, erneuter Klick sortiert aufsteigend.
         </p>
         <details class="hilfe">
-            <summary>Loesung anzeigen</summary>
+            <summary>Lösung anzeigen</summary>
             <div class="hilfe-inhalt">
                 <code>&lt;?php
 // Verbindung herstellen
@@ -511,7 +511,7 @@ if ($reihenfolge == 'asc') {
     $umgekehrte_reihenfolge = 'asc';
 }
 
-// Links fuer jede Spalte erstellen
+// Links für jede Spalte erstellen
 if ($sortierung == 'name') {
     $link_name = "?sortierung=name&amp;reihenfolge=$umgekehrte_reihenfolge";
 } else {
@@ -540,11 +540,11 @@ if ($sortierung == 'kaffee_konsum') {
         </details>
     </div>
 
-    <h3>Naechster Schritt: Code-Optimierung</h3>
+    <h3>Nächster Schritt: Code-Optimierung</h3>
 
     <div class="zusatz">
         <div class="zusatz-titel">Code-Wiederholung vermeiden</div>
-        <p>Faellt dir auf, dass sich der Code fuer die Links sehr oft wiederholt? In sql_5b.php lernst du,
+        <p>Fällt dir auf, dass sich der Code für die Links sehr oft wiederholt? In sql_5b.php lernst du,
         wie du diesen Code mit Arrays und foreach-Schleifen eleganter schreiben kannst!</p>
     </div>
 </div>

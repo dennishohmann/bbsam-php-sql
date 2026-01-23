@@ -100,9 +100,9 @@ mysqli_close($conn);
         Diese Anleitung braucht nur im Browser gelesen zu werden...
 -->
 <div class="navigation">
-    <a href="sql_5b.php" class="nav-btn zurueck">&larr; Zurueck</a>
+    <a href="sql_5b.php" class="nav-btn zurueck">&larr; Zurück</a>
     <div class="nav-platzhalter"></div>
-    <a href="sql_7.php" class="nav-btn weiter">Weiter zur Bonus-Loesung &rarr;</a>
+    <a href="sql_7.php" class="nav-btn weiter">Weiter zur Bonus-Lösung &rarr;</a>
 </div>   
 
 <style>
@@ -275,8 +275,8 @@ mysqli_close($conn);
     <h2>🔀 Sortierbare Tabellenspalten</h2>
 
     <div class="musterloesung">
-        <div class="musterloesung-titel">Musterloesung</div>
-        <p>Dies ist die fertige Loesung zur Aufgabe aus sql_5b.php. Vergleiche deinen optimierten Code mit dieser Loesung!</p>
+        <div class="musterloesung-titel">Musterlösung</div>
+        <p>Dies ist die fertige Lösung zur Aufgabe aus sql_5b.php. Vergleiche deinen optimierten Code mit dieser Lösung!</p>
     </div>
 
     <div class="konzept">

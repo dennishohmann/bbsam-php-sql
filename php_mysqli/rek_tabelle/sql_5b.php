@@ -102,9 +102,9 @@ mysqli_close($conn);
 
 
 <div class="navigation">
-    <a href="sql_5a.php" class="nav-btn zurueck">&larr; Zurueck</a>
+    <a href="sql_5a.php" class="nav-btn zurueck">&larr; Zurück</a>
     <div class="nav-platzhalter"></div>
-    <a href="sql_6.php" class="nav-btn weiter">Weiter zur Musterloesung &rarr;</a>
+    <a href="sql_6.php" class="nav-btn weiter">Weiter zur Musterlösung &rarr;</a>
 </div>
 
 <!--    #######################################
@@ -319,7 +319,7 @@ mysqli_close($conn);
 
     <div class="konzept">
         <div class="konzept-titel">DRY - Don't Repeat Yourself</div>
-        <p>Ein wichtiges Prinzip in der Programmierung: Wiederhole dich nicht! Wenn Code sich mehrfach wiederholt, sollte er zusammengefasst werden. Das macht den Code kuerzer, uebersichtlicher und einfacher zu warten.</p>
+        <p>Ein wichtiges Prinzip in der Programmierung: Wiederhole dich nicht! Wenn Code sich mehrfach wiederholt, sollte er zusammengefasst werden. Das macht den Code kürzer, übersichtlicher und einfacher zu warten.</p>
     </div>
 
     <div class="aufgabe">
@@ -329,7 +329,7 @@ mysqli_close($conn);
             <strong>Das sollst du tun:</strong>
             <ol>
                 <li>Das Problem im bisherigen Code erkennen</li>
-                <li>Ein assoziatives Array fuer die Spalten erstellen</li>
+                <li>Ein assoziatives Array für die Spalten erstellen</li>
                 <li>Die Links mit einer foreach-Schleife erstellen</li>
                 <li>Den Tabellenkopf mit foreach ausgeben</li>
             </ol>
@@ -341,26 +341,26 @@ mysqli_close($conn);
     <div class="schritt">
         <span class="schritt-nummer">1</span>
         <span class="schritt-titel">Wiederholender Code aus sql_5.php</span>
-        <code>// Link fuer "Name"
+        <code>// Link für "Name"
 if ($sortierung == 'name') {
     $link_name = "?sortierung=name&amp;reihenfolge=$umgekehrte_reihenfolge";
 } else {
     $link_name = "?sortierung=name&amp;reihenfolge=$standard_reihenfolge";
 }
 
-// Link fuer "Spezialitaet"
+// Link für "Spezialität"
 if ($sortierung == 'spezialitaet') {
     $link_spezialitaet = "?sortierung=spezialitaet&amp;reihenfolge=$umgekehrte_reihenfolge";
 } else {
     $link_spezialitaet = "?sortierung=spezialitaet&amp;reihenfolge=$standard_reihenfolge";
 }
 
-// ... und so weiter fuer jede Spalte!</code>
-        <p>Dieser Code wiederholt sich 4 Mal mit nur minimalen Unterschieden: dem Spaltennamen und der Variablen. Das ist ein klarer Fall fuer eine Schleife!</p>
+// ... und so weiter für jede Spalte!</code>
+        <p>Dieser Code wiederholt sich 4 Mal mit nur minimalen Unterschieden: dem Spaltennamen und der Variablen. Das ist ein klarer Fall für eine Schleife!</p>
         <div class="warnung">
             <strong>Probleme mit diesem Ansatz:</strong><br>
-            - Bei 10 Spalten braeuchten wir 10 fast identische Codeblocks<br>
-            - Fehler muessen an mehreren Stellen korrigiert werden<br>
+            - Bei 10 Spalten bräuchten wir 10 fast identische Codeblocks<br>
+            - Fehler müssen an mehreren Stellen korrigiert werden<br>
             - Eine neue Spalte erfordert viel Copy-Paste
         </div>
     </div>
@@ -371,9 +371,9 @@ if ($sortierung == 'spezialitaet') {
         <span class="schritt-nummer">2</span>
         <span class="schritt-titel">Was ist ein assoziatives Array?</span>
         <code>// Normales Array (numerische Indizes)
-$farben = ['rot', 'gruen', 'blau'];
+$farben = ['rot', 'grün', 'blau'];
 // $farben[0] = 'rot'
-// $farben[1] = 'gruen'
+// $farben[1] = 'grün'
 
 // Assoziatives Array (benannte Keys)
 $person = [
@@ -383,7 +383,7 @@ $person = [
 ];
 // $person['name'] = 'Max'
 // $person['alter'] = 25</code>
-        <p>Bei assoziativen Arrays haben die Eintraege benannte Schluessel (Keys) statt Zahlen. Der Pfeil =&gt; verbindet den Key mit seinem Wert (Value).</p>
+        <p>Bei assoziativen Arrays haben die Einträge benannte Schlüssel (Keys) statt Zahlen. Der Pfeil =&gt; verbindet den Key mit seinem Wert (Value).</p>
     </div>
 
     <div class="schritt">
@@ -391,8 +391,8 @@ $person = [
         <span class="schritt-titel">Spalten-Array definieren</span>
         <code>$spalten = [
     'name' =&gt; 'Name',
-    'spezialitaet' =&gt; 'Spezialitaet',
-    'taeglicher_unfug' =&gt; 'Taeglicher Unfug',
+    'spezialitaet' =&gt; 'Spezialität',
+    'taeglicher_unfug' =&gt; 'Täglicher Unfug',
     'kaffee_konsum' =&gt; 'Kaffeekonsum'
 ];</code>
         <p>Der Key (links) ist der Datenbankname, der Value (rechts) ist der Anzeigetitel. So haben wir alle Informationen an einer Stelle!</p>
@@ -413,12 +413,12 @@ $person = [
 
 // Ausgabe:
 // Spalte: name, Titel: Name
-// Spalte: spezialitaet, Titel: Spezialitaet
-// Spalte: taeglicher_unfug, Titel: Taeglicher Unfug
+// Spalte: spezialitaet, Titel: Spezialität
+// Spalte: taeglicher_unfug, Titel: Täglicher Unfug
 // Spalte: kaffee_konsum, Titel: Kaffeekonsum</code>
-        <p>Die foreach-Schleife durchlaeuft jedes Key-Value-Paar. Bei jedem Durchlauf steht der Key in $spalte und der Value in $titel.</p>
+        <p>Die foreach-Schleife durchläuft jedes Key-Value-Paar. Bei jedem Durchlauf steht der Key in $spalte und der Value in $titel.</p>
         <div class="hinweis">
-            <strong>Merke:</strong> foreach ($array as $key =&gt; $value) gibt dir beides: den Schluessel und den Wert!
+            <strong>Merke:</strong> foreach ($array as $key =&gt; $value) gibt dir beides: den Schlüssel und den Wert!
         </div>
     </div>
 
@@ -435,7 +435,7 @@ foreach ($spalten as $spalte =&gt; $titel) {
         $links[$spalte] = "?sortierung=$spalte&amp;reihenfolge=$standard_reihenfolge";
     }
 }</code>
-        <p>Statt 4 separate if-Bloecke haben wir jetzt eine Schleife. Sie erstellt automatisch fuer jede Spalte den passenden Link und speichert ihn im $links-Array.</p>
+        <p>Statt 4 separate if-Blöcke haben wir jetzt eine Schleife. Sie erstellt automatisch für jede Spalte den passenden Link und speichert ihn im $links-Array.</p>
         <div class="parameter">
             <strong>Ergebnis:</strong><br>
             $links['name'] = "?sortierung=name&amp;reihenfolge=..."<br>
@@ -448,31 +448,31 @@ foreach ($spalten as $spalte =&gt; $titel) {
 
     <div class="schritt">
         <span class="schritt-nummer">6</span>
-        <span class="schritt-titel">Ueberschriften dynamisch ausgeben</span>
+        <span class="schritt-titel">Überschriften dynamisch ausgeben</span>
         <code>echo "&lt;thead&gt;&lt;tr&gt;";
 foreach ($spalten as $spalte =&gt; $titel) {
     echo "&lt;th&gt;&lt;a href='" . $links[$spalte] . "'&gt;$titel&lt;/a&gt;&lt;/th&gt;";
 }
 echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
-        <p>Eine weitere foreach-Schleife gibt die Tabellenueberschriften aus. Der Titel kommt aus dem $spalten-Array, der Link aus dem $links-Array.</p>
+        <p>Eine weitere foreach-Schleife gibt die Tabellenüberschriften aus. Der Titel kommt aus dem $spalten-Array, der Link aus dem $links-Array.</p>
     </div>
 
-    <h3>Vorteile dieser Loesung</h3>
+    <h3>Vorteile dieser Lösung</h3>
 
     <div class="vorteile">
         <div class="vorteile-titel">Warum ist dieser Code besser?</div>
         <ul>
             <li><strong>Weniger Wiederholung:</strong> Die Logik steht nur einmal im Code</li>
             <li><strong>Einfach erweiterbar:</strong> Eine neue Spalte = eine Zeile im Array</li>
-            <li><strong>Weniger fehleranfaellig:</strong> Aenderungen nur an einer Stelle noetig</li>
-            <li><strong>Besser lesbar:</strong> Die Spalten-Definition ist uebersichtlich</li>
+            <li><strong>Weniger fehleranfällig:</strong> Änderungen nur an einer Stelle nötig</li>
+            <li><strong>Besser lesbar:</strong> Die Spalten-Definition ist übersichtlich</li>
         </ul>
     </div>
 
     <div class="schritt">
         <span class="schritt-nummer">7</span>
         <span class="schritt-titel">Vergleich: Vorher vs. Nachher</span>
-        <code>// VORHER: 4 separate if-Bloecke (ca. 24 Zeilen)
+        <code>// VORHER: 4 separate if-Blöcke (ca. 24 Zeilen)
 if ($sortierung == 'name') { ... } else { ... }
 if ($sortierung == 'spezialitaet') { ... } else { ... }
 if ($sortierung == 'taeglicher_unfug') { ... } else { ... }
@@ -486,13 +486,13 @@ foreach ($spalten as $spalte =&gt; $titel) {
         $links[$spalte] = "?sortierung=$spalte&amp;reihenfolge=$standard_reihenfolge";
     }
 }</code>
-        <p>Der optimierte Code ist nicht nur kuerzer, sondern skaliert auch besser: Egal ob 4 oder 40 Spalten - die Schleife bleibt gleich!</p>
+        <p>Der optimierte Code ist nicht nur kürzer, sondern skaliert auch besser: Egal ob 4 oder 40 Spalten - die Schleife bleibt gleich!</p>
     </div>
 
-    <h3>Naechster Schritt</h3>
+    <h3>Nächster Schritt</h3>
 
     <div class="zusatz">
-        <div class="zusatz-titel">Musterloesung ansehen</div>
-        <p>Schau dir in sql_6.php die vollstaendige Loesung mit foreach an und vergleiche sie mit deinem Code!</p>
+        <div class="zusatz-titel">Musterlösung ansehen</div>
+        <p>Schau dir in sql_6.php die vollständige Lösung mit foreach an und vergleiche sie mit deinem Code!</p>
     </div>
 </div>
