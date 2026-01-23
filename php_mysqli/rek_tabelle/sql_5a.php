@@ -1,7 +1,9 @@
 <?php
-// Musterlösung für Aufgabe 3 Sortierung
-// Aufgabe: Sortierung umschalten
+// ============================================
+// MUSTERLÖSUNG: Einfache Sortierung (immer absteigend)
+// ============================================
 
+// Datenbankverbindung
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
 
@@ -9,21 +11,16 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
-// Parameter auslesen
+// Schritt 1: Parameter auslesen
 $sortierung = 'id';
 if (isset($_REQUEST['sortierung'])) {
     $sortierung = $_REQUEST['sortierung'];
 }
 
-// SQL-Abfrage mit Sortierung (immer absteigend)
+// Schritt 2: SQL-Abfrage mit dynamischer Sortierung
 $sql = "SELECT * FROM katzen ORDER BY $sortierung DESC";
 $result = mysqli_query($conn, $sql);
 
-// Links fuer Spalten
-$link_name = "?sortierung=name";
-$link_spezialitaet = "?sortierung=spezialitaet";
-$link_taeglicher_unfug = "?sortierung=taeglicher_unfug";
-$link_kaffee_konsum = "?sortierung=kaffee_konsum";
 ?>
 
 <style>
@@ -36,15 +33,16 @@ $link_kaffee_konsum = "?sortierung=kaffee_konsum";
     .katzen-tabelle tr:hover { background: #e8f4fc; }
 </style>
 
-<h2>Mitarbeiter des Monats</h2>
+<h2>🐱 Mitarbeiter des Monats 🐱</h2>
 
 <?php
+// Schritt 3: Tabelle mit klickbaren Überschriften
 echo "<table class='katzen-tabelle'>";
 echo "<thead><tr>";
-echo "<th><a href='$link_name'>Name</a></th>";
-echo "<th><a href='$link_spezialitaet'>Spezialitaet</a></th>";
-echo "<th><a href='$link_taeglicher_unfug'>Taeglicher Unfug</a></th>";
-echo "<th><a href='$link_kaffee_konsum'>Kaffeekonsum</a></th>";
+echo "<th><a href='?sortierung=name'>Name</a></th>";
+echo "<th><a href='?sortierung=spezialitaet'>Spezialitaet</a></th>";
+echo "<th><a href='?sortierung=taeglicher_unfug'>Taeglicher Unfug</a></th>";
+echo "<th><a href='?sortierung=kaffee_konsum'>Kaffeekonsum</a></th>";
 echo "</tr></thead>";
 echo "<tbody>";
 
@@ -403,11 +401,39 @@ if ($reihenfolge == 'asc') {
         </details>
     </div>
 
-    <h3>Links je nach aktiver Spalte</h3>
+    <h3>Links in Variablen auslagern</h3>
 
     <div class="arbeitsschritt">
         <div class="schritt-header">
             <span class="schritt-nummer">4</span>
+            <span class="schritt-titel">Link-Variablen definieren</span>
+        </div>
+        <p class="schritt-auftrag">
+            Wenn mehrere Links oder komplexe URLs entstehen, ist es uebersichtlicher, die
+            Link-Strings vorher in einem Block zu definieren. So stehen alle URLs an einer
+            Stelle und sind leichter zu warten und zu aendern.
+        </p>
+        <details class="hilfe">
+            <summary>Hilfe anzeigen</summary>
+            <div class="hilfe-inhalt">
+                <p>Alle Link-Variablen gesammelt definieren:</p>
+                <code>$link_name = "?sortierung=name&amp;reihenfolge=...";
+$link_spezialitaet = "?sortierung=spezialitaet&amp;reihenfolge=...";
+$link_taeglicher_unfug = "?sortierung=taeglicher_unfug&amp;reihenfolge=...";
+$link_kaffee_konsum = "?sortierung=kaffee_konsum&amp;reihenfolge=...";</code>
+                <div class="hinweis">
+                    <strong>Vorteil:</strong> Alle URLs sind an einer Stelle gebuendelt.
+                    Wenn sich das URL-Schema aendert, musst du nur diesen Block anpassen.
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <h3>Links je nach aktiver Spalte</h3>
+
+    <div class="arbeitsschritt">
+        <div class="schritt-header">
+            <span class="schritt-nummer">5</span>
             <span class="schritt-titel">Links mit Bedingung erstellen</span>
         </div>
         <p class="schritt-auftrag">
@@ -442,7 +468,7 @@ if ($sortierung == 'spezialitaet') {
 
     <div class="arbeitsschritt">
         <div class="schritt-header">
-            <span class="schritt-nummer">5</span>
+            <span class="schritt-nummer">6</span>
             <span class="schritt-titel">Alles zusammengesetzt</span>
         </div>
         <p class="schritt-auftrag">

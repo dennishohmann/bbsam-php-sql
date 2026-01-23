@@ -1,5 +1,7 @@
 <?php
-//  AUFGABE: Die Tabelle sortierbar machen:
+// ============================================
+// AUFGABE: Sortierbare Spalten implementieren
+// ============================================
 
 $conn = mysqli_connect("localhost", "root", "", "katzencafe");
 mysqli_set_charset($conn, "utf8mb4");
@@ -8,6 +10,13 @@ if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
 }
 
+// --------------------------------------------
+// Schritt 1: Parameter 'sortierung' aus URL auslesen
+// --------------------------------------------
+
+// --------------------------------------------
+// Schritt 2: SQL-Abfrage mit ORDER BY $sortierung anpassen
+// --------------------------------------------
 $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC");
 ?>
 
@@ -24,6 +33,9 @@ $result = mysqli_query($conn, "SELECT * FROM katzen ORDER BY kaffee_konsum DESC"
 <?php
 echo "<table class='katzen-tabelle'>";
 echo "<tr>";
+// --------------------------------------------
+// Schritt 3: Überschriften als klickbare Links ausgeben
+// --------------------------------------------
 echo "<th>Name</th>";
 echo "<th>Spezialität</th>";
 echo "<th>Täglicher Unfug</th>";
@@ -390,47 +402,27 @@ $result = mysqli_query($conn, $sql);</code>
         </details>
     </div>
 
-    <h3>Links fuer jede Spalte erstellen</h3>
+    <h3>Tabellenkopf mit Links</h3>
 
     <div class="arbeitsschritt">
         <div class="schritt-header">
             <span class="schritt-nummer">4</span>
-            <span class="schritt-titel">Einfache Link-Variablen</span>
-        </div>
-        <p class="schritt-auftrag">
-            Erstelle fuer jede Spalte (name, spezialitaet, taeglicher_unfug, kaffee_konsum)
-            eine Link-Variable. Jeder Link uebergibt nur den Spaltennamen als Parameter.
-        </p>
-        <details class="hilfe">
-            <summary>Hilfe anzeigen</summary>
-            <div class="hilfe-inhalt">
-                <p>Vier einfache Zuweisungen:</p>
-                <code>$link_name = "?sortierung=name";
-$link_spezialitaet = "?sortierung=spezialitaet";
-$link_taeglicher_unfug = "?sortierung=taeglicher_unfug";
-$link_kaffee_konsum = "?sortierung=kaffee_konsum";</code>
-            </div>
-        </details>
-    </div>
-
-    <div class="arbeitsschritt">
-        <div class="schritt-header">
-            <span class="schritt-nummer">5</span>
-            <span class="schritt-titel">Tabellenkopf mit Links ausgeben</span>
+            <span class="schritt-titel">Ueberschriften als klickbare Links ausgeben</span>
         </div>
         <p class="schritt-auftrag">
             Aendere die Ausgabe des Tabellenkopfes: Jede Ueberschrift wird zu einem Link mit
-            <code>&lt;a href='...'&gt;</code>. Nutze die vorher erstellten Link-Variablen.
+            <code>&lt;a href='?sortierung=spaltenname'&gt;</code>. Der Link uebergibt den
+            Spaltennamen als Parameter.
         </p>
         <details class="hilfe">
             <summary>Hilfe anzeigen</summary>
             <div class="hilfe-inhalt">
                 <p>Die Ueberschriften werden zu klickbaren Links:</p>
                 <code>echo "&lt;thead&gt;&lt;tr&gt;";
-echo "&lt;th&gt;&lt;a href='$link_name'&gt;Name&lt;/a&gt;&lt;/th&gt;";
-echo "&lt;th&gt;&lt;a href='$link_spezialitaet'&gt;Spezialitaet&lt;/a&gt;&lt;/th&gt;";
-echo "&lt;th&gt;&lt;a href='$link_taeglicher_unfug'&gt;Taeglicher Unfug&lt;/a&gt;&lt;/th&gt;";
-echo "&lt;th&gt;&lt;a href='$link_kaffee_konsum'&gt;Kaffeekonsum&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='?sortierung=name'&gt;Name&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='?sortierung=spezialitaet'&gt;Spezialitaet&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='?sortierung=taeglicher_unfug'&gt;Taeglicher Unfug&lt;/a&gt;&lt;/th&gt;";
+echo "&lt;th&gt;&lt;a href='?sortierung=kaffee_konsum'&gt;Kaffeekonsum&lt;/a&gt;&lt;/th&gt;";
 echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
             </div>
         </details>
@@ -438,7 +430,7 @@ echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
 
     <div class="arbeitsschritt">
         <div class="schritt-header">
-            <span class="schritt-nummer">6</span>
+            <span class="schritt-nummer">5</span>
             <span class="schritt-titel">CSS fuer die Links hinzufuegen</span>
         </div>
         <p class="schritt-auftrag">
@@ -464,7 +456,7 @@ echo "&lt;/tr&gt;&lt;/thead&gt;";</code>
 
     <div class="arbeitsschritt">
         <div class="schritt-header">
-            <span class="schritt-nummer">7</span>
+            <span class="schritt-nummer">6</span>
             <span class="schritt-titel">Alles zusammengesetzt</span>
         </div>
         <p class="schritt-auftrag">
