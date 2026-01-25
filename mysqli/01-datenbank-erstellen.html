@@ -1,0 +1,276 @@
+<h3>Erste Datenbank mit phpMyAdmin erstellen</h3>
+<p>In dieser Anleitung erstellst du deine erste MySQL-Datenbank und eine Tabelle, mit der wir später in PHP arbeiten werden.</p>
+
+<!-- Voraussetzungen -->
+<div class="tool-section">
+  <h4>Voraussetzungen</h4>
+  <ul>
+    <li>XAMPP ist installiert und Apache + MySQL sind gestartet</li>
+    <li>phpMyAdmin ist erreichbar unter <a href="http://localhost/phpmyadmin" target="_blank" rel="noopener">http://localhost/phpmyadmin</a></li>
+  </ul>
+</div>
+
+<!-- Datenbank erstellen -->
+<div class="tool-section">
+  <h4>Schritt 1: Datenbank erstellen</h4>
+
+  <div class="step"><strong>1.1:</strong> Öffne phpMyAdmin im Browser: <a href="http://localhost/phpmyadmin" target="_blank" rel="noopener">http://localhost/phpmyadmin</a></div>
+
+  <div class="step"><strong>1.2:</strong> Klicke in der linken Seitenleiste auf <strong>"Neu"</strong> oder oben auf den Reiter <strong>"Datenbanken"</strong>.</div>
+
+  <div class="step"><strong>1.3:</strong> Gib als Datenbankname ein: <code>games_db</code></div>
+
+  <div class="step"><strong>1.4:</strong> Wähle als Kollation: <code>utf8mb4_general_ci</code> (wichtig für deutsche Umlaute)</div>
+
+  <div class="step"><strong>1.5:</strong> Klicke auf <strong>"Erstellen"</strong>.</div>
+
+  <div class="tip"><strong>Ergebnis:</strong> Die Datenbank <code>games_db</code> erscheint jetzt in der linken Seitenleiste.</div>
+</div>
+
+<!-- Tabelle erstellen -->
+<div class="tool-section">
+  <h4>Schritt 2: Tabelle erstellen</h4>
+
+  <div class="step"><strong>2.1:</strong> Klicke in der linken Seitenleiste auf deine neue Datenbank <code>games_db</code>.</div>
+
+  <div class="step"><strong>2.2:</strong> Du siehst jetzt "Keine Tabellen in der Datenbank gefunden". Gib bei <strong>"Neue Tabelle erstellen"</strong> ein:
+    <ul>
+      <li>Name: <code>spiele</code></li>
+      <li>Anzahl der Spalten: <code>6</code></li>
+    </ul>
+  </div>
+
+  <div class="step"><strong>2.3:</strong> Klicke auf <strong>"OK"</strong>.</div>
+</div>
+
+<!-- Spalten definieren -->
+<div class="tool-section">
+  <h4>Schritt 3: Spalten definieren</h4>
+  <p>Jetzt definierst du die Struktur deiner Tabelle. Trage folgende Werte ein:</p>
+
+  <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin: 15px 0;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th>Name</th>
+        <th>Typ</th>
+        <th>Länge</th>
+        <th>Standard</th>
+        <th>Attribute</th>
+        <th>Index</th>
+        <th>A_I</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td>INT</td>
+        <td>-</td>
+        <td>Keine</td>
+        <td>UNSIGNED</td>
+        <td>PRIMARY</td>
+        <td>✓</td>
+      </tr>
+      <tr>
+        <td><code>titel</code></td>
+        <td>VARCHAR</td>
+        <td>200</td>
+        <td>Keine</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>genre</code></td>
+        <td>VARCHAR</td>
+        <td>50</td>
+        <td>Keine</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>erscheinungsjahr</code></td>
+        <td>INT</td>
+        <td>4</td>
+        <td>Keine</td>
+        <td>UNSIGNED</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>preis</code></td>
+        <td>DECIMAL</td>
+        <td>5,2</td>
+        <td>Keine</td>
+        <td>UNSIGNED</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>bewertung</code></td>
+        <td>INT</td>
+        <td>2</td>
+        <td>NULL</td>
+        <td>UNSIGNED</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h5>Erklärung der Spalten</h5>
+  <ul>
+    <li><strong>id</strong> - Eindeutige Nummer für jeden Datensatz (wird automatisch hochgezählt)</li>
+    <li><strong>titel</strong> - Name des Spiels (Text bis 200 Zeichen)</li>
+    <li><strong>genre</strong> - Spielkategorie wie "Action", "RPG", "Sport" (Text bis 50 Zeichen)</li>
+    <li><strong>erscheinungsjahr</strong> - Jahr der Veröffentlichung (Ganzzahl)</li>
+    <li><strong>preis</strong> - Preis in Euro mit 2 Nachkommastellen (z.B. 59.99)</li>
+    <li><strong>bewertung</strong> - Bewertung von 1-10 (kann auch leer sein)</li>
+  </ul>
+
+  <h5>Erklärung der Datentypen</h5>
+  <ul>
+    <li><strong>INT</strong> - Ganzzahl (Integer)</li>
+    <li><strong>VARCHAR(n)</strong> - Text mit variabler Länge (max. n Zeichen)</li>
+    <li><strong>DECIMAL(m,n)</strong> - Dezimalzahl (m Stellen gesamt, davon n Nachkommastellen)</li>
+    <li><strong>UNSIGNED</strong> - Nur positive Zahlen erlaubt</li>
+    <li><strong>PRIMARY</strong> - Primärschlüssel (eindeutige Identifikation)</li>
+    <li><strong>A_I</strong> - Auto Increment (automatisch hochzählen)</li>
+  </ul>
+
+  <div class="step"><strong>3.4:</strong> Klicke unten auf <strong>"Speichern"</strong>.</div>
+
+  <div class="tip"><strong>Ergebnis:</strong> Die Tabelle <code>spiele</code> ist jetzt erstellt und erscheint in der linken Seitenleiste unter <code>games_db</code>.</div>
+</div>
+
+<!-- Testdaten einfügen -->
+<div class="tool-section">
+  <h4>Schritt 4: Testdaten einfügen</h4>
+  <p>Damit wir später mit echten Daten arbeiten können, fügen wir einige Beispieldatensätze ein.</p>
+
+  <div class="step"><strong>4.1:</strong> Klicke auf die Tabelle <code>spiele</code> in der linken Seitenleiste.</div>
+
+  <div class="step"><strong>4.2:</strong> Klicke oben auf den Reiter <strong>"SQL"</strong>.</div>
+
+  <div class="step"><strong>4.3:</strong> Kopiere folgenden SQL-Code in das Textfeld:</div>
+
+  <pre class="language-sql"><code>INSERT INTO spiele (titel, genre, erscheinungsjahr, preis, bewertung) VALUES
+('The Legend of Zelda: Tears of the Kingdom', 'Action-Adventure', 2023, 69.99, 10),
+('FIFA 24', 'Sport', 2023, 59.99, 7),
+('Minecraft', 'Sandbox', 2011, 29.99, 9),
+('Grand Theft Auto V', 'Action', 2013, 29.99, 10),
+('Hogwarts Legacy', 'Action-RPG', 2023, 49.99, 8),
+('Mario Kart 8 Deluxe', 'Rennspiel', 2017, 59.99, 9),
+('Fortnite', 'Battle Royale', 2017, 0.00, 7),
+('Elden Ring', 'Action-RPG', 2022, 59.99, 10),
+('Animal Crossing: New Horizons', 'Simulation', 2020, 49.99, 8),
+('Call of Duty: Modern Warfare III', 'Shooter', 2023, 69.99, 6);</code></pre>
+
+  <div class="step"><strong>4.4:</strong> Klicke auf <strong>"OK"</strong> um den SQL-Befehl auszuführen.</div>
+
+  <div class="tip"><strong>Ergebnis:</strong> Du siehst die Meldung "10 Datensätze eingefügt".</div>
+</div>
+
+<!-- Daten anzeigen -->
+<div class="tool-section">
+  <h4>Schritt 5: Daten überprüfen</h4>
+
+  <div class="step"><strong>5.1:</strong> Klicke auf den Reiter <strong>"Anzeigen"</strong> (oder auf die Tabelle <code>spiele</code>).</div>
+
+  <div class="step"><strong>5.2:</strong> Du siehst jetzt alle 10 Datensätze in einer Tabelle.</div>
+
+  <p>So sollte deine Tabelle aussehen:</p>
+
+  <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; width: 100%; margin: 15px 0; font-size: 0.9em;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th>id</th>
+        <th>titel</th>
+        <th>genre</th>
+        <th>erscheinungsjahr</th>
+        <th>preis</th>
+        <th>bewertung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>The Legend of Zelda: Tears of the Kingdom</td>
+        <td>Action-Adventure</td>
+        <td>2023</td>
+        <td>69.99</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>FIFA 24</td>
+        <td>Sport</td>
+        <td>2023</td>
+        <td>59.99</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Minecraft</td>
+        <td>Sandbox</td>
+        <td>2011</td>
+        <td>29.99</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>...</td>
+        <td colspan="5"><em>(weitere Datensätze)</em></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Zusammenfassung -->
+<div class="tool-section">
+  <h4>Zusammenfassung</h4>
+  <p>Du hast erfolgreich:</p>
+  <ul class="checklist">
+    <li>Eine Datenbank <code>games_db</code> erstellt</li>
+    <li>Eine Tabelle <code>spiele</code> mit 6 Spalten angelegt</li>
+    <li>10 Testdatensätze eingefügt</li>
+  </ul>
+
+  <h5>Wichtige Daten für PHP</h5>
+  <p>Diese Informationen brauchst du später für die Verbindung mit PHP:</p>
+  <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; margin: 15px 0;">
+    <tr>
+      <td><strong>Server</strong></td>
+      <td><code>localhost</code></td>
+    </tr>
+    <tr>
+      <td><strong>Benutzername</strong></td>
+      <td><code>root</code></td>
+    </tr>
+    <tr>
+      <td><strong>Passwort</strong></td>
+      <td><code></code> (leer)</td>
+    </tr>
+    <tr>
+      <td><strong>Datenbank</strong></td>
+      <td><code>games_db</code></td>
+    </tr>
+    <tr>
+      <td><strong>Tabelle</strong></td>
+      <td><code>spiele</code></td>
+    </tr>
+  </table>
+</div>
+
+<!-- Nächste Schritte -->
+<div class="tool-section">
+  <h4>Nächste Schritte</h4>
+  <p>Mit dieser Datenbank kannst du jetzt lernen:</p>
+  <ul>
+    <li>Verbindung zur Datenbank mit PHP/MySQLi herstellen</li>
+    <li>Daten aus der Datenbank auslesen (SELECT)</li>
+    <li>Neue Daten einfügen (INSERT)</li>
+    <li>Daten ändern (UPDATE)</li>
+    <li>Daten löschen (DELETE)</li>
+    <li>Daten filtern und sortieren (WHERE, ORDER BY)</li>
+  </ul>
+</div>

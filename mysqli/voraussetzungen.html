@@ -1,310 +1,133 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voraussetzungen für MySQLi</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-        }
-        h2 {
-            color: #34495e;
-            margin-top: 30px;
-        }
-        .tool-section {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .tool-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .tool-icon {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .xampp-icon {
-            background-color: #FB7A24;
-            color: white;
-        }
-        .phpmyadmin-icon {
-            background-color: #6C78AF;
-            color: white;
-        }
-        .vscode-icon {
-            background-color: #007ACC;
-            color: white;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin: 10px 0;
-        }
-        .step {
-            background-color: #e8f4f8;
-            padding: 10px 15px;
-            border-left: 4px solid #3498db;
-            margin: 10px 0;
-        }
-        .warning {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 10px 15px;
-            margin: 10px 0;
-        }
-        .tip {
-            background-color: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 10px 15px;
-            margin: 10px 0;
-        }
-        code {
-            background-color: #e9ecef;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        a {
-            color: #3498db;
-        }
-        a:hover {
-            color: #2980b9;
-        }
-        .checklist {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .checklist li::before {
-            content: "☐ ";
-            font-size: 1.2em;
-        }
-    </style>
-</head>
-<body>
-    <h1>Voraussetzungen für MySQLi zu Hause</h1>
+<h3>Voraussetzungen für MySQLi zu Hause</h3>
+<p>Um mit PHP und MySQLi auf deinem eigenen Computer arbeiten zu können, benötigst du folgende Software. Diese Anleitung zeigt dir, wie du alles einrichtest.</p>
 
-    <p>Um mit PHP und MySQLi auf deinem eigenen Computer arbeiten zu können, benötigst du folgende Software. Diese Anleitung zeigt dir, wie du alles einrichtest.</p>
+<!-- XAMPP Section -->
+<div class="tool-section">
+  <h4>XAMPP installieren</h4>
+  <p style="color: #666;">Lokaler Webserver mit Apache, MySQL und PHP</p>
 
-    <!-- XAMPP Section -->
-    <div class="tool-section">
-        <div class="tool-header">
-            <div class="tool-icon xampp-icon">X</div>
-            <div>
-                <h2 style="margin: 0;">XAMPP</h2>
-                <p style="margin: 5px 0; color: #666;">Lokaler Webserver mit Apache, MySQL und PHP</p>
-            </div>
-        </div>
+  <h5>Was ist XAMPP?</h5>
+  <p>XAMPP ist ein kostenloses Softwarepaket, das einen Webserver (Apache), eine Datenbank (MySQL/MariaDB) und PHP auf deinem Computer installiert. Der Name steht für:</p>
+  <ul>
+    <li><strong>X</strong> - Cross-Platform (Windows, Linux, macOS)</li>
+    <li><strong>A</strong> - Apache (Webserver)</li>
+    <li><strong>M</strong> - MariaDB/MySQL (Datenbank)</li>
+    <li><strong>P</strong> - PHP (Programmiersprache)</li>
+    <li><strong>P</strong> - Perl (Programmiersprache)</li>
+  </ul>
 
-        <h3>Was ist XAMPP?</h3>
-        <p>XAMPP ist ein kostenloses Softwarepaket, das einen Webserver (Apache), eine Datenbank (MySQL/MariaDB) und PHP auf deinem Computer installiert. Der Name steht für:</p>
-        <ul>
-            <li><strong>X</strong> - Cross-Platform (Windows, Linux, macOS)</li>
-            <li><strong>A</strong> - Apache (Webserver)</li>
-            <li><strong>M</strong> - MariaDB/MySQL (Datenbank)</li>
-            <li><strong>P</strong> - PHP (Programmiersprache)</li>
-            <li><strong>P</strong> - Perl (Programmiersprache)</li>
-        </ul>
+  <h5>Installation</h5>
+  <div class="step"><strong>Schritt 1:</strong> Gehe auf <a href="https://www.apachefriends.org/de/index.html" target="_blank" rel="noopener">https://www.apachefriends.org</a> und lade XAMPP für dein Betriebssystem herunter.</div>
+  <div class="step"><strong>Schritt 2:</strong> Führe die heruntergeladene Datei aus und folge dem Installationsassistenten. Wähle mindestens Apache, MySQL und PHP aus.</div>
+  <div class="step"><strong>Schritt 3:</strong> Installiere XAMPP am besten im Standardverzeichnis:
+    <ul>
+      <li>Windows: <code>C:\xampp</code></li>
+      <li>macOS: <code>/Applications/XAMPP</code></li>
+    </ul>
+  </div>
 
-        <h3>Installation</h3>
-        <div class="step">
-            <strong>Schritt 1:</strong> Gehe auf <a href="https://www.apachefriends.org/de/index.html" target="_blank">https://www.apachefriends.org</a> und lade XAMPP für dein Betriebssystem herunter.
-        </div>
-        <div class="step">
-            <strong>Schritt 2:</strong> Führe die heruntergeladene Datei aus und folge dem Installationsassistenten. Wähle mindestens Apache, MySQL und PHP aus.
-        </div>
-        <div class="step">
-            <strong>Schritt 3:</strong> Installiere XAMPP am besten im Standardverzeichnis:
-            <ul>
-                <li>Windows: <code>C:\xampp</code></li>
-                <li>macOS: <code>/Applications/XAMPP</code></li>
-            </ul>
-        </div>
+  <h5>XAMPP starten</h5>
+  <div class="step"><strong>Schritt 1:</strong> Öffne das XAMPP Control Panel.</div>
+  <div class="step"><strong>Schritt 2:</strong> Klicke auf <strong>"Start"</strong> bei Apache und MySQL.</div>
+  <div class="step"><strong>Schritt 3:</strong> Wenn beide Module grün hinterlegt sind, läuft der Server.</div>
 
-        <h3>XAMPP starten</h3>
-        <div class="step">
-            <strong>Schritt 1:</strong> Öffne das XAMPP Control Panel.
-        </div>
-        <div class="step">
-            <strong>Schritt 2:</strong> Klicke auf <strong>"Start"</strong> bei Apache und MySQL.
-        </div>
-        <div class="step">
-            <strong>Schritt 3:</strong> Wenn beide Module grün hinterlegt sind, läuft der Server.
-        </div>
+  <div class="warning"><strong>Hinweis:</strong> Falls Apache nicht startet, könnte Port 80 bereits von einem anderen Programm (z.B. Skype) belegt sein. Beende das andere Programm oder ändere den Port in der Apache-Konfiguration.</div>
 
-        <div class="warning">
-            <strong>Hinweis:</strong> Falls Apache nicht startet, könnte Port 80 bereits von einem anderen Programm (z.B. Skype) belegt sein. Beende das andere Programm oder ändere den Port in der Apache-Konfiguration.
-        </div>
+  <h5>Projektordner erstellen</h5>
+  <p>Deine PHP-Dateien müssen im <strong>htdocs</strong>-Ordner gespeichert werden:</p>
+  <ul>
+    <li>Windows: <code>C:\xampp\htdocs</code></li>
+    <li>macOS: <code>/Applications/XAMPP/htdocs</code></li>
+  </ul>
 
-        <h3>Projektordner</h3>
-        <p>Deine PHP-Dateien müssen im <strong>htdocs</strong>-Ordner gespeichert werden:</p>
-        <ul>
-            <li>Windows: <code>C:\xampp\htdocs</code></li>
-            <li>macOS: <code>/Applications/XAMPP/htdocs</code></li>
-        </ul>
+  <div class="tip"><strong>Tipp:</strong> Erstelle für jedes Projekt einen eigenen Unterordner in htdocs, z.B. <code>C:\xampp\htdocs\mysqli-projekt</code></div>
+</div>
 
-        <div class="tip">
-            <strong>Tipp:</strong> Erstelle für jedes Projekt einen eigenen Unterordner in htdocs, z.B. <code>C:\xampp\htdocs\mysqli-projekt</code>
-        </div>
-    </div>
+<!-- phpMyAdmin Section -->
+<div class="tool-section">
+  <h4>phpMyAdmin</h4>
+  <p style="color: #666;">Webbasierte Verwaltung für MySQL-Datenbanken</p>
 
-    <!-- phpMyAdmin Section -->
-    <div class="tool-section">
-        <div class="tool-header">
-            <div class="tool-icon phpmyadmin-icon">pma</div>
-            <div>
-                <h2 style="margin: 0;">phpMyAdmin</h2>
-                <p style="margin: 5px 0; color: #666;">Webbasierte Verwaltung für MySQL-Datenbanken</p>
-            </div>
-        </div>
+  <h5>Was ist phpMyAdmin?</h5>
+  <p>phpMyAdmin ist ein kostenloses Webtool zur Verwaltung von MySQL-Datenbanken. Es ist bereits in XAMPP enthalten und ermöglicht dir:</p>
+  <ul>
+    <li>Datenbanken erstellen und löschen</li>
+    <li>Tabellen anlegen und bearbeiten</li>
+    <li>Daten einfügen, ändern und löschen</li>
+    <li>SQL-Befehle direkt ausführen</li>
+    <li>Datenbanken importieren und exportieren</li>
+  </ul>
 
-        <h3>Was ist phpMyAdmin?</h3>
-        <p>phpMyAdmin ist ein kostenloses Webtool zur Verwaltung von MySQL-Datenbanken. Es ist bereits in XAMPP enthalten und ermöglicht dir:</p>
-        <ul>
-            <li>Datenbanken erstellen und löschen</li>
-            <li>Tabellen anlegen und bearbeiten</li>
-            <li>Daten einfügen, ändern und löschen</li>
-            <li>SQL-Befehle direkt ausführen</li>
-            <li>Datenbanken importieren und exportieren</li>
-        </ul>
+  <h5>phpMyAdmin öffnen</h5>
+  <div class="step"><strong>Schritt 1:</strong> Stelle sicher, dass Apache und MySQL in XAMPP gestartet sind.</div>
+  <div class="step"><strong>Schritt 2:</strong> Öffne deinen Browser und gehe zu: <a href="http://localhost/phpmyadmin" target="_blank" rel="noopener">http://localhost/phpmyadmin</a></div>
+  <div class="step"><strong>Schritt 3:</strong> Du bist jetzt in phpMyAdmin eingeloggt (standardmäßig als Benutzer "root" ohne Passwort).</div>
 
-        <h3>phpMyAdmin öffnen</h3>
-        <div class="step">
-            <strong>Schritt 1:</strong> Stelle sicher, dass Apache und MySQL in XAMPP gestartet sind.
-        </div>
-        <div class="step">
-            <strong>Schritt 2:</strong> Öffne deinen Browser und gehe zu: <a href="http://localhost/phpmyadmin" target="_blank">http://localhost/phpmyadmin</a>
-        </div>
-        <div class="step">
-            <strong>Schritt 3:</strong> Du bist jetzt in phpMyAdmin eingeloggt (standardmäßig als Benutzer "root" ohne Passwort).
-        </div>
+  <h5>Erste Datenbank erstellen</h5>
+  <div class="step"><strong>Schritt 1:</strong> Klicke links auf "Neu" oder oben auf den Reiter "Datenbanken".</div>
+  <div class="step"><strong>Schritt 2:</strong> Gib einen Namen für deine Datenbank ein (z.B. <code>schule</code>).</div>
+  <div class="step"><strong>Schritt 3:</strong> Wähle als Kollation <code>utf8mb4_general_ci</code> für deutsche Umlaute.</div>
+  <div class="step"><strong>Schritt 4:</strong> Klicke auf "Erstellen".</div>
 
-        <h3>Erste Datenbank erstellen</h3>
-        <div class="step">
-            <strong>Schritt 1:</strong> Klicke links auf "Neu" oder oben auf den Reiter "Datenbanken".
-        </div>
-        <div class="step">
-            <strong>Schritt 2:</strong> Gib einen Namen für deine Datenbank ein (z.B. <code>schule</code>).
-        </div>
-        <div class="step">
-            <strong>Schritt 3:</strong> Wähle als Kollation <code>utf8mb4_general_ci</code> für deutsche Umlaute.
-        </div>
-        <div class="step">
-            <strong>Schritt 4:</strong> Klicke auf "Erstellen".
-        </div>
+  <div class="warning"><strong>Sicherheitshinweis:</strong> Der Standardbenutzer "root" hat kein Passwort. Für lokale Entwicklung ist das in Ordnung, aber setze niemals einen Server ohne Passwort im Internet ein!</div>
+</div>
 
-        <div class="warning">
-            <strong>Sicherheitshinweis:</strong> Der Standardbenutzer "root" hat kein Passwort. Für lokale Entwicklung ist das in Ordnung, aber setze niemals einen Server ohne Passwort im Internet ein!
-        </div>
-    </div>
+<!-- VS Code Section -->
+<div class="tool-section">
+  <h4>Visual Studio Code</h4>
+  <p style="color: #666;">Kostenloser Code-Editor von Microsoft</p>
 
-    <!-- VS Code Section -->
-    <div class="tool-section">
-        <div class="tool-header">
-            <div class="tool-icon vscode-icon">VS</div>
-            <div>
-                <h2 style="margin: 0;">Visual Studio Code</h2>
-                <p style="margin: 5px 0; color: #666;">Kostenloser Code-Editor von Microsoft</p>
-            </div>
-        </div>
+  <h5>Was ist Visual Studio Code?</h5>
+  <p>Visual Studio Code (VS Code) ist ein kostenloser, leistungsstarker Code-Editor. Er bietet:</p>
+  <ul>
+    <li>Syntax-Highlighting für PHP, SQL, HTML, CSS und viele weitere Sprachen</li>
+    <li>Automatische Code-Vervollständigung</li>
+    <li>Integriertes Terminal</li>
+    <li>Erweiterungen für zusätzliche Funktionen</li>
+    <li>Git-Integration</li>
+  </ul>
 
-        <h3>Was ist Visual Studio Code?</h3>
-        <p>Visual Studio Code (VS Code) ist ein kostenloser, leistungsstarker Code-Editor. Er bietet:</p>
-        <ul>
-            <li>Syntax-Highlighting für PHP, SQL, HTML, CSS und viele weitere Sprachen</li>
-            <li>Automatische Code-Vervollständigung</li>
-            <li>Integriertes Terminal</li>
-            <li>Erweiterungen für zusätzliche Funktionen</li>
-            <li>Git-Integration</li>
-        </ul>
+  <h5>Installation</h5>
+  <div class="step"><strong>Schritt 1:</strong> Gehe auf <a href="https://code.visualstudio.com" target="_blank" rel="noopener">https://code.visualstudio.com</a></div>
+  <div class="step"><strong>Schritt 2:</strong> Lade VS Code für dein Betriebssystem herunter.</div>
+  <div class="step"><strong>Schritt 3:</strong> Installiere das Programm mit den Standardeinstellungen.</div>
 
-        <h3>Installation</h3>
-        <div class="step">
-            <strong>Schritt 1:</strong> Gehe auf <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com</a>
-        </div>
-        <div class="step">
-            <strong>Schritt 2:</strong> Lade VS Code für dein Betriebssystem herunter.
-        </div>
-        <div class="step">
-            <strong>Schritt 3:</strong> Installiere das Programm mit den Standardeinstellungen.
-        </div>
+  <h5>Empfohlene Erweiterungen für PHP</h5>
+  <p>Öffne VS Code und installiere folgende Erweiterungen (Strg+Shift+X oder Cmd+Shift+X):</p>
+  <ul>
+    <li><strong>PHP Intelephense</strong> - Intelligente Code-Vervollständigung für PHP</li>
+    <li><strong>German Language Pack</strong> - Deutsche Benutzeroberfläche</li>
+  </ul>
 
-        <h3>Empfohlene Erweiterungen für PHP</h3>
-        <p>Öffne VS Code und installiere folgende Erweiterungen (Strg+Shift+X oder Cmd+Shift+X):</p>
-        <ul>
-            <li><strong>PHP Intelephense</strong> - Intelligente Code-Vervollständigung für PHP</li>
-            <li><strong>PHP Debug</strong> - Debugging für PHP (benötigt XDebug in XAMPP)</li>
-            <li><strong>MySQL</strong> - Datenbankverbindung direkt in VS Code</li>
-            <li><strong>German Language Pack</strong> - Deutsche Benutzeroberfläche</li>
-        </ul>
+  <h5>Projekt öffnen</h5>
+  <div class="step"><strong>Schritt 1:</strong> Öffne VS Code.</div>
+  <div class="step"><strong>Schritt 2:</strong> Gehe zu <strong>Datei → Ordner öffnen</strong></div>
+  <div class="step"><strong>Schritt 3:</strong> Navigiere zu deinem Projektordner in htdocs und öffne ihn.</div>
 
-        <h3>Projekt öffnen</h3>
-        <div class="step">
-            <strong>Schritt 1:</strong> Öffne VS Code.
-        </div>
-        <div class="step">
-            <strong>Schritt 2:</strong> Gehe zu <strong>Datei → Ordner öffnen</strong>
-        </div>
-        <div class="step">
-            <strong>Schritt 3:</strong> Navigiere zu deinem Projektordner in htdocs und öffne ihn.
-        </div>
+  <div class="tip"><strong>Tipp:</strong> Erstelle eine neue Datei mit <strong>Strg+N</strong> (Windows) oder <strong>Cmd+N</strong> (macOS) und speichere sie mit der Endung <code>.php</code></div>
+</div>
 
-        <div class="tip">
-            <strong>Tipp:</strong> Erstelle eine neue Datei mit <strong>Strg+N</strong> (Windows) oder <strong>Cmd+N</strong> (macOS) und speichere sie mit der Endung <code>.php</code>
-        </div>
-    </div>
+<!-- Checklist Section -->
+<div class="tool-section">
+  <h4>Checkliste: Alles bereit?</h4>
+  <ul class="checklist">
+    <li>XAMPP ist installiert</li>
+    <li>Apache startet ohne Fehler (grün im Control Panel)</li>
+    <li>Die Dateien im Projektordner sind erreichbar über <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a></li>
+    <li>MySQL startet ohne Fehler (grün im Control Panel)</li>
+    <li>phpMyAdmin ist erreichbar unter <a href="http://localhost/phpmyadmin" target="_blank" rel="noopener">http://localhost/phpmyadmin</a></li>
+    <li>VS Code ist installiert</li>
+    <li>PHP-Erweiterungen in VS Code sind installiert</li>
+  </ul>
+</div>
 
-    <!-- Checklist Section -->
-    <div class="tool-section">
-        <h2 style="margin-top: 0;">Checkliste: Alles bereit?</h2>
-        <ul class="checklist">
-            <li>XAMPP ist installiert</li>
-            <li>Apache startet ohne Fehler (grün im Control Panel)</li>
-            <li>MySQL startet ohne Fehler (grün im Control Panel)</li>
-            <li>phpMyAdmin ist erreichbar unter <a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a></li>
-            <li>VS Code ist installiert</li>
-            <li>PHP-Erweiterungen in VS Code sind installiert</li>
-            <li>Projektordner in htdocs erstellt</li>
-        </ul>
-    </div>
-
-    <!-- Test Section -->
-    <div class="tool-section">
-        <h2 style="margin-top: 0;">Erster Test: PHP funktioniert?</h2>
-        <p>Erstelle eine Datei namens <code>test.php</code> in deinem Projektordner mit folgendem Inhalt:</p>
-        <pre style="background-color: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>&lt;?php
-echo "Hallo Welt!&lt;br&gt;";
-echo "PHP Version: " . phpversion();
+<!-- Test Section -->
+<div class="tool-section">
+  <h4>Erster Test: PHP funktioniert?</h4>
+  <p>Erstelle eine Datei namens <code>test.php</code> in deinem Projektordner mit folgendem Inhalt:</p>
+  <pre class="language-php"><code>&lt;?php
+echo "Hallo Welt!";
 ?&gt;</code></pre>
-        <p>Öffne dann im Browser: <code>http://localhost/dein-projektordner/test.php</code></p>
-        <p>Wenn du "Hallo Welt!" und die PHP-Version siehst, funktioniert alles!</p>
-    </div>
-
-    <footer style="text-align: center; margin-top: 40px; padding: 20px; color: #666; border-top: 1px solid #ddd;">
-        <p>Viel Erfolg beim Programmieren mit PHP und MySQLi!</p>
-    </footer>
-</body>
-</html>
+  <p>Öffne dann im Browser: <code>http://localhost/dein-projektordner/test.php</code></p>
+  <p>Wenn du "Hallo Welt!" siehst, funktioniert alles!</p>
+</div>
