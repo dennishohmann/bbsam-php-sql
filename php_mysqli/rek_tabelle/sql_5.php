@@ -305,7 +305,7 @@ mysqli_close($conn);
     </div>
 
     <div class="aufgabe">
-        <div class="aufgabe-titel">Deine Aufgabe</div>
+        <div class="aufgabe-titel">Deine Aufgabe</div><img src="img/sortierbar.gif" style="width:100%;"/>
         <p>Mache die Tabellenspalten klickbar, um die Sortierung zu ändern.</p>
         <div class="schritte-liste">
             <strong>Das sollst du tun:</strong>

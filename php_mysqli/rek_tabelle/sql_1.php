@@ -31,6 +31,7 @@
 <div class="navigation">
     <a href="sql_0.html" class="nav-btn zurueck">&larr; Zurück zur Einführung</a>
     <a href="sql_2.php" class="nav-btn weiter">Weiter zur Lösung &rarr;</a>
+    
 </div>
 <style>
     .navigation {
@@ -209,10 +210,11 @@
 </style>
 
 <div class="anleitung">
+
     <h2>PHP &amp; MariaDB: Schritt-für-Schritt</h2>
 
     <div class="aufgabe">
-        <div class="aufgabe-titel">Deine Aufgabe</div>
+        <div class="aufgabe-titel">Deine erste Aufgabe:<br><br><img src="img/ohne-table.png"  style="width:100%;"/></div>
         <p>Verbinde PHP mit einer MariaDB-Datenbank und gib die Katzen-Daten aus.</p>
         <div class="schritte-liste">
             <strong>Das sollst du tun:</strong>

@@ -259,7 +259,7 @@ mysqli_close($conn);
     </div>
 
     <div class="aufgabe">
-        <div class="aufgabe-titel">Deine Aufgabe</div>
+        <div class="aufgabe-titel">Deine Aufgabe: <br><br><img src="img/mit-table.png" style="width:100%;"/></div>
         <p>Baue die einfache Textausgabe zu einer HTML-Tabelle um.</p>
         <div class="schritte-liste">
             <strong>Das sollst du tun:</strong>
