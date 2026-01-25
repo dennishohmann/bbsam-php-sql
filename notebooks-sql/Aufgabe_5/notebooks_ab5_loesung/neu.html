@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Fortbildung - PHP und MySQL</TITLE>
+<meta charset="utf-8">
+</HEAD>
+<BODY>
+<H2>Neues Notebook erfassen</H2>
+<FORM name="Formular" action="neu.php" method="post">
+<PRE>
+Nummer:                <INPUT type="text" size="20" name="nummer">
+Bezeichnung:           <INPUT type="text" size="20" name="bezeichnung">
+Hersteller:            <INPUT type="text" size="20" name="hersteller">
+Preis:                 <INPUT type="text" size="15" name="preis"> &euro;
+Bestand:               <INPUT type="text" size="20" name="bestand">
+Arbeitsspeicher in GB: <INPUT type="text" size="20" name="ram">
+Grafikdatei:           <INPUT type="text" size="20" name="bild">
+
+<h2>Weiteres Zubehör</h2>
+Integriertes WLAN:     <input type="Checkbox" name="zubehoer[WLAN]" value="ja">
+Integrierte Webcam:    <input type="Checkbox" name="zubehoer[Webcam]" value="ja">
+
+<INPUT type="submit" value="Anzeigen">
+</P>
+</PRE>
+</FORM>
+</BODY>
+</HTML>

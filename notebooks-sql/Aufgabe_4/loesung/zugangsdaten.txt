@@ -1,0 +1,6 @@
+<?php
+$db_server="localhost";
+$db_name="fortbildung";
+$db_user="root";
+$db_passwort="";
+?>

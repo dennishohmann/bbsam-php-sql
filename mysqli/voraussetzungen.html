@@ -1,0 +1,133 @@
+<h3>Voraussetzungen für MySQLi zu Hause</h3>
+<p>Um mit PHP und MySQLi auf deinem eigenen Computer arbeiten zu können, benötigst du folgende Software. Diese Anleitung zeigt dir, wie du alles einrichtest.</p>
+
+<!-- XAMPP Section -->
+<div class="tool-section">
+  <h4>XAMPP installieren</h4>
+  <p style="color: #666;">Lokaler Webserver mit Apache, MySQL und PHP</p>
+
+  <h5>Was ist XAMPP?</h5>
+  <p>XAMPP ist ein kostenloses Softwarepaket, das einen Webserver (Apache), eine Datenbank (MySQL/MariaDB) und PHP auf deinem Computer installiert. Der Name steht für:</p>
+  <ul>
+    <li><strong>X</strong> - Cross-Platform (Windows, Linux, macOS)</li>
+    <li><strong>A</strong> - Apache (Webserver)</li>
+    <li><strong>M</strong> - MariaDB/MySQL (Datenbank)</li>
+    <li><strong>P</strong> - PHP (Programmiersprache)</li>
+    <li><strong>P</strong> - Perl (Programmiersprache)</li>
+  </ul>
+
+  <h5>Installation</h5>
+  <div class="step"><strong>Schritt 1:</strong> Gehe auf <a href="https://www.apachefriends.org/de/index.html" target="_blank" rel="noopener">https://www.apachefriends.org</a> und lade XAMPP für dein Betriebssystem herunter.</div>
+  <div class="step"><strong>Schritt 2:</strong> Führe die heruntergeladene Datei aus und folge dem Installationsassistenten. Wähle mindestens Apache, MySQL und PHP aus.</div>
+  <div class="step"><strong>Schritt 3:</strong> Installiere XAMPP am besten im Standardverzeichnis:
+    <ul>
+      <li>Windows: <code>C:\xampp</code></li>
+      <li>macOS: <code>/Applications/XAMPP</code></li>
+    </ul>
+  </div>
+
+  <h5>XAMPP starten</h5>
+  <div class="step"><strong>Schritt 1:</strong> Öffne das XAMPP Control Panel.</div>
+  <div class="step"><strong>Schritt 2:</strong> Klicke auf <strong>"Start"</strong> bei Apache und MySQL.</div>
+  <div class="step"><strong>Schritt 3:</strong> Wenn beide Module grün hinterlegt sind, läuft der Server.</div>
+
+  <div class="warning"><strong>Hinweis:</strong> Falls Apache nicht startet, könnte Port 80 bereits von einem anderen Programm (z.B. Skype) belegt sein. Beende das andere Programm oder ändere den Port in der Apache-Konfiguration.</div>
+
+  <h5>Projektordner erstellen</h5>
+  <p>Deine PHP-Dateien müssen im <strong>htdocs</strong>-Ordner gespeichert werden:</p>
+  <ul>
+    <li>Windows: <code>C:\xampp\htdocs</code></li>
+    <li>macOS: <code>/Applications/XAMPP/htdocs</code></li>
+  </ul>
+
+  <div class="tip"><strong>Tipp:</strong> Erstelle für jedes Projekt einen eigenen Unterordner in htdocs, z.B. <code>C:\xampp\htdocs\mysqli-projekt</code></div>
+</div>
+
+<!-- phpMyAdmin Section -->
+<div class="tool-section">
+  <h4>phpMyAdmin</h4>
+  <p style="color: #666;">Webbasierte Verwaltung für MySQL-Datenbanken</p>
+
+  <h5>Was ist phpMyAdmin?</h5>
+  <p>phpMyAdmin ist ein kostenloses Webtool zur Verwaltung von MySQL-Datenbanken. Es ist bereits in XAMPP enthalten und ermöglicht dir:</p>
+  <ul>
+    <li>Datenbanken erstellen und löschen</li>
+    <li>Tabellen anlegen und bearbeiten</li>
+    <li>Daten einfügen, ändern und löschen</li>
+    <li>SQL-Befehle direkt ausführen</li>
+    <li>Datenbanken importieren und exportieren</li>
+  </ul>
+
+  <h5>phpMyAdmin öffnen</h5>
+  <div class="step"><strong>Schritt 1:</strong> Stelle sicher, dass Apache und MySQL in XAMPP gestartet sind.</div>
+  <div class="step"><strong>Schritt 2:</strong> Öffne deinen Browser und gehe zu: <a href="http://localhost/phpmyadmin" target="_blank" rel="noopener">http://localhost/phpmyadmin</a></div>
+  <div class="step"><strong>Schritt 3:</strong> Du bist jetzt in phpMyAdmin eingeloggt (standardmäßig als Benutzer "root" ohne Passwort).</div>
+
+  <h5>Erste Datenbank erstellen</h5>
+  <div class="step"><strong>Schritt 1:</strong> Klicke links auf "Neu" oder oben auf den Reiter "Datenbanken".</div>
+  <div class="step"><strong>Schritt 2:</strong> Gib einen Namen für deine Datenbank ein (z.B. <code>schule</code>).</div>
+  <div class="step"><strong>Schritt 3:</strong> Wähle als Kollation <code>utf8mb4_general_ci</code> für deutsche Umlaute.</div>
+  <div class="step"><strong>Schritt 4:</strong> Klicke auf "Erstellen".</div>
+
+  <div class="warning"><strong>Sicherheitshinweis:</strong> Der Standardbenutzer "root" hat kein Passwort. Für lokale Entwicklung ist das in Ordnung, aber setze niemals einen Server ohne Passwort im Internet ein!</div>
+</div>
+
+<!-- VS Code Section -->
+<div class="tool-section">
+  <h4>Visual Studio Code</h4>
+  <p style="color: #666;">Kostenloser Code-Editor von Microsoft</p>
+
+  <h5>Was ist Visual Studio Code?</h5>
+  <p>Visual Studio Code (VS Code) ist ein kostenloser, leistungsstarker Code-Editor. Er bietet:</p>
+  <ul>
+    <li>Syntax-Highlighting für PHP, SQL, HTML, CSS und viele weitere Sprachen</li>
+    <li>Automatische Code-Vervollständigung</li>
+    <li>Integriertes Terminal</li>
+    <li>Erweiterungen für zusätzliche Funktionen</li>
+    <li>Git-Integration</li>
+  </ul>
+
+  <h5>Installation</h5>
+  <div class="step"><strong>Schritt 1:</strong> Gehe auf <a href="https://code.visualstudio.com" target="_blank" rel="noopener">https://code.visualstudio.com</a></div>
+  <div class="step"><strong>Schritt 2:</strong> Lade VS Code für dein Betriebssystem herunter.</div>
+  <div class="step"><strong>Schritt 3:</strong> Installiere das Programm mit den Standardeinstellungen.</div>
+
+  <h5>Empfohlene Erweiterungen für PHP</h5>
+  <p>Öffne VS Code und installiere folgende Erweiterungen (Strg+Shift+X oder Cmd+Shift+X):</p>
+  <ul>
+    <li><strong>PHP Intelephense</strong> - Intelligente Code-Vervollständigung für PHP</li>
+    <li><strong>German Language Pack</strong> - Deutsche Benutzeroberfläche</li>
+  </ul>
+
+  <h5>Projekt öffnen</h5>
+  <div class="step"><strong>Schritt 1:</strong> Öffne VS Code.</div>
+  <div class="step"><strong>Schritt 2:</strong> Gehe zu <strong>Datei → Ordner öffnen</strong></div>
+  <div class="step"><strong>Schritt 3:</strong> Navigiere zu deinem Projektordner in htdocs und öffne ihn.</div>
+
+  <div class="tip"><strong>Tipp:</strong> Erstelle eine neue Datei mit <strong>Strg+N</strong> (Windows) oder <strong>Cmd+N</strong> (macOS) und speichere sie mit der Endung <code>.php</code></div>
+</div>
+
+<!-- Checklist Section -->
+<div class="tool-section">
+  <h4>Checkliste: Alles bereit?</h4>
+  <ul class="checklist">
+    <li>XAMPP ist installiert</li>
+    <li>Apache startet ohne Fehler (grün im Control Panel)</li>
+    <li>Die Dateien im Projektordner sind erreichbar über <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a></li>
+    <li>MySQL startet ohne Fehler (grün im Control Panel)</li>
+    <li>phpMyAdmin ist erreichbar unter <a href="http://localhost/phpmyadmin" target="_blank" rel="noopener">http://localhost/phpmyadmin</a></li>
+    <li>VS Code ist installiert</li>
+    <li>PHP-Erweiterungen in VS Code sind installiert</li>
+  </ul>
+</div>
+
+<!-- Test Section -->
+<div class="tool-section">
+  <h4>Erster Test: PHP funktioniert?</h4>
+  <p>Erstelle eine Datei namens <code>test.php</code> in deinem Projektordner mit folgendem Inhalt:</p>
+  <pre class="language-php"><code>&lt;?php
+echo "Hallo Welt!";
+?&gt;</code></pre>
+  <p>Öffne dann im Browser: <code>http://localhost/dein-projektordner/test.php</code></p>
+  <p>Wenn du "Hallo Welt!" siehst, funktioniert alles!</p>
+</div>
