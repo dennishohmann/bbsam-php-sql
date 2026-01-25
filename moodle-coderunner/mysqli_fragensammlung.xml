@@ -1,0 +1,1622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!--
+    Moodle CodeRunner Fragensammlung: mysqli in PHP
+    Thema: Datenbankverbindung und -abfragen mit mysqli
+
+    Verwendete Konzepte:
+    - Variablen für Verbindungsdaten (keine Konstanten)
+    - mysqli_connect() für Verbindungsaufbau
+    - mysqli_fetch_array() für Ergebnisauswertung
+    - while-Schleife für Ausgabe
+-->
+
+<!-- ============================================ -->
+<!-- FRAGE 1: Variablen für Datenbankverbindung   -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_01: Variablen für Datenbankverbindung definieren</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Definieren Sie die vier Variablen, die für eine mysqli-Datenbankverbindung benötigt werden:</p>
+<ul>
+    <li><code>$server</code> - mit dem Wert "localhost"</li>
+    <li><code>$benutzer</code> - mit dem Wert "root"</li>
+    <li><code>$passwort</code> - mit einem leeren String</li>
+    <li><code>$datenbank</code> - mit dem Wert "fortbildung"</li>
+</ul>
+<p>Geben Sie anschließend alle vier Variablen mit <code>echo</code> aus, jeweils gefolgt von einem Zeilenumbruch (<code>\n</code>).</p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Die Lösung definiert vier Variablen für die Datenbankverbindung:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+</pre>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>10</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins>0</allowmultiplestdins>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+
+echo $server . "\n";
+echo $benutzer . "\n";
+echo $passwort . "\n";
+echo $datenbank . "\n";
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsaliases></templateparamsaliases>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>localhost
+root
+
+fortbildung
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 2: Verbindung mit mysqli_connect       -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_02: Verbindung mit mysqli_connect herstellen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Erstellen Sie eine Datenbankverbindung mit <code>mysqli_connect()</code>.</p>
+<p>Verwenden Sie folgende Variablen:</p>
+<ul>
+    <li><code>$server = "localhost";</code></li>
+    <li><code>$benutzer = "root";</code></li>
+    <li><code>$passwort = "";</code></li>
+    <li><code>$datenbank = "testdb";</code></li>
+</ul>
+<p>Speichern Sie das Ergebnis von <code>mysqli_connect()</code> in der Variable <code>$verbindung</code>.</p>
+<p>Prüfen Sie anschließend, ob die Verbindung erfolgreich war:</p>
+<ul>
+    <li>Falls <strong>nicht erfolgreich</strong>: Geben Sie "Verbindungsfehler" aus</li>
+    <li>Falls <strong>erfolgreich</strong>: Geben Sie "Verbindung erfolgreich" aus</li>
+</ul>
+<p><strong>Hinweis:</strong> Verwenden Sie <code>if(!$verbindung)</code> zur Prüfung.</p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Die mysqli_connect()-Funktion erwartet vier Parameter:</p>
+<ol>
+    <li>Server (z.B. "localhost")</li>
+    <li>Benutzername</li>
+    <li>Passwort</li>
+    <li>Datenbankname</li>
+</ol>
+<p>Die Funktion gibt ein Verbindungsobjekt zurück oder FALSE bei einem Fehler.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>15</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+// Definieren Sie hier die Variablen
+
+
+// Stellen Sie die Verbindung her
+
+
+// Prüfen Sie die Verbindung
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "testdb";
+
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+if(!$verbindung) {
+    echo "Verbindungsfehler";
+} else {
+    echo "Verbindung erfolgreich";
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Verbindung erfolgreich</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 3: SQL-Abfrage mit mysqli_query        -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_03: SQL-Abfrage mit mysqli_query ausführen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Führen Sie eine SQL-Abfrage mit <code>mysqli_query()</code> aus.</p>
+<p>Gegeben sind folgende Variablen (bereits definiert):</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Speichern Sie die SQL-Abfrage <code>SELECT * FROM notebooks</code> in der Variable <code>$abfrage</code></li>
+    <li>Führen Sie die Abfrage mit <code>mysqli_query()</code> aus und speichern Sie das Ergebnis in <code>$ergebnis</code></li>
+    <li>Geben Sie die Anzahl der gefundenen Datensätze mit <code>mysqli_num_rows()</code> aus</li>
+</ol>
+<p>Ausgabeformat: "Gefundene Datensätze: X"</p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>mysqli_query() führt eine SQL-Abfrage aus und gibt ein Ergebnisobjekt zurück.</p>
+<p>mysqli_num_rows() gibt die Anzahl der Zeilen im Ergebnis zurück.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>12</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+// Definieren Sie hier die SQL-Abfrage
+
+
+// Führen Sie die Abfrage aus
+
+
+// Geben Sie die Anzahl der Datensätze aus
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+$abfrage = "SELECT * FROM notebooks";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+echo "Gefundene Datensätze: " . mysqli_num_rows($ergebnis);
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Gefundene Datensätze: 6</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 4: mysqli_fetch_array Grundlagen       -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_04: Einen Datensatz mit mysqli_fetch_array auslesen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Lesen Sie <strong>einen einzelnen Datensatz</strong> mit <code>mysqli_fetch_array()</code> aus.</p>
+<p>Gegeben ist folgender Code:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks WHERE ArtikelNr = 1001";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Lesen Sie den ersten Datensatz mit <code>mysqli_fetch_array()</code> in die Variable <code>$datensatz</code></li>
+    <li>Geben Sie die Bezeichnung (Index 1) und den Hersteller (Index 2) aus</li>
+</ol>
+<p>Ausgabeformat (jeweils in einer neuen Zeile):</p>
+<pre>
+Bezeichnung: [Wert]
+Hersteller: [Wert]
+</pre>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>mysqli_fetch_array() liest eine Zeile aus dem Ergebnis und gibt sie als Array zurück.</p>
+<p>Standardmäßig können die Spalten sowohl über numerische Indizes als auch über Spaltennamen angesprochen werden.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>15</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks WHERE ArtikelNr = 1001";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// Lesen Sie hier den Datensatz aus
+
+
+// Geben Sie Bezeichnung und Hersteller aus
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks WHERE ArtikelNr = 1001";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+$datensatz = mysqli_fetch_array($ergebnis);
+echo "Bezeichnung: " . $datensatz[1] . "\n";
+echo "Hersteller: " . $datensatz[2];
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Bezeichnung: Omnibook
+Hersteller: HP</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 5: while-Schleife mit mysqli_fetch_array -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_05: Alle Datensätze mit while-Schleife ausgeben</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Geben Sie <strong>alle Datensätze</strong> mit einer <code>while</code>-Schleife und <code>mysqli_fetch_array()</code> aus.</p>
+<p>Gegeben ist folgender Code:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Erstellen Sie eine <code>while</code>-Schleife, die alle Datensätze durchläuft</li>
+    <li>Verwenden Sie <code>mysqli_fetch_array()</code> in der Schleifenbedingung</li>
+    <li>Geben Sie für jeden Datensatz die ArtikelNr (Index 0) und Bezeichnung (Index 1) aus</li>
+</ol>
+<p>Ausgabeformat pro Zeile: <code>ArtikelNr: Bezeichnung</code></p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Das typische Muster für das Durchlaufen aller Datensätze:</p>
+<pre>
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    // Verarbeitung des Datensatzes
+}
+</pre>
+<p>Die Schleife läuft, solange mysqli_fetch_array() einen Datensatz zurückgibt. Am Ende der Ergebnismenge gibt sie FALSE zurück und die Schleife endet.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>15</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// Erstellen Sie hier die while-Schleife
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo $datensatz[0] . ": " . $datensatz[1] . "\n";
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>1001: Omnibook
+1002: Traveler
+1003: Top Note
+1004: Travelmate
+1005: Thinkpad
+1006: Vaio
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 6: Verbindung schließen                -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_06: Verbindung ordnungsgemäß schließen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Schließen Sie die Datenbankverbindung ordnungsgemäß mit <code>mysqli_close()</code>.</p>
+<p>Gegeben ist folgender Code:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Durchlaufen Sie alle Datensätze mit einer while-Schleife</li>
+    <li>Geben Sie nur die Bezeichnung (Index 1) jedes Notebooks aus</li>
+    <li>Schließen Sie danach die Verbindung mit <code>mysqli_close()</code></li>
+    <li>Geben Sie "Verbindung geschlossen" aus</li>
+</ol>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Es ist gute Praxis, Datenbankverbindungen nach der Nutzung zu schließen, um Ressourcen freizugeben.</p>
+<p>mysqli_close() gibt TRUE bei Erfolg zurück.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// while-Schleife für die Ausgabe
+
+
+// Verbindung schließen
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo $datensatz[1] . "\n";
+}
+
+mysqli_close($verbindung);
+echo "Verbindung geschlossen";
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Omnibook
+Traveler
+Top Note
+Travelmate
+Thinkpad
+Vaio
+Verbindung geschlossen</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 7: SELECT mit WHERE-Klausel           -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_07: Gefilterte Abfrage mit WHERE</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Erstellen Sie eine gefilterte Datenbankabfrage mit der WHERE-Klausel.</p>
+<p>Gegeben sind die Verbindungsvariablen (bereits definiert):</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Speichern Sie den Maximalpreis <code>900</code> in der Variable <code>$maxpreis</code></li>
+    <li>Erstellen Sie eine SQL-Abfrage, die alle Notebooks mit einem Preis kleiner oder gleich <code>$maxpreis</code> auswählt</li>
+    <li>Geben Sie Bezeichnung und Preis aller gefundenen Notebooks aus</li>
+</ol>
+<p>Ausgabeformat pro Zeile: <code>Bezeichnung - Preis Euro</code></p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Die WHERE-Klausel filtert die Ergebnisse einer SQL-Abfrage.</p>
+<p>Variablen können direkt in den SQL-String eingebaut werden (für Lernzwecke). In der Praxis sollten Prepared Statements verwendet werden.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+// Maximalpreis festlegen
+
+
+// SQL-Abfrage erstellen
+
+
+// Abfrage ausführen und Ergebnisse ausgeben
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+$maxpreis = 900;
+$abfrage = "SELECT * FROM notebooks WHERE Preis <= " . $maxpreis . " ORDER BY Preis";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo $datensatz[1] . " - " . $datensatz[3] . " Euro\n";
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Top Note - 599 Euro
+Traveler - 799 Euro
+Omnibook - 859 Euro
+Travelmate - 899 Euro
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 8: Zugriff über Spaltennamen          -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_08: Zugriff auf Spalten über Namen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Greifen Sie auf die Daten über die <strong>Spaltennamen</strong> statt über numerische Indizes zu.</p>
+<p>Gegeben ist der Verbindungscode:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM teilnehmer ORDER BY Nummer";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Die Tabelle <code>teilnehmer</code> hat folgende Spalten:</p>
+<ul>
+    <li>Nummer, Name, Vorname, Adresse, PLZ, Ort</li>
+</ul>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Durchlaufen Sie alle Datensätze mit einer while-Schleife</li>
+    <li>Greifen Sie über die <strong>Spaltennamen</strong> zu (z.B. <code>$datensatz['Name']</code>)</li>
+    <li>Geben Sie Name und Vorname jedes Teilnehmers aus</li>
+</ol>
+<p>Ausgabeformat pro Zeile: <code>Vorname Name</code></p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>mysqli_fetch_array() ermöglicht standardmäßig den Zugriff sowohl über numerische Indizes als auch über Spaltennamen.</p>
+<p>Der Zugriff über Spaltennamen macht den Code lesbarer und weniger fehleranfällig.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>15</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM teilnehmer ORDER BY Nummer";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// while-Schleife mit Zugriff über Spaltennamen
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM teilnehmer ORDER BY Nummer";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo $datensatz['Vorname'] . " " . $datensatz['Name'] . "\n";
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Herbert Meyer
+Sabine Müller
+Willi Schulz
+Meik Möller
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 9: Komplettes Beispiel                 -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_09: Kompletter Datenbankzugriff</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Erstellen Sie ein <strong>vollständiges PHP-Skript</strong> für den Datenbankzugriff.</p>
+<p>Anforderungen:</p>
+<ol>
+    <li>Definieren Sie die Verbindungsvariablen:
+        <ul>
+            <li><code>$server = "localhost"</code></li>
+            <li><code>$benutzer = "root"</code></li>
+            <li><code>$passwort = ""</code></li>
+            <li><code>$datenbank = "fortbildung"</code></li>
+        </ul>
+    </li>
+    <li>Stellen Sie die Verbindung mit <code>mysqli_connect()</code> her</li>
+    <li>Prüfen Sie die Verbindung und geben Sie bei einem Fehler "Fehler" aus und beenden Sie das Skript</li>
+    <li>Erstellen Sie eine Abfrage für alle Notebooks mit dem Hersteller "Sony"</li>
+    <li>Geben Sie ArtikelNr, Bezeichnung und Preis mit einer while-Schleife aus</li>
+    <li>Schließen Sie die Verbindung</li>
+</ol>
+<p>Ausgabeformat: <code>ArtikelNr - Bezeichnung - Preis Euro</code></p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Ein vollständiger mysqli-Datenbankzugriff besteht aus:</p>
+<ol>
+    <li>Variablen für Verbindungsdaten</li>
+    <li>Verbindungsaufbau mit mysqli_connect()</li>
+    <li>Fehlerprüfung</li>
+    <li>SQL-Abfrage definieren und ausführen</li>
+    <li>Ergebnisse mit while-Schleife und mysqli_fetch_array() auslesen</li>
+    <li>Verbindung schließen mit mysqli_close()</li>
+</ol>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>25</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+// 1. Verbindungsvariablen definieren
+
+
+// 2. Verbindung herstellen
+
+
+// 3. Verbindung prüfen
+
+
+// 4. SQL-Abfrage für Sony-Notebooks
+
+
+// 5. Ergebnisse ausgeben
+
+
+// 6. Verbindung schließen
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+// 1. Verbindungsvariablen definieren
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+
+// 2. Verbindung herstellen
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+// 3. Verbindung prüfen
+if(!$verbindung) {
+    echo "Fehler";
+    exit;
+}
+
+// 4. SQL-Abfrage für Sony-Notebooks
+$abfrage = "SELECT * FROM notebooks WHERE Hersteller = 'Sony'";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// 5. Ergebnisse ausgeben
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo $datensatz[0] . " - " . $datensatz[1] . " - " . $datensatz[3] . " Euro\n";
+}
+
+// 6. Verbindung schließen
+mysqli_close($verbindung);
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>1006 - Vaio - 999 Euro
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 10: Tabelle in HTML ausgeben          -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_10: Ergebnisse als HTML-Tabelle</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Geben Sie die Datenbankabfrage als <strong>HTML-Tabelle</strong> aus.</p>
+<p>Gegeben ist der Verbindungscode:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT ArtikelNr, Bezeichnung, Preis FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Geben Sie zuerst die Tabellenüberschriften aus: <code>&lt;tr&gt;&lt;th&gt;Nr&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Preis&lt;/th&gt;&lt;/tr&gt;</code></li>
+    <li>Durchlaufen Sie alle Datensätze mit einer while-Schleife</li>
+    <li>Geben Sie jeden Datensatz als Tabellenzeile aus mit <code>&lt;tr&gt;</code> und <code>&lt;td&gt;</code></li>
+</ol>
+<p><strong>Hinweis:</strong> Verwenden Sie <code>\n</code> am Ende jeder Zeile für die Formatierung.</p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>HTML-Tabellen werden häufig verwendet, um Datenbankdaten übersichtlich darzustellen.</p>
+<p>Die Struktur: &lt;table&gt;, &lt;tr&gt; für Zeilen, &lt;th&gt; für Überschriften, &lt;td&gt; für Daten.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>20</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT ArtikelNr, Bezeichnung, Preis FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// Tabellenüberschriften ausgeben
+
+
+// while-Schleife für die Datenzeilen
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT ArtikelNr, Bezeichnung, Preis FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+echo "<tr><th>Nr</th><th>Name</th><th>Preis</th></tr>\n";
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo "<tr><td>" . $datensatz[0] . "</td><td>" . $datensatz[1] . "</td><td>" . $datensatz[2] . "</td></tr>\n";
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text><![CDATA[<tr><th>Nr</th><th>Name</th><th>Preis</th></tr>
+<tr><td>1001</td><td>Omnibook</td><td>859</td></tr>
+<tr><td>1002</td><td>Traveler</td><td>799</td></tr>
+<tr><td>1003</td><td>Top Note</td><td>599</td></tr>
+<tr><td>1004</td><td>Travelmate</td><td>899</td></tr>
+<tr><td>1005</td><td>Thinkpad</td><td>1299</td></tr>
+<tr><td>1006</td><td>Vaio</td><td>999</td></tr>
+]]></text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 11: LIKE-Suche                        -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_11: Suche mit LIKE-Operator</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Implementieren Sie eine <strong>Suche</strong> mit dem SQL <code>LIKE</code>-Operator.</p>
+<p>Gegeben ist der Verbindungscode:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Speichern Sie den Suchbegriff "Note" in der Variable <code>$suchbegriff</code></li>
+    <li>Erstellen Sie eine SQL-Abfrage, die alle Notebooks findet, deren Bezeichnung den Suchbegriff enthält (verwenden Sie <code>%</code> als Wildcard)</li>
+    <li>Geben Sie die Bezeichnung aller gefundenen Notebooks aus</li>
+</ol>
+<p><strong>Tipp:</strong> Der LIKE-Operator mit <code>%suchbegriff%</code> findet alle Einträge, die den Suchbegriff enthalten.</p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Der LIKE-Operator ermöglicht Mustersuchen in SQL:</p>
+<ul>
+    <li><code>%</code> - beliebig viele Zeichen</li>
+    <li><code>_</code> - genau ein Zeichen</li>
+</ul>
+<p>Beispiel: <code>WHERE Bezeichnung LIKE '%Note%'</code> findet alle Einträge mit "Note" im Namen.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+// Suchbegriff definieren
+
+
+// SQL-Abfrage mit LIKE erstellen
+
+
+// Ergebnisse ausgeben
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+$suchbegriff = "Note";
+$abfrage = "SELECT * FROM notebooks WHERE Bezeichnung LIKE '%" . $suchbegriff . "%'";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo $datensatz['Bezeichnung'] . "\n";
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Top Note
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 12: Zähler in der while-Schleife      -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_12: Datensätze mit Zähler nummerieren</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Nummerieren Sie die Ausgabe der Datensätze mit einem <strong>Zähler</strong>.</p>
+<p>Gegeben ist der Verbindungscode:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Erstellen Sie eine Zählervariable <code>$zaehler</code> und initialisieren Sie sie mit 1</li>
+    <li>Durchlaufen Sie alle Datensätze mit einer while-Schleife</li>
+    <li>Geben Sie für jeden Datensatz die laufende Nummer und die Bezeichnung aus</li>
+    <li>Erhöhen Sie den Zähler nach jeder Ausgabe</li>
+</ol>
+<p>Ausgabeformat pro Zeile: <code>Nr. X: Bezeichnung</code></p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Ein Zähler in der while-Schleife ermöglicht die Nummerierung der Ausgabe unabhängig von der Datenbank-ID.</p>
+<p>Der Zähler wird vor der Schleife initialisiert und innerhalb der Schleife inkrementiert.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// Zähler initialisieren
+
+
+// while-Schleife mit Zähler
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+$zaehler = 1;
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo "Nr. " . $zaehler . ": " . $datensatz[1] . "\n";
+    $zaehler++;
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Nr. 1: Omnibook
+Nr. 2: Traveler
+Nr. 3: Top Note
+Nr. 4: Travelmate
+Nr. 5: Thinkpad
+Nr. 6: Vaio
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 13: Summe berechnen                   -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_13: Summe der Preise berechnen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Berechnen Sie die <strong>Summe aller Preise</strong> in der while-Schleife.</p>
+<p>Gegeben ist der Verbindungscode:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Erstellen Sie eine Variable <code>$summe</code> und initialisieren Sie sie mit 0</li>
+    <li>Durchlaufen Sie alle Datensätze und addieren Sie jeden Preis (Index 3) zur Summe</li>
+    <li>Geben Sie nach der Schleife die Gesamtsumme aus</li>
+</ol>
+<p>Ausgabeformat: <code>Gesamtwert: X Euro</code></p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Summen können auch direkt in SQL mit <code>SELECT SUM(Preis) FROM notebooks</code> berechnet werden.</p>
+<p>Die PHP-Variante ist nützlich, wenn zusätzliche Verarbeitung während der Schleife erforderlich ist.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// Summenvariable initialisieren
+
+
+// while-Schleife zum Aufsummieren
+
+
+// Gesamtsumme ausgeben
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+$summe = 0;
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    $summe = $summe + $datensatz[3];
+}
+
+echo "Gesamtwert: " . $summe . " Euro";
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Gesamtwert: 5454 Euro</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 14: Bedingte Ausgabe in der Schleife  -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_14: Bedingte Ausgabe mit if in der while-Schleife</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Kombinieren Sie die <code>while</code>-Schleife mit einer <code>if</code>-Bedingung für eine <strong>gefilterte Ausgabe</strong>.</p>
+<p>Gegeben ist der Verbindungscode:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+</pre>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Durchlaufen Sie alle Datensätze mit einer while-Schleife</li>
+    <li>Geben Sie nur Notebooks aus, die WLAN haben (WLAN = "Ja", Index 7)</li>
+    <li>Geben Sie Bezeichnung und Hersteller der gefundenen Notebooks aus</li>
+</ol>
+<p>Ausgabeformat pro Zeile: <code>Bezeichnung (Hersteller) - mit WLAN</code></p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Durch Kombination von while-Schleife und if-Bedingung können Daten in PHP nachgefiltert werden.</p>
+<p>Effizienter wäre es oft, die Filterung direkt in SQL mit WHERE zu machen, aber manchmal ist die PHP-Lösung flexibler.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+// while-Schleife mit if-Bedingung
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+$abfrage = "SELECT * FROM notebooks ORDER BY ArtikelNr";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    if($datensatz[7] == "Ja") {
+        echo $datensatz[1] . " (" . $datensatz[2] . ") - mit WLAN\n";
+    }
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Omnibook (HP) - mit WLAN
+Travelmate (ACER) - mit WLAN
+Thinkpad (IBM) - mit WLAN
+Vaio (Sony) - mit WLAN
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+<!-- ============================================ -->
+<!-- FRAGE 15: Teilnehmer abfragen               -->
+<!-- ============================================ -->
+<question type="coderunner">
+    <name>
+        <text>mysqli_15: Teilnehmerdaten mit vollständiger Adresse</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[
+<p>Geben Sie die <strong>vollständigen Adressdaten</strong> aller Teilnehmer aus.</p>
+<p>Gegeben ist der Verbindungscode:</p>
+<pre>
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+</pre>
+<p>Die Tabelle <code>teilnehmer</code> hat folgende Spalten:</p>
+<ul>
+    <li>Nummer (Index 0)</li>
+    <li>Name (Index 1)</li>
+    <li>Vorname (Index 2)</li>
+    <li>Adresse (Index 3)</li>
+    <li>PLZ (Index 4)</li>
+    <li>Ort (Index 5)</li>
+</ul>
+<p>Ihre Aufgaben:</p>
+<ol>
+    <li>Erstellen Sie eine Abfrage für alle Teilnehmer, sortiert nach Nummer</li>
+    <li>Geben Sie für jeden Teilnehmer eine formatierte Adresse aus</li>
+</ol>
+<p>Ausgabeformat pro Teilnehmer (zwei Zeilen):</p>
+<pre>
+Vorname Name
+Adresse, PLZ Ort
+</pre>
+<p>Trennen Sie jeden Teilnehmer durch eine Leerzeile.</p>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[
+<p>Mehrere Felder können zu einem formatierten String kombiniert werden.</p>
+<p>Beachten Sie die korrekte Reihenfolge und Formatierung der Adresszeilen.</p>
+]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>20</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+// SQL-Abfrage erstellen
+
+
+// Ergebnisse formatiert ausgeben
+
+
+?>]]></answerpreload>
+    <globalextra></globalextra>
+    <useace>1</useace>
+    <answer><![CDATA[<?php
+$server = "localhost";
+$benutzer = "root";
+$passwort = "";
+$datenbank = "fortbildung";
+$verbindung = mysqli_connect($server, $benutzer, $passwort, $datenbank);
+
+$abfrage = "SELECT * FROM teilnehmer ORDER BY Nummer";
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($datensatz = mysqli_fetch_array($ergebnis)) {
+    echo $datensatz[2] . " " . $datensatz[1] . "\n";
+    echo $datensatz[3] . ", " . $datensatz[4] . " " . $datensatz[5] . "\n";
+    echo "\n";
+}
+?>]]></answer>
+    <validateonsave>1</validateonsave>
+    <testcases>
+        <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+            <testcode>
+                <text></text>
+            </testcode>
+            <stdin>
+                <text></text>
+            </stdin>
+            <expected>
+                <text>Herbert Meyer
+Holzweg 7, 12345 Testburg
+
+Sabine Müller
+Hauptstr. 32, 23456 Testhausen
+
+Willi Schulz
+Lindenstr. 5, 34567 Teststadt
+
+Meik Möller
+Hansestr. 3, 26458 Lübeck
+
+</text>
+            </expected>
+            <extra>
+                <text></text>
+            </extra>
+            <display>
+                <text>SHOW</text>
+            </display>
+        </testcase>
+    </testcases>
+</question>
+
+</quiz>
