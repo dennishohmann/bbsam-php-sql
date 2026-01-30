@@ -8,7 +8,9 @@ This is a German-language PHP tutorial teaching database operations with MariaDB
 
 ## Architecture
 
-The project is a progressive tutorial series in `rek_tabelle/`. Files are labeled as either AUFGABE (task) or MUSTERLÖSUNG (solution):
+The project consists of multiple progressive tutorial series. Files are labeled as either AUFGABE (task) or MUSTERLÖSUNG (solution).
+
+### `rek_tabelle/` - Table Output & Sorting
 
 - **sql_1.php** - Template with step-by-step instructions (comments only)
 - **sql_2.php** - MUSTERLÖSUNG: Basic mysqli connection and simple output
@@ -20,6 +22,14 @@ The project is a progressive tutorial series in `rek_tabelle/`. Files are labele
 - **sql_6.php** - MUSTERLÖSUNG: DRY optimization with foreach loops
 - **sql_7.php** - MUSTERLÖSUNG: Sortable table with arrow indicators
 - **sql_8.php** - Interactive code explanation with hover tooltips (two-column layout)
+
+### `delete_record/` - Deleting Records via Links
+
+- **delete_0.html** - Introduction page with SQL restore code for deleted data
+- **delete_1.php** - AUFGABE: Add delete functionality (code skeleton with hints)
+- **delete_2.php** - MUSTERLÖSUNG: Complete delete implementation with GET parameters
+
+Key concepts taught: `$_GET` parameters, `isset()`, `intval()` for SQL injection prevention, DELETE statements.
 
 Each PHP file contains both executable code and embedded HTML instructions for browser viewing.
 
@@ -52,6 +62,12 @@ $erlaubte_spalten = ['id', 'name', 'spezialitaet', 'taeglicher_unfug', 'kaffee_k
 if (!in_array($sortierung, $erlaubte_spalten)) {
     $sortierung = 'id';
 }
+```
+
+For integer IDs (e.g., delete operations), use `intval()`:
+```php
+$id = intval($_GET['delete']);
+mysqli_query($conn, "DELETE FROM katzen WHERE id = $id");
 ```
 
 ### Resource Cleanup
