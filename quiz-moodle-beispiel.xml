@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- Frage 1: Multiple Choice - Kniffliger Klassen-Selektor -->
+<question type="multichoice">
+    <name>
+        <text>Klassen-Selektor im HTML</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Im CSS steht: <code>.highlight { color: red; }</code></p>
+<p>Welches HTML-Element wird rot dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Der Punkt vor <code>highlight</code> macht es zu einem <strong>Klassen-Selektor</strong>. Im HTML wird die Klasse <em>ohne</em> Punkt angegeben: <code>class="highlight"</code>. Der Punkt gehoert nur in den CSS-Code, nicht ins HTML!</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>&lt;p class=".highlight"&gt;Text&lt;/p&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Der Punkt gehoert nur in den CSS-Code. Im HTML schreibt man <code>class="highlight"</code> ohne Punkt.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>&lt;p class="highlight"&gt;Text&lt;/p&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Im HTML wird die Klasse ohne Punkt angegeben. Der Punkt ist nur im CSS-Selektor.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>&lt;p id="highlight"&gt;Text&lt;/p&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>id</code> ist ein anderes Attribut. Der Klassen-Selektor <code>.highlight</code> waehlt Elemente mit <code>class="highlight"</code> aus.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>&lt;highlight&gt;Text&lt;/highlight&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Es gibt kein HTML-Element namens <code>&lt;highlight&gt;</code>. Der Klassen-Selektor waehlt das <code>class</code>-Attribut aus.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 2: Multiple Choice - Komma-Gruppierung verstehen -->
+<question type="multichoice">
+    <name>
+        <text>Komma-Gruppierung - Was passiert?</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Was bewirkt diese CSS-Regel?</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">h1, h2, h3 { color: blue; }</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Das Komma in CSS bedeutet "oder". Die Regel wird auf <code>h1</code> <strong>oder</strong> <code>h2</code> <strong>oder</strong> <code>h3</code> angewendet - also auf alle drei Elementtypen. Es ist eine Kurzschreibweise, um denselben Style mehreren Selektoren zuzuweisen.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Alle h1-, h2- und h3-Elemente werden blau</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Das Komma gruppiert mehrere Selektoren, die alle denselben Style erhalten.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Nur Elemente, die gleichzeitig h1, h2 und h3 sind, werden blau</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Ein Element kann nicht gleichzeitig h1, h2 und h3 sein. Das Komma bedeutet "oder", nicht "und".</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Nur h3-Elemente werden blau (der letzte gewinnt)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Das Komma gruppiert die Selektoren - alle drei Elementtypen erhalten den Style.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Die Regel ist ungueltig wegen der Kommas</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Kommas zur Gruppierung von Selektoren sind voellig korrekt und sehr nuetzlich.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 3: Wahr/Falsch - Mehrere class-Attribute -->
+<question type="truefalse">
+    <name>
+        <text>Mehrere class-Attribute</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Folgender Code ist korrekt, um zwei Klassen zuzuweisen:</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">&lt;p class="rot" class="fett"&gt;Text&lt;/p&gt;</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><strong>Falsch!</strong> Ein HTML-Element darf nur <em>ein</em> <code>class</code>-Attribut haben. Mehrere Klassen werden innerhalb dieses einen Attributs durch Leerzeichen getrennt: <code>class="rot fett"</code>. Bei zwei <code>class</code>-Attributen wird nur eines beruecksichtigt - der Rest geht verloren!</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>1</penalty>
+    <answer fraction="0" format="moodle_auto_format">
+        <text>true</text>
+        <feedback format="html">
+            <text><![CDATA[<p>Leider falsch! Zwei <code>class</code>-Attribute sind ungueltiges HTML. Nur eines wird beruecksichtigt. Richtig waere: <code>class="rot fett"</code></p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+        <text>false</text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Mehrere Klassen gehoeren in ein einziges <code>class</code>-Attribut, getrennt durch Leerzeichen: <code>class="rot fett"</code></p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 4: Multiple Choice - Hex-Code Falle -->
+<question type="multichoice">
+    <name>
+        <text>Hex-Farbcode analysieren</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welche Farbe ergibt <code>#ff00ff</code>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Im Format <code>#RRGGBB</code>: Rot = ff (Maximum), Gruen = 00 (nichts), Blau = ff (Maximum). Rot + Blau ohne Gruen ergibt <strong>Magenta/Pink</strong>. Das ist eine der Sekundaerfarben im RGB-Modell.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Gelb</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Gelb waere <code>#ffff00</code> (Rot + Gruen). Bei <code>#ff00ff</code> ist Gruen auf Null.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Tuerkis/Cyan</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Cyan waere <code>#00ffff</code> (Gruen + Blau). Bei <code>#ff00ff</code> fehlt Gruen, aber Rot ist dabei.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Magenta/Pink</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Rot (ff) + Blau (ff) ohne Gruen (00) ergibt Magenta.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Weiss</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Weiss waere <code>#ffffff</code> (alle Farben Maximum). Bei <code>#ff00ff</code> fehlt Gruen.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 5: Kurzantwort - font-weight Wert -->
+<question type="shortanswer">
+    <name>
+        <text>Fettschrift CSS-Wert</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Ergaenze den fehlenden Wert, um Text fett darzustellen:</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">font-weight: ______;</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Der Standardwert fuer Fettschrift ist <code>bold</code>. Alternativ kann man auch Zahlenwerte wie <code>700</code> verwenden (normal = 400, bold = 700).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <usecase>0</usecase>
+    <answer fraction="100" format="moodle_auto_format">
+        <text>bold</text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>font-weight: bold;</code> macht Text fett.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+        <text>700</text>
+        <feedback format="html">
+            <text><![CDATA[<p>Auch richtig! <code>700</code> entspricht <code>bold</code>.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 6: Multiple Choice - :hover Syntax -->
+<question type="multichoice">
+    <name>
+        <text>Hover-Effekt Syntax</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Wie definiert man korrekt, dass Links beim Ueberfahren mit der Maus rot werden?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Die Pseudoklasse <code>:hover</code> wird mit einem <strong>Doppelpunkt</strong> direkt an den Selektor angehaengt: <code>a:hover</code>. Kein Leerzeichen dazwischen! Der Doppelpunkt kennzeichnet Pseudoklassen (Zustaende wie hover, active, focus).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>a .hover { color: red; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Ein Leerzeichen vor <code>.hover</code> wuerde nach einem Element mit der Klasse "hover" innerhalb von <code>&lt;a&gt;</code> suchen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>a hover { color: red; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Ohne Doppelpunkt oder Punkt wuerde CSS nach einem Element namens <code>&lt;hover&gt;</code> suchen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>a:hover { color: red; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Der Doppelpunkt direkt am Selektor kennzeichnet die Pseudoklasse <code>:hover</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>a::hover { color: red; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Zwei Doppelpunkte (<code>::</code>) sind fuer Pseudo-Elemente wie <code>::before</code>. Fuer Pseudoklassen wie <code>:hover</code> braucht man nur einen.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 7: Multiple Choice - text-align Vererbung -->
+<question type="multichoice">
+    <name>
+        <text>text-align im body</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Was passiert, wenn man folgende Regel verwendet?</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">body { text-align: center; }</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><code>text-align</code> wird vererbt! Wenn man es auf <code>body</code> setzt, erben alle Kindelemente diese Einstellung - es sei denn, sie haben einen eigenen <code>text-align</code>-Wert. Das ist oft unbeabsichtigt und kann zu unerwuenschten Ergebnissen fuehren.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Nur der body-Text wird zentriert, Kindelemente bleiben links</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>text-align</code> wird vererbt. Kindelemente uebernehmen die Einstellung.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Alle Texte auf der Seite werden zentriert (Vererbung)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>text-align</code> wird vererbt. Alle Kindelemente ohne eigenen <code>text-align</code>-Wert uebernehmen die Zentrierung.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Die gesamte Webseite wird horizontal in der Mitte positioniert</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>text-align</code> zentriert den Text, nicht das Element selbst. Fuer Elementzentrierung braucht man andere Techniken.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Nichts passiert, da body keinen direkten Text enthaelt</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Eigenschaft wird an alle Kindelemente vererbt und wirkt dort.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 8: Zuordnung - CSS-Eigenschaften und Zweck -->
+<question type="matching">
+    <name>
+        <text>CSS-Eigenschaften zuordnen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Ordne die CSS-Eigenschaften ihrem Zweck zu:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><code>font-size</code> bestimmt die Schriftgroesse, <code>font-family</code> die Schriftart, <code>color</code> die Textfarbe und <code>background-color</code> die Hintergrundfarbe.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+        <text><![CDATA[<p><code>font-size</code></p>]]></text>
+        <answer>
+            <text>Schriftgroesse</text>
+        </answer>
+    </subquestion>
+    <subquestion format="html">
+        <text><![CDATA[<p><code>font-family</code></p>]]></text>
+        <answer>
+            <text>Schriftart</text>
+        </answer>
+    </subquestion>
+    <subquestion format="html">
+        <text><![CDATA[<p><code>color</code></p>]]></text>
+        <answer>
+            <text>Textfarbe</text>
+        </answer>
+    </subquestion>
+    <subquestion format="html">
+        <text><![CDATA[<p><code>background-color</code></p>]]></text>
+        <answer>
+            <text>Hintergrundfarbe</text>
+        </answer>
+    </subquestion>
+</question>
+
+<!-- Frage 9: Wahr/Falsch - nav innerhalb von main -->
+<question type="truefalse">
+    <name>
+        <text>nav innerhalb von main</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Das <code>&lt;nav&gt;</code>-Element gehoert typischerweise <em>innerhalb</em> von <code>&lt;main&gt;</code>.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><strong>Falsch!</strong> Die Hauptnavigation (<code>&lt;nav&gt;</code>) steht normalerweise <em>ausserhalb</em> von <code>&lt;main&gt;</code>, da sie nicht zum einzigartigen Seiteninhalt gehoert. <code>&lt;main&gt;</code> enthaelt nur den individuellen Hauptinhalt, der auf jeder Seite anders ist. Die Navigation ist auf allen Seiten gleich und gehoert daher nicht in <code>&lt;main&gt;</code>.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>1</penalty>
+    <answer fraction="0" format="moodle_auto_format">
+        <text>true</text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>&lt;nav&gt;</code> steht typischerweise <em>vor</em> oder <em>neben</em> <code>&lt;main&gt;</code>, nicht darin.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+        <text>false</text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Die Hauptnavigation steht ausserhalb von <code>&lt;main&gt;</code>, da sie nicht zum einzigartigen Seiteninhalt gehoert.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 10: Multiple Choice - rem vs px -->
+<question type="multichoice">
+    <name>
+        <text>Vorteil von rem gegenueber px</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Warum wird <code>rem</code> oft gegenueber <code>px</code> fuer Schriftgroessen empfohlen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><code>rem</code> basiert auf der Wurzel-Schriftgroesse und passt sich an, wenn Nutzer ihre Browser-Schriftgroesse aendern. Das verbessert die <strong>Barrierefreiheit</strong>. Mit <code>px</code> ist die Groesse fix und ignoriert Nutzereinstellungen.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>rem laedt schneller als px</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Ladezeit hat nichts mit der verwendeten Einheit zu tun.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>rem sieht auf allen Geraeten gleich aus</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Das Gegenteil! rem passt sich an Nutzereinstellungen an und kann daher unterschiedlich aussehen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>rem respektiert die Browser-Schriftgroesse des Nutzers</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! rem passt sich an, wenn Nutzer ihre Schriftgroesse im Browser aendern - wichtig fuer Barrierefreiheit.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>rem ist die einzige gueltige Einheit in modernem CSS</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Auch px, em, %, vw, vh und viele andere Einheiten sind gueltig.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 11: Multiple Choice - link-Tag Attribut -->
+<question type="multichoice">
+    <name>
+        <text>Externes CSS einbinden</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welches Attribut im <code>&lt;link&gt;</code>-Tag gibt den Pfad zur CSS-Datei an?</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">&lt;link rel="stylesheet" ???="style.css"&gt;</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Das <code>href</code>-Attribut (Hypertext Reference) gibt den Pfad zur verlinkten Ressource an - genau wie bei <code>&lt;a&gt;</code>-Links. <code>rel="stylesheet"</code> sagt dem Browser, dass es sich um ein Stylesheet handelt.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>href</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>href</code> gibt den Pfad zur Datei an.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>src</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>src</code> wird bei <code>&lt;img&gt;</code>, <code>&lt;script&gt;</code> und <code>&lt;video&gt;</code> verwendet, nicht bei <code>&lt;link&gt;</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>url</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>url</code> ist kein gueltiges Attribut fuer <code>&lt;link&gt;</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>path</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>path</code> ist kein HTML-Attribut.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 12: Multiple Choice - Spezifitaet -->
+<question type="multichoice">
+    <name>
+        <text>Welche Regel gewinnt?</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welche Farbe hat der Text?</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">CSS:
+p { color: blue; }
+.wichtig { color: red; }
+
+HTML:
+&lt;p class="wichtig"&gt;Text&lt;/p&gt;</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Ein <strong>Klassen-Selektor</strong> (<code>.wichtig</code>) hat eine hoehere Spezifitaet als ein <strong>Element-Selektor</strong> (<code>p</code>). Deshalb gewinnt die Regel mit der Klasse und der Text wird <strong>rot</strong>. Die Reihenfolge im Code spielt nur bei gleicher Spezifitaet eine Rolle.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Blau (p-Regel steht zuerst)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Reihenfolge ist nur bei gleicher Spezifitaet relevant. Die Klasse hat hoehere Spezifitaet.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Rot (Klassen-Selektor hat hoehere Spezifitaet)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Klassen-Selektoren sind spezifischer als Element-Selektoren und gewinnen daher.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Lila (Blau und Rot mischen sich)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! CSS-Eigenschaften mischen sich nicht. Es gewinnt immer eine Regel.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Schwarz (Browser-Standard)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Beide Regeln sind gueltig, eine davon wird angewendet.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 13: Kurzantwort - text-decoration Wert -->
+<question type="shortanswer">
+    <name>
+        <text>Unterstreichung hinzufuegen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welchen Wert setzt man fuer <code>text-decoration</code>, um Text zu <strong>unterstreichen</strong>?</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">text-decoration: ______;</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Der Wert <code>underline</code> fuegt eine Unterstreichung hinzu. Weitere Werte sind <code>none</code> (keine Dekoration), <code>line-through</code> (durchgestrichen) und <code>overline</code> (Linie darueber).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <usecase>0</usecase>
+    <answer fraction="100" format="moodle_auto_format">
+        <text>underline</text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>text-decoration: underline;</code> unterstreicht den Text.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 14: Multiple Choice - Falsche Syntax erkennen -->
+<question type="multichoice">
+    <name>
+        <text>CSS-Syntaxfehler finden</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welche CSS-Regel enthaelt einen <strong>Syntaxfehler</strong>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>In CSS werden Eigenschaft und Wert durch einen <strong>Doppelpunkt</strong> getrennt, nicht durch ein Gleichheitszeichen. <code>color = red</code> ist ungueltig. Die korrekte Syntax ist <code>color: red;</code></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>p { color: red; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Diese Regel ist korrekt: Selektor, geschweifte Klammern, Eigenschaft:Wert mit Semikolon.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>p { color = red; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig erkannt! Das Gleichheitszeichen ist falsch. Es muss ein Doppelpunkt sein: <code>color: red;</code></p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>.info { font-size: 1.5rem; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Diese Regel ist korrekt: Klassen-Selektor mit Punkt, gueltige Eigenschaft und Wert.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>h1, h2 { text-align: center; }</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Diese Regel ist korrekt: Komma-Gruppierung zweier Selektoren.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 15: Multiple Choice - Kaskade verstehen -->
+<question type="multichoice">
+    <name>
+        <text>Gleiche Spezifitaet - was gewinnt?</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welche Farbe hat der Text?</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">.hinweis { color: green; }
+.hinweis { color: orange; }
+
+&lt;p class="hinweis"&gt;Text&lt;/p&gt;</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Beide Regeln haben <strong>gleiche Spezifitaet</strong> (ein Klassen-Selektor). In diesem Fall gilt die <strong>Kaskade</strong>: Die Regel, die <em>weiter unten</em> im CSS steht, gewinnt. Also wird der Text <strong>orange</strong>.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Gruen (erste Regel gewinnt)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Bei gleicher Spezifitaet gewinnt die <em>letzte</em> Regel, nicht die erste.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Orange (letzte Regel gewinnt bei gleicher Spezifitaet)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Bei gleicher Spezifitaet gilt die Kaskade: Die letzte Regel ueberschreibt die vorherigen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Der Browser waehlt zufaellig</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! CSS ist deterministisch - die Regeln zur Konfliktloesung sind klar definiert.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Beide Farben werden angewendet (Farbverlauf)</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Nur eine <code>color</code>-Regel kann gelten. Es gibt keine automatische Mischung.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+</quiz>
