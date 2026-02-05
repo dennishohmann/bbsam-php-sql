@@ -96,7 +96,7 @@ mysqli_close($conn);
 -->
 <div class="navigation">
     <a href="delete_1.php" class="nav-btn zurueck">&larr; Zurück</a>
-    <div class="nav-platzhalter"></div>
+    <a href="delete_3.php" class="nav-btn weiter">Weiter &rarr;</a>
 </div>
 <style>
     .navigation {

@@ -28,8 +28,24 @@ The project consists of multiple progressive tutorial series. Files are labeled 
 - **delete_0.html** - Introduction page with SQL restore code for deleted data
 - **delete_1.php** - AUFGABE: Add delete functionality (code skeleton with hints)
 - **delete_2.php** - MUSTERLÖSUNG: Complete delete implementation with GET parameters
+- **delete_3.php** - ZUSATZAUFGABE: Add JavaScript confirmation dialog (for JS beginners)
+- **delete_4.php** - MUSTERLÖSUNG: Complete implementation with onclick confirm()
 
-Key concepts taught: `$_GET` parameters, `isset()`, `intval()` for SQL injection prevention, DELETE statements.
+Key concepts taught: `$_GET` parameters, `isset()`, `intval()` for SQL injection prevention, DELETE statements, JavaScript `onclick` attribute, `confirm()` function for user confirmation.
+
+### `insert_record/` - Inserting New Records via Forms
+
+- **insert_0.html** - Introduction page with GET vs POST comparison, SQL setup for new columns
+- **insert_1.php** - AUFGABE (einfach): Formular mit POST-Methode, Dropdown-Optionen, INSERT ausführen
+- **insert_2.php** - MUSTERLÖSUNG (einfach): Funktionierende Version ohne Sicherheitsmaßnahmen
+- **insert_3.php** - AUFGABE (Sicherheit): Eingaben absichern mit `mysqli_real_escape_string()`, `intval()`, Whitelist
+- **insert_4.php** - MUSTERLÖSUNG (sicher): Vollständige Absicherung aller Eingaben
+- **insert_5.php** - BONUS: Prepared Statements (fortgeschrittene Sicherheitsmethode)
+
+Key concepts taught:
+- **insert_1/2**: `$_POST` parameters, `isset()`, HTML5 form elements (`<input type="date">`, `<input type="number">`), `<select>` dropdowns, `mysqli_insert_id()`
+- **insert_3/4**: `mysqli_real_escape_string()` for text fields, `intval()`/`floatval()` for numbers, whitelist validation with `in_array()` for ENUM fields, SQL injection prevention
+- **insert_5**: Prepared statements with `mysqli_prepare()` and `bind_param()`
 
 Each PHP file contains both executable code and embedded HTML instructions for browser viewing.
 
@@ -42,7 +58,9 @@ Each PHP file contains both executable code and embedded HTML instructions for b
 - **Table:** katzen
 - **Charset:** utf8mb4
 
-Table columns: `id`, `name`, `spezialitaet`, `taeglicher_unfug`, `kaffee_konsum`
+Table columns (base): `id`, `name`, `spezialitaet`, `taeglicher_unfug`, `kaffee_konsum`
+
+Extended columns (for insert_record tutorial): `eingestellt_am` (DATE), `gehalt` (DECIMAL(8,2)), `abteilung` (ENUM: 'Küche', 'Service', 'Unterhaltung', 'Sicherheit', 'Management')
 
 ## Code Patterns
 
@@ -68,6 +86,20 @@ For integer IDs (e.g., delete operations), use `intval()`:
 ```php
 $id = intval($_GET['delete']);
 mysqli_query($conn, "DELETE FROM katzen WHERE id = $id");
+```
+
+For text fields in INSERT/UPDATE (e.g., form input), use `mysqli_real_escape_string()`:
+```php
+$name = mysqli_real_escape_string($conn, $_POST['name']);
+mysqli_query($conn, "INSERT INTO katzen (name) VALUES ('$name')");
+```
+
+For ENUM fields, use whitelist validation:
+```php
+$erlaubte_abteilungen = ['Küche', 'Service', 'Unterhaltung', 'Sicherheit', 'Management'];
+if (!in_array($abteilung, $erlaubte_abteilungen)) {
+    $abteilung = 'Service';
+}
 ```
 
 ### Resource Cleanup

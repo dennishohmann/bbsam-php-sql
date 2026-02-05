@@ -82,7 +82,11 @@
             </ol>
             <div class="sql-code">
                 <div class="sql-header">SQL-Code zum Wiederherstellen:</div>
-<pre>-- Alle Katzen löschen und neu einfügen
+<pre>-- Datenbank erstellen
+CREATE DATABASE IF NOT EXISTS katzencafe;
+USE katzencafe;
+
+-- Alle Katzen löschen und neu einfügen
 DELETE FROM katzen;
 ALTER TABLE katzen AUTO_INCREMENT = 1;
 

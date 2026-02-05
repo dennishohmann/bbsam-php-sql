@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- Frage 1: Einfach - POST-Methode -->
+<question type="multichoice">
+    <name>
+        <text>Formulardaten unsichtbar senden</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welches Attribut sorgt dafür, dass Formulardaten <strong>nicht in der URL sichtbar</strong> sind?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Die POST-Methode sendet Daten im HTTP-Body, nicht als URL-Parameter. Das ist wichtig für sensible Daten wie Passwörter oder längere Texte. GET hingegen hängt alle Daten sichtbar an die URL an.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>method="get"</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! GET überträgt Daten sichtbar in der URL als Query-Parameter (z.B. <code>?name=Whiskers</code>).</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>method="post"</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! POST sendet Daten im HTTP-Body, nicht in der URL. Ideal für Formulare mit sensiblen oder umfangreichen Daten.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>action="hidden"</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Das <code>action</code>-Attribut definiert nur die Ziel-URL des Formulars, nicht die Übertragungsmethode.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>type="secret"</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Dieses Attribut existiert in HTML nicht. Für versteckte Felder gibt es <code>type="hidden"</code>, aber das hat nichts mit der Übertragungsmethode zu tun.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 2: Einfach - $_POST-Zugriff -->
+<question type="multichoice">
+    <name>
+        <text>Zugriff auf POST-Daten</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Ein Formular enthält: <code>&lt;input name="katzenname"&gt;</code></p>
+<p>Wie greift man in PHP auf den eingegebenen Wert zu, wenn das Formular mit POST gesendet wurde?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><code>$_POST</code> ist ein superglobales Array in PHP, das alle per POST gesendeten Formulardaten enthält. Der Schlüssel entspricht dem <code>name</code>-Attribut des HTML-Elements.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>$_POST['katzenname']</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>$_POST</code> ist ein superglobales Array mit allen POST-Daten. Der Schlüssel ist der Name des Formularfeldes.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>$_GET['katzenname']</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>$_GET</code> enthält nur Daten aus der URL (Query-Parameter), nicht aus POST-Formularen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>$POST-&gt;katzenname</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>$_POST</code> ist ein Array, kein Objekt. Arrays werden mit eckigen Klammern angesprochen: <code>$_POST['katzenname']</code></p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>post('katzenname')</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Es gibt keine <code>post()</code>-Funktion in PHP. Man verwendet das superglobale Array <code>$_POST</code>.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 3: Einfach - mysqli_insert_id -->
+<question type="multichoice">
+    <name>
+        <text>Rückgabewert von mysqli_insert_id</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Was gibt die Funktion <code>mysqli_insert_id($conn)</code> zurück?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Bei Tabellen mit <code>AUTO_INCREMENT</code>-Spalte liefert <code>mysqli_insert_id()</code> die automatisch generierte ID des zuletzt eingefügten Datensatzes. Das ist nützlich, um sofort mit dem neuen Datensatz weiterzuarbeiten.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Die automatisch generierte ID des zuletzt eingefügten Datensatzes</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Bei <code>AUTO_INCREMENT</code>-Spalten liefert diese Funktion die neue ID, z.B. um sie dem Benutzer anzuzeigen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Die Anzahl der eingefügten Zeilen</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Für die Anzahl betroffener Zeilen verwendet man <code>mysqli_affected_rows()</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>true</code> oder <code>false</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>mysqli_query()</code> gibt true/false zurück, aber <code>mysqli_insert_id()</code> gibt eine Zahl zurück.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Den vollständigen SQL-String</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Funktion gibt eine Zahl (die neue ID) zurück, keinen String.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 4: Einfach - HTML select-Element -->
+<question type="multichoice">
+    <name>
+        <text>Dropdown-Menü erstellen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welches HTML-Element erstellt ein Dropdown-Auswahlmenü?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Das <code>&lt;select&gt;</code>-Element erstellt ein Dropdown-Menü. Die einzelnen Auswahlmöglichkeiten werden mit <code>&lt;option&gt;</code>-Elementen definiert. Das <code>value</code>-Attribut der Option wird an PHP gesendet.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>&lt;dropdown&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Ein Element namens <code>&lt;dropdown&gt;</code> existiert in HTML nicht.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>&lt;select&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>&lt;select&gt;</code> mit <code>&lt;option&gt;</code>-Elementen erstellt ein Dropdown-Menü.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>&lt;list&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Für Listen gibt es <code>&lt;ul&gt;</code> und <code>&lt;ol&gt;</code>, aber nicht <code>&lt;list&gt;</code>. Dropdown-Menüs erstellt man mit <code>&lt;select&gt;</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>&lt;input type="dropdown"&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Der Typ "dropdown" existiert bei <code>&lt;input&gt;</code> nicht. Für Dropdowns verwendet man <code>&lt;select&gt;</code>.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 5: Einfach - isset() -->
+<question type="multichoice">
+    <name>
+        <text>Zweck von isset()</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Wofür verwendet man <code>isset($_POST['name'])</code> vor der Verarbeitung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><code>isset()</code> prüft, ob eine Variable existiert und nicht NULL ist. Das ist wichtig, weil <code>$_POST['name']</code> nur existiert, wenn das Formular abgesendet wurde. Ohne diese Prüfung würde beim ersten Seitenaufruf ein Fehler entstehen.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Prüft, ob das Feld leer ist</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>isset()</code> prüft nur die Existenz, nicht ob leer. Für Leerprüfung verwendet man <code>empty()</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Prüft, ob die Variable existiert</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>isset()</code> gibt <code>true</code> zurück, wenn die Variable existiert und nicht NULL ist.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Löscht die Variable</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Zum Löschen von Variablen verwendet man <code>unset()</code>, nicht <code>isset()</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Setzt einen Standardwert</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>isset()</code> setzt keine Werte, es prüft nur. Für Standardwerte nutzt man z.B. den Null-Koaleszenz-Operator <code>??</code>.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 6: Schwierig - Escaping -->
+<question type="multichoice">
+    <name>
+        <text>Escaping von Sonderzeichen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Was macht <code>mysqli_real_escape_string()</code> mit dem Namen <strong>O'Brien</strong>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Die Funktion escaped SQL-relevante Zeichen mit einem Backslash. Das Apostroph in O'Brien würde sonst den SQL-String vorzeitig beenden. Mit dem Backslash (<code>O\'Brien</code>) erkennt MySQL es als Teil des Textes.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Löscht das Apostroph komplett</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Funktion löscht keine Zeichen, sie escaped sie nur. Der Name bleibt erhalten.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Macht daraus <code>O\'Brien</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Das Apostroph wird mit Backslash escaped, damit SQL es als Text erkennt und nicht als String-Ende.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Gibt einen Fehler aus</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Funktion ist genau dafür gedacht, solche Zeichen zu behandeln. Sie gibt keinen Fehler aus.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Ändert gar nichts</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Das Apostroph ist ein SQL-relevantes Zeichen und muss escaped werden, um Fehler und Sicherheitslücken zu vermeiden.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 7: Schwierig - intval() vs escape_string -->
+<question type="multichoice">
+    <name>
+        <text>intval() oder escape_string?</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Wann sollte man <code>intval()</code> anstelle von <code>mysqli_real_escape_string()</code> verwenden?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p><code>intval()</code> wandelt eine Eingabe in eine Ganzzahl um. Bei Zahlen im SQL ohne Anführungszeichen (z.B. <code>WHERE id = 5</code>) hilft <code>escape_string</code> nicht, weil kein String escaped werden muss. <code>intval()</code> macht ungültige Eingaben zu 0.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Bei Textfeldern wie Namen</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Für Textfelder verwendet man <code>mysqli_real_escape_string()</code>. <code>intval()</code> würde den Text zerstören.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Bei numerischen Werten wie IDs oder Gehältern</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>intval()</code> wandelt in eine Ganzzahl um. Ungültige Eingaben wie <code>"abc"</code> werden zu 0.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Bei Datumsfeldern</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Ein Datum ist ein String im Format <code>'YYYY-MM-DD'</code> und braucht <code>mysqli_real_escape_string()</code>.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Niemals, escape_string reicht immer</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Bei Zahlen ohne Anführungszeichen im SQL (<code>WHERE id = $id</code>) hilft <code>escape_string</code> nicht gegen Injection.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 8: Schwierig - Whitelist für ENUM -->
+<question type="multichoice">
+    <name>
+        <text>Whitelist für ENUM-Felder</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Warum braucht man für ENUM-Felder (z.B. Abteilung) eine Whitelist-Prüfung mit <code>in_array()</code>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Eine Whitelist stellt sicher, dass nur vorher definierte, gültige Werte akzeptiert werden. Angreifer könnten sonst über manipulierte Formulare beliebige Werte einschleusen. Die Whitelist prüft gegen eine Liste erlaubter Werte.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Weil die Abfrage sonst langsamer wird</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Performance ist hier nicht der Grund. Es geht um Sicherheit und Datenintegrität.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Um ungültige Werte zu verhindern und Manipulation zu blockieren</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Nur vorher festgelegte Werte werden akzeptiert. Angreifer können keine beliebigen Werte einschleusen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Weil MySQL sonst abstürzt</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! MySQL würde bei ungültigen ENUM-Werten nur einen Fehler oder leeren String speichern, aber nicht abstürzen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Weil es in PHP Pflicht ist</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! PHP verlangt es nicht technisch, aber es ist Best Practice für sichere Programmierung.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 9: Schwierig - bind_param Typ-String -->
+<question type="multichoice">
+    <name>
+        <text>Typ-String bei bind_param</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Was bedeutet der String <code>"ssi"</code> bei:</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">mysqli_stmt_bind_param($stmt, "ssi", $name, $spezialitaet, $id)</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Der Typ-String definiert die Datentypen der gebundenen Variablen: <code>s</code> = String, <code>i</code> = Integer, <code>d</code> = Double, <code>b</code> = Blob. Ein Buchstabe pro Variable, in der gleichen Reihenfolge.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>String, String, Integer – die Datentypen der drei Variablen</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! <code>s</code>=String, <code>i</code>=Integer. Ein Buchstabe pro Variable in der gleichen Reihenfolge.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Secure-SQL-Insert als Sicherheitsmodus</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Der String definiert die Datentypen, nicht einen Sicherheitsmodus. Die Sicherheit kommt durch die Trennung von SQL und Daten.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Simple-Statement-Identifier</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Es ist eine Typ-Definition für die Variablen, kein Identifier.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Ein Syntaxfehler</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>"ssi"</code> ist korrekte Syntax für zwei Strings und einen Integer.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 10: Schwierig - SQL-Syntax für Strings -->
+<question type="multichoice">
+    <name>
+        <text>Fehler in INSERT-Statement</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welches Problem hat dieser Code?</p>
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px;">$name = $_POST['name'];
+$sql = "INSERT INTO katzen (name) VALUES ($name)";</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Textwerte in SQL müssen in Anführungszeichen stehen: <code>VALUES ('$name')</code>. Ohne Anführungszeichen interpretiert MySQL <code>$name</code> als Spaltenname oder Schlüsselwort, was zu einem Fehler führt. Zusätzlich fehlt hier auch die Absicherung gegen SQL-Injection!</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Es fehlt ein Semikolon am Ende</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Das PHP-Semikolon ist korrekt. Das Problem liegt im SQL-String selbst.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Der Wert <code>$name</code> braucht Anführungszeichen im SQL-String</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Textwerte müssen in SQL in Anführungszeichen stehen: <code>VALUES ('$name')</code></p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Es fehlt ein Komma</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Bei nur einer Spalte und einem Wert braucht man kein Komma.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Der Code ist vollständig korrekt</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Ohne Anführungszeichen interpretiert MySQL den Namen falsch. Außerdem fehlt die Absicherung gegen SQL-Injection.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 11: Knifflig - SQL-Injection erkennen -->
+<question type="multichoice">
+    <name>
+        <text>SQL-Injection-Angriff erkennen</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welche Benutzereingabe stellt einen <strong>SQL-Injection-Angriff</strong> dar?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>SQL-Injection versucht, die SQL-Struktur zu manipulieren. <code>'; DROP TABLE katzen;--</code> beendet den aktuellen Befehl mit <code>';</code>, führt einen gefährlichen Befehl aus und kommentiert den Rest mit <code>--</code> aus. O'Brien ist nur ein Name mit Apostroph, kein Angriff.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>Herr Müller</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Ein normaler Name mit Umlaut. Das ü ist für SQL unproblematisch.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>O'Brien</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Das Apostroph ist problematisch und kann Fehler verursachen, aber es ist kein Angriff – nur ein irischer Name.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>'; DROP TABLE katzen;--</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Diese Eingabe versucht, das SQL zu beenden und einen destruktiven DROP-Befehl einzuschleusen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>&lt;script&gt;alert('hi')&lt;/script&gt;</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Das ist ein XSS-Angriff (Cross-Site-Scripting) auf HTML/JavaScript, kein SQL-Injection-Angriff.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 12: Knifflig - Prepared Statements verstehen -->
+<question type="multichoice">
+    <name>
+        <text>Funktionsweise von Prepared Statements</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Bei Prepared Statements: Was passiert mit den <code>?</code>-Platzhaltern?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Das ist der Kern der Sicherheit: Das SQL wird <strong>zuerst kompiliert</strong>, dann werden die Daten über <code>bind_param</code> eingefügt. Die Daten können die SQL-Struktur nicht mehr verändern, weil diese bereits feststeht. Deshalb ist SQL-Injection unmöglich.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Sie werden direkt durch die Werte ersetzt</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Werte werden separat übergeben, nicht einfach eingesetzt. Das ist der entscheidende Sicherheitsvorteil.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Sie werden durch <code>bind_param</code> mit Variablen verknüpft, aber SQL und Daten bleiben getrennt</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Das SQL wird zuerst kompiliert, dann werden die Daten sicher eingefügt. Deshalb ist SQL-Injection unmöglich.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Sie bleiben unverändert in der Datenbank</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Die Fragezeichen sind Platzhalter für die Ausführung, keine gespeicherten Werte.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Sie erlauben das Einschleusen von SQL-Befehlen</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Genau das Gegenteil – Prepared Statements verhindern SQL-Injection zuverlässig.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 13: Knifflig - Unsicheren Code erkennen -->
+<question type="multichoice">
+    <name>
+        <text>Sicherheitslücke finden</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welcher Code enthält eine <strong>Sicherheitslücke</strong>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Code B verwendet die Benutzereingabe <code>$_POST['name']</code> direkt ohne jegliche Absicherung. Das ermöglicht SQL-Injection. Die anderen Varianten sichern die Eingabe ab: <code>intval()</code> für Zahlen, <code>escape_string()</code> für Text, Prepared Statements für maximale Sicherheit.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>$id = intval($_GET['id']);</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Sicher! <code>intval()</code> wandelt jede Eingabe in eine Ganzzahl um. Ungültige Werte werden zu 0.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p><code>$name = $_POST['name'];</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig erkannt! Die Benutzereingabe wird ohne jede Absicherung verwendet – SQL-Injection ist möglich.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p><code>$name = mysqli_real_escape_string($conn, $_POST['name']);</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Sicher! Die Funktion escaped gefährliche Zeichen korrekt für die Verwendung in SQL-Strings.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Prepared Statement mit <code>bind_param()</code></p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Sicher! Prepared Statements sind die sicherste Methode, da SQL und Daten komplett getrennt werden.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 14: Knifflig - Vorteil Prepared Statements -->
+<question type="multichoice">
+    <name>
+        <text>Hauptvorteil von Prepared Statements</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Was ist der <strong>Hauptvorteil</strong> von Prepared Statements gegenüber <code>mysqli_real_escape_string()</code>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Bei Prepared Statements wird das SQL <strong>zuerst kompiliert</strong>, bevor die Daten eingefügt werden. Die Daten können die SQL-Struktur nicht mehr verändern. Bei <code>escape_string</code> werden Daten in den SQL-String eingefügt – ein Fehler beim Escaping kann zur Lücke werden.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Sie sind deutlich schneller</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Bei einzelnen Abfragen sind sie ähnlich schnell. Bei vielen gleichen Abfragen können sie schneller sein, aber das ist nicht der Hauptvorteil.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>SQL-Struktur und Benutzerdaten werden komplett getrennt verarbeitet</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Das SQL wird zuerst kompiliert – danach können Daten die Struktur nicht mehr verändern. Das macht SQL-Injection unmöglich.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Man braucht weniger Codezeilen</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! Prepared Statements brauchen sogar mehr Code (prepare, bind, execute). Der Vorteil liegt in der Sicherheit.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Sie sind einfacher zu verstehen</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>escape_string</code> ist für Anfänger oft intuitiver. Prepared Statements sind sicherer, aber komplexer.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+<!-- Frage 15: Knifflig - Best Practice -->
+<question type="multichoice">
+    <name>
+        <text>Sicherste Methode für INSERT</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[<p>Welche Methode bietet den <strong>besten Schutz</strong> für ein INSERT-Formular mit Text, Zahlen und ENUM-Feldern?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text><![CDATA[<p>Prepared Statements mit korrekten Typ-Bindungen (<code>s</code>, <code>i</code>, <code>d</code>) sind die sicherste Methode. Sie behandeln alle Datentypen automatisch korrekt und trennen SQL-Struktur von Daten. Für ENUM-Felder sollte man zusätzlich eine Whitelist verwenden.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>Nur POST statt GET verwenden</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! POST versteckt nur die Daten vor der URL, schützt aber nicht vor Manipulation. Ein Angreifer kann POST-Daten genauso fälschen.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>POST kombiniert mit <code>intval()</code> für alle Felder</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Falsch! <code>intval()</code> zerstört Textwerte – "Whiskers" würde zu 0 werden. Für Zahlen gut, für Text unbrauchbar.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+        <text><![CDATA[<p>POST kombiniert mit <code>mysqli_real_escape_string()</code> für alle Felder</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Teilweise richtig, aber nicht optimal. Zahlen ohne Anführungszeichen und ENUMs brauchen andere Behandlung. Prepared Statements sind sicherer.</p>]]></text>
+        </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+        <text><![CDATA[<p>Prepared Statements mit korrekten Typ-Bindungen</p>]]></text>
+        <feedback format="html">
+            <text><![CDATA[<p>Richtig! Prepared Statements behandeln alle Datentypen automatisch sicher und trennen SQL von Daten. Für ENUM zusätzlich Whitelist empfohlen.</p>]]></text>
+        </feedback>
+    </answer>
+</question>
+
+</quiz>
